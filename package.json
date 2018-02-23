@@ -1,0 +1,11 @@
+{
+  "name": "newsitetest",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Nick Meldrum <nick@nickmeldrum.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@cmsgov/design-system-core": "^1.14.0",
+    "@cmsgov/design-system-layout": "^1.14.0"
+  }
+}

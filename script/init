@@ -1,0 +1,4 @@
+#!/bin/sh
+export PATH=./script:"$PATH"
+echo list of commands:
+find . -maxdepth 2 -perm -111 -type f | sed -n '/init/ !p' | sed -e 's/\.\/script\///'

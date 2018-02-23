@@ -1,0 +1,3 @@
+#!/bin/sh
+cp node_modules/@cmsgov/design-system-core/fonts/* site/assets/fonts
+cp node_modules/@cmsgov/design-system-core/images/* site/assets/images
