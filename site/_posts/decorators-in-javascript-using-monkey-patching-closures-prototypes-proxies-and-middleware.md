@@ -1,19 +1,12 @@
----
-layout: post
-title: "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'"
-date: 2016-03-29 11:13:00
----
-
-## Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding.
+## Huh? What's this all about then?
 
 Recently I had the opportunity to study different methods of implementing the [wrapper pattern aka the decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) in JavaScript.
 
 I thought it was worth sharing what I learnt about the pros and cons of using these techniques to implement a decorator.
 
-<figure>
-	<img src="{{ '/assets/images/decorator.jpg' | prepend: site.baseurl }}" alt="A painter/ decorator"> 
-	<figcaption>Okay okay, not <i>that</i> type of decorator...</figcaption>
-</figure>
+### "Okay okay, not *that* type of decorator..."
+
+![Okay, not that type of decorator](/media/decorator.jpg "Okay, not that type of decorator")
 
 The five different decorator implementations are:
 
@@ -27,20 +20,20 @@ I have put some notes about this post in an appendix so as not to disrupt the fl
 
 ## First, the simple component I want to decorate:
 
-{% highlight javascript %}
-function myComponentFactory() {
-    let suffix = ''
+    'use strict'
 
-    return {
-        setSuffix: suf => suffix = suf,
-        printValue: value => console.log(`value is ${value + suffix}`)
+    function myComponentFactory() {
+        let suffix = ''
+
+        return {
+            setSuffix: suf => suffix = suf,
+            printValue: value => console.log(`value is ${value + suffix}`)
+        }
     }
-}
-{% endhighlight %}
 
-const component = myComponentFactory()
-component.setSuffix('!')
-component.printValue('My Value')
+    const component = myComponentFactory()
+    component.setSuffix('!')
+    component.printValue('My Value')
 
 It's a simple component with a `printValue(val)` method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
 
@@ -60,7 +53,7 @@ Below is a diagram of how we are going to decorate our component. We will wrap o
 
 What is the most naïve implementation of a decorator I can think of? Just wrap an object by returning a new object that does something, then calls the original.
 
-![Simples!](/assets/images/simples.jpg "Simples!")
+![Simples!](/media/simples.jpg "Simples!")
 
 > "Simples"
 
@@ -122,7 +115,7 @@ The decorated function does it's stuff (lower casing the value) and passes the v
 
 We can then keep wrapping our object creation in decorator factory methods on and on waiting for the invocation which will call them like opening a Matryoshka doll.
 
-![Wrapping stuff inside other stuff](/assets/images/matryoshka.jpg "Wrapping stuff inside other stuff")
+![Wrapping stuff inside other stuff](/media/matryoshka.jpg "Wrapping stuff inside other stuff")
 
 So after the object creation and decoration is complete we run our test code:
 
@@ -141,7 +134,7 @@ The second attempt fails validation which shows halting the chain of decorators 
 
 ### What's with that second validator decorator and setTimeout anyway?!
 
-![The waiter analogy](/assets/images/waiters.jpg "The waiter analogy")
+![The waiter analogy](/media/waiters.jpg "The waiter analogy")
 
 [(The waiter analogy is a great way of explaining asynchronous code)](http://www.roidna.com/blog/what-is-node-js-benefits-overview/)
 
@@ -201,7 +194,7 @@ Our own function can use the "inner" object because of the closure but it isn't 
 
 Closures are one of the most important and useful feature of JavaScript so it's worth making sure you grok them now if you don't already.
 
-![Don't expose your privates](/assets/images/soldiers_privates.jpg "Don't expose your privates")
+![Don't expose your privates](/media/soldiers_privates.jpg "Don't expose your privates")
 
 ### Pros and cons of this method
 
@@ -299,7 +292,7 @@ Note the use of closure's here to do the storing of the chain of inner functions
 
 People HATE monkey patching. Often with good reason.
 
-![Monkeys. Cute.](/assets/images/monkeys.jpg "Monkeys. Cute.")
+![Monkeys. Cute.](/media/monkeys.jpg "Monkeys. Cute.")
 
 Awwwwww...
 
@@ -325,7 +318,7 @@ It's mechanism is quite simple in JavaScript too. All objects have a prototype. 
 
 ### Delegation
 
-![Delegation](/assets/images/delegation.jpg "Delegation")
+![Delegation](/media/delegation.jpg "Delegation")
 
 You can tell 1 object to "base" itself off another object by setting it's prototype. What this really means is: if someone asks to access one of my members, first we will look on my object, but if I don't have it I will delegate the access to my prototype. On this will go, all the way up the prototype chain.
 
@@ -466,7 +459,7 @@ Next you will notice the component factory is identical but the decorator method
 
 Proxies give an amazing amount of power and they are worth reading up about in [the Proxy section of mdn](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
-![It's really hard finding a good image about proxies](/assets/images/spiderman_proxies.jpg "It's really hard finding a good image about proxies")
+![It's really hard finding a good image about proxies](/media/spiderman_proxies.jpg "It's really hard finding a good image about proxies")
 
 Here, the decorator object takes the inner object and returns a Proxy of this object. We only handle 1 thing in our Proxy object: the property accessors. We do this by specifying custom behaviour for the "get" handler.
 
