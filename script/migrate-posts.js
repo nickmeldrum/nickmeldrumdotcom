@@ -1,10 +1,11 @@
 const fs = require('fs')
 const path = require('path')
 
+const rootDir = path.join(__dirname, '..')
 const metaDataFilename = 'metadata.json'
-const postsDir = path.join(__dirname, 'site/_posts')
+const postsDir = path.join(rootDir, 'site/_posts')
 const metaDataPath = path.join(postsDir, metaDataFilename)
-const draftsDir = path.join(__dirname, 'site/_drafts')
+const draftsDir = path.join(rootDir, 'site/_drafts')
 
 const dealWithError = err => {
   if(err) {
@@ -22,7 +23,7 @@ fs.readFile(metaDataPath, 'utf8', function(err, contents) {
 
     files.forEach(function(file, index) {
       if (!(file === 'metadata.json' || !isNaN(file[0]))) {
-        const fullPostPath = path.join(__dirname, 'site/_posts', file)
+        const fullPostPath = path.join(rootDir, 'site/_posts', file)
         fs.readFile(fullPostPath, 'utf8', (err, contents) => {
           dealWithError(err)
 
@@ -36,15 +37,17 @@ fs.readFile(metaDataPath, 'utf8', function(err, contents) {
 
             if (fileMetaData.Published) newContent += `date: ${fileMetaData.PublishDate.replace('T', ' ').replace('Z', '')}` + '\n'
 
+            let fixedContent = contents.replace(new RegExp('/media/', 'g'), '/assets/images/')
+
             newContent +=
               '---' + '\n' +
-              contents.trim()
+              fixedContent.trim()
 
             const publishDate = fileMetaData.Published ? fileMetaData.PublishDate.substring(0, fileMetaData.PublishDate.indexOf('T')) + '-' : ''
             const newFilename = fileMetaData.Published ? `${publishDate}${file}` : file
             const dirToSaveIn = fileMetaData.Published ? '_posts' : '_drafts'
 
-            fs.writeFile(path.join(__dirname, `site/${dirToSaveIn}`, newFilename), newContent, err => {
+            fs.writeFile(path.join(rootDir, `site/${dirToSaveIn}`, newFilename), newContent, err => {
               dealWithError(err)
 
               fs.unlink(fullPostPath, err => {
