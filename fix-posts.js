@@ -22,14 +22,40 @@ fs.readFile(metaDataPath, 'utf8', function(err, contents) {
 
     files.forEach(function(file, index) {
       if (!(file === 'metadata.json' || !isNaN(file[0]))) {
+        /*
 ---
   layout: post
 title: "The argument for SASS"
 shortDescription: "Some people don't like it, I would like to try to persuade them..."
 date: 2015-12-16 14:02:00
 ---
-
+*/
         console.log(file)
+
+        fs.readFile(path.join(__dirname, 'site/_posts', file), 'utf8', (err, contents) => {
+          dealWithError(err)
+
+          const fileMetaData = metaData.find(item => item.Slug === file.replace('.md', ''))
+
+          let newContent = '---' + '\n' + 
+            'layout: post' + '\n' + 
+            `title: "${fileMetaData.Title}"` + '\n' + 
+            `shortDescription: "${fileMetaData.Title}"` + '\n'
+
+          if (fileMetaData.Published) newContent += `date: ${fileMetaData.PublishDate.replace('T', ' ').replace('Z', '')}` + '\n'
+
+          newContent +=
+            '---' + '\n' + 
+            contents
+
+          const publishDate = fileMetaData.Published ? fileMetaData.PublishDate.substring(0, fileMetaData.PublishDate.indexOf('T')) : x
+          const newFilename = fileMetaData.Published ? `${publishDate}${file}` : file
+          const dirToSaveIn = fileMetaData.Published ? '_posts' : '_drafts'
+
+          fs.writeFile(path.join(__dirname, `site/${dirToSaveIn}`, newFilename), newContent, err => {
+            dealWithError(err)
+          })
+        })
       }
       /*
       // Make one pass and make the file complete
