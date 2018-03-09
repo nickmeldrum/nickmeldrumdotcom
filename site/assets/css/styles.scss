@@ -1,21 +1,18 @@
 ---
 ---
 
-@import "example";
 @import "syntax-highlight";
+@import "code";
+@import "post";
 
 body {
   font-family: 'Roboto', Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto Slab', Palatino, serif;
-}
-
-code {
-  font-family: 'Roboto Mono', 'Courier New', monospace;
-}
-
-.highlight {
-  padding: 20px;
 }

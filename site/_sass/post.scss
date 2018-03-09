@@ -1,0 +1,16 @@
+.post {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.post__container {
+  max-width: 700px;
+  padding: 0 40px 0 40px;
+}
