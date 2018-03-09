@@ -1,4 +1,10 @@
-﻿If there was 1 thing I wish I had learnt earlier in my professional career it would be:
+---
+layout: post
+title: "Watch more tv"
+shortDescription: "Learning through podcasts: some recommendations"
+date: 2010-11-17 01:48:15
+---
+If there was 1 thing I wish I had learnt earlier in my professional career it would be:
 "read more blogs and watch/ listen to more podcasts/webcasts."
 Of course neither of these things were around when I started my career.
 
@@ -6,11 +12,11 @@ _(_"Geroff my lawn," etc. etc_.)_
 
 But still I was late into the game and playing catch up with these tremendous resources.
 
-<img src="/media/podcasts_thumb.jpg" width="59" alt="podcasts"></img> I am using podcasts, webcasts, whatever you call them, to bring seminars, 
+<img src="/assets/images/podcasts_thumb.jpg" width="59" alt="podcasts"></img> I am using podcasts, webcasts, whatever you call them, to bring seminars, 
 professional conferences and top shelf training courses right to me. In my car or train on the way to work or wherever,
 I'm learning for free and I encourage you to do the same.
 
-<img src="/media/girl-on-train_thumb.jpg" width="129" style="float: right;" alt="girl on a train"></img> With that in mind I thought I would share some of the great places
+<img src="/assets/images/girl-on-train_thumb.jpg" width="129" style="float: right;" alt="girl on a train"></img> With that in mind I thought I would share some of the great places
 I go to to get my video and audio fix. Of course, they are very much tailored towards someone developing on the Microsoft
 .Net stack with some open source loveliness piled on top. All of them are interesting in my mind.
 
@@ -19,7 +25,7 @@ Some people make this easy, others don't - I will be making this clear in my lis
 
 So with no further ado, here's the list:
 
-## ![InfoQ](/media/infoQ_logo_thumb.gif) InfoQ
+## ![InfoQ](/assets/images/infoQ_logo_thumb.gif) InfoQ
 
  * URL: [http://www.infoq.com/](http://www.infoq.com/)
 
@@ -34,7 +40,7 @@ So with no further ado, here's the list:
 *   Awesome quality of speakers and institutions reporting on their real world successes and failures
 *   Hear not just from Microsoft people, but Ruby, Java, Clojure, Scala, MongoDb, CouchDb, Neo4J etc.
 
-## ![Hanselminutes](/media/hanselminutes_logo_thumb.jpg) Hanselminutes
+## ![Hanselminutes](/assets/images/hanselminutes_logo_thumb.jpg) Hanselminutes
 
  * URL: [http://www.hanselminutes.com/](http://www.hanselminutes.com/)
 
@@ -49,7 +55,7 @@ So with no further ado, here's the list:
 *   Scott Hanselman
 *   The ultimate .Net evangelist talks about the best Microsoft technologies and to the best Microsoft technical minds
 
-## ![Google](/media/google_logo_thumb.png) Google TechTalks
+## ![Google](/assets/images/google_logo_thumb.png) Google TechTalks
 
  * URL: [http://www.youtube.com/user/GoogleTechTalks](http://www.youtube.com/user/GoogleTechTalks)
 
@@ -66,7 +72,7 @@ So with no further ado, here's the list:
 *   Too many specific highlights to list, maybe I'll do another post with just my favourite Google TechTalks.
 *   A real gold mine - thanks Google!
 
-## ![Tekpub](/media/tekpub-logo_thumb.jpg) Tekpub
+## ![Tekpub](/assets/images/tekpub-logo_thumb.jpg) Tekpub
 
  * URL: [http://www.tekpub.com/](http://www.tekpub.com/)
 
@@ -82,7 +88,7 @@ So with no further ado, here's the list:
 *   Extremely well presented professional screen casts
 *   Great file/video formats
 
-## ![channel9](/media/channel9_logo_thumb.png) Channel 9
+## ![channel9](/assets/images/channel9_logo_thumb.png) Channel 9
 
  * URL: [http://channel9.msdn.com/](http://channel9.msdn.com/)
 
@@ -99,7 +105,7 @@ So with no further ado, here's the list:
 *   Their library of videos is vast. If you want a video on a Microsoft technology - it will be here.
 *   They have a load of stuff from Microsoft Research in Cambridge posted here too.
 
-## ![Deep fried bytes](/media/deepfriedbytes_logo_thumb.png) Deep Fried Bytes
+## ![Deep fried bytes](/assets/images/deepfriedbytes_logo_thumb.png) Deep Fried Bytes
 
  * URL: [http://deepfriedbytes.com/](http://deepfriedbytes.com/)
 
@@ -107,7 +113,7 @@ So with no further ado, here's the list:
 
  * Easy to Download? Yup, fantastic - RSS feed available Why I watch it: Actually I don't yet - it's on my todo list. The list of speakers is fantastic though. From Scott Guthrie to Udi Dahan, this definitely looks worth listening to.  
 
-## ![Developmentor](/media/developmentor_logo_thumb.gif) Developmentor
+## ![Developmentor](/assets/images/developmentor_logo_thumb.gif) Developmentor
 
  * URL: [http://www.develop.com/webcasts/](http://www.develop.com/webcasts/)
 
@@ -122,7 +128,7 @@ So with no further ado, here's the list:
 *   They don't have many webcasts - but they are an extremely high calibre.
 *   They have standard tech webcasts, e.g. MVC, Entity Framework etc. as well as more team/business focused ones e.g. "Selling Agility at your company"
 
-## ![Dimecasts](/media/dimecasts_logo_thumb.png) Dimecasts
+## ![Dimecasts](/assets/images/dimecasts_logo_thumb.png) Dimecasts
 
  * URL: [http://www.dimecasts.net/](http://www.dimecasts.net/)
  
@@ -134,7 +140,7 @@ So with no further ado, here's the list:
 
 *   Just a flavour of a lesson - 10 minutes a time - Now who doesn't have time for that?
 
-## ![Dotnetrocks](/media/dotnetrocks_logo_thumb.jpg) DotNetRocks
+## ![Dotnetrocks](/assets/images/dotnetrocks_logo_thumb.jpg) DotNetRocks
 
  * URL: [http://www.dotnetrocks.com/](http://www.dotnetrocks.com/)
 
@@ -144,7 +150,7 @@ So with no further ado, here's the list:
 
  * Why I watch it: Again, not had time to listen to many of these yet - run by Carl Franklin &ndash; the guy that does Hanselminutes with Scott Hanselman.  
 
-## ![pdc 10](/media/pdc-logo_thumb.jpg) PDC '10
+## ![pdc 10](/assets/images/pdc-logo_thumb.jpg) PDC '10
 
  * URL: [http://player.microsoftpdc.com/schedule/sessions](http://player.microsoftpdc.com/schedule/sessions "http://player.microsoftpdc.com/schedule/sessions")
 
@@ -154,7 +160,7 @@ So with no further ado, here's the list:
 
 ## 
 
-## ![skillsmatter](/media/smlogoblackmanga_thumb.gif) Skillsmatter
+## ![skillsmatter](/assets/images/smlogoblackmanga_thumb.gif) Skillsmatter
 
  * URL: [http://skillsmatter.com/](http://skillsmatter.com/)
 
@@ -168,7 +174,7 @@ So with no further ado, here's the list:
 *   Awesome quality training and podcasts, but this isn't a highlight because you can't download the damn things.
 *   None - I can't download their stuff - ARGH! :(
 
-## ![teched](/media/teched-logo_thumb.jpg) TechEd Online
+## ![teched](/assets/images/teched-logo_thumb.jpg) TechEd Online
 
  * URL: [http://www.microsoft.com/techedonline/](http://www.microsoft.com/techedonline/)
 

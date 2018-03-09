@@ -1,4 +1,10 @@
-﻿So yesterday [I blogged about](http://nickmeldrum.com/blog/archive/2010/02/01/problem-saving-images-as-non-bmp-with-internet-explorer.aspx) a problem we had with users trying to save images off the GIS part of our site. We have a workaround now which will work fine.
+---
+layout: post
+title: "Problem solving and priorities"
+shortDescription: "Learning when NOT to solve the problem"
+date: 2010-02-02 13:24:21
+---
+So yesterday [I blogged about](http://nickmeldrum.com/blog/archive/2010/02/01/problem-saving-images-as-non-bmp-with-internet-explorer.aspx) a problem we had with users trying to save images off the GIS part of our site. We have a workaround now which will work fine.
 
 I would have loved to have been able to spend the time to get a more complete technical solution to the problem. For instance one thing that came to mind was we could possibly use an HTTP Module to intercept and modify the header for the response from that 3rd party component. We could then allow the image to be cached on the client. I have no idea if that would work - I've used HTTP Module to handle requests, never to intercept responses. So I'm only assuming even that part of it works.
 

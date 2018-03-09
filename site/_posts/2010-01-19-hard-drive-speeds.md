@@ -1,4 +1,10 @@
-﻿So my project to get a hosted subtext blog up and running hit a snag over the weekend because once again I had Hard Drive problems. Once again it was all my own fault of course&hellip;
+---
+layout: post
+title: "Hard Drive Speeds"
+shortDescription: "The bottleneck is the rotating disks!"
+date: 2010-01-19 12:10:39
+---
+So my project to get a hosted subtext blog up and running hit a snag over the weekend because once again I had Hard Drive problems. Once again it was all my own fault of course&hellip;
 
 Last week I rebuilt my main workhorse PC (called Chani, my prettier living room PC being called Irulan for any [Dune (Frank Herbert)](http://www.amazon.co.uk/Dune-Frank-Herbert/dp/0450011844/ref=sr_1_1?ie=UTF8&amp;s=books&amp;qid=1263901782&amp;sr=8-1) fans out there.) I rebuilt it ostensibly to start using Windows 7 on it. I wanted to run it on some faster Hard Drives than the standard SATA 7200RPM rubbish. I can't afford any more SSDs for the moment though, but I remembered somewhere I left at work 2 old WD 150GB 10K Raptor SATA drives. Perfect in RAID 0 as a fast OS drive I thought!
 

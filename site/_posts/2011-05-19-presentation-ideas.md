@@ -1,4 +1,10 @@
-﻿While trying to get volunteers from our development team excited about delivering some technical presentations to the rest of the team I created a list of talks that I would like to hear.
+---
+layout: post
+title: "Presentation ideas"
+shortDescription: "Encouraging our developers to present to the team"
+date: 2011-05-19 10:54:23
+---
+While trying to get volunteers from our development team excited about delivering some technical presentations to the rest of the team I created a list of talks that I would like to hear.
 
 These are all talks that I would love to give myself. Mostly because giving a talk would force me to learn more about it. I will never have the time to do even half of them. I am hoping therefore that the team will pick up some of them. Or even better, deliver something else totally from their own interests.
 

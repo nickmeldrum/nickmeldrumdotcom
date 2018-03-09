@@ -1,4 +1,10 @@
-﻿So I was thinking about hosting this blog myself for a number of reasons:
+---
+layout: post
+title: "Never let your domain expire"
+shortDescription: "dns lessons learnt"
+date: 2010-01-15 05:00:00
+---
+So I was thinking about hosting this blog myself for a number of reasons:
 
 1.  I'm a developer &ndash; even if I don't write my own blog engine I at least like to know I can tweek and rebuild someone elses! Sort of a half-way house to the [Jedi route](http://blog.wekeroad.com/blog/be-a-good-jedi-build-your-own-blog/)&hellip;
 2.  I like to own my own data. Makes me nervous not being able to do my [own database backups](http://haacked.com/archive/2009/12/14/back-in-business-again.aspx "Phil Haack").
