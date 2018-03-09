@@ -1,4 +1,10 @@
-﻿Thanks to [Skillsmatter](http://skillsmatter.com/) and the Poppendieck’s for putting on this wonderful [free talk](http://skillsmatter.com/podcast/agile-scrum/a-tale-of-two-terminals-mary-poppendieck/) up in Farringdon and I look forward to coming to more of these in the future! I feel very lucky to have heard [Mary &amp; Tom Poppendieck](http://www.poppendieck.com/)’s talk this evening.
+---
+layout: post
+title: "Mary and Tom talk about lean and 'A tale of two terminals'"
+shortDescription: "A roundup of a talk by Mary Poppendieck"
+date: 2011-05-25 09:00:00
+---
+Thanks to [Skillsmatter](http://skillsmatter.com/) and the Poppendieck’s for putting on this wonderful [free talk](http://skillsmatter.com/podcast/agile-scrum/a-tale-of-two-terminals-mary-poppendieck/) up in Farringdon and I look forward to coming to more of these in the future! I feel very lucky to have heard [Mary &amp; Tom Poppendieck](http://www.poppendieck.com/)’s talk this evening.
 
 The talk was based on a blog post/ essay that Mary wrote called “[A tale of two terminals](http://www.leanessays.com/2011/01/tale-of-two-terminals.html)” which went viral within a few hours of posting. I won’t repeat the talk as you can read about why the Beijing terminal 3 was such a success and Heathrow terminal 5 struggled so much on [leanessays.com](http://www.leanessays.com/2011/01/tale-of-two-terminals.html) or just listen to the [whole talk streamed on the Skillsmatter site](http://skillsmatter.com/podcast/agile-scrum/a-tale-of-two-terminals-mary-poppendieck). (If you skip to 44:00 you can even hear me embarrass myself by asking how to spell “queuing theory”. In my defence I didn’t hear Mary the first time!)
 

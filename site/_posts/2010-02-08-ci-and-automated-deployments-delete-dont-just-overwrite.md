@@ -1,4 +1,10 @@
-﻿At the moment I use [Nant](http://nant.sourceforge.net/) to configure/program my builds. Yes, programming in XML is hell. I have learnt my lesson. I use Teamcity to manage my builds. We use this setup to do our build (compilation and unit tests), configure deployments (mostly to set machine/deployment specific config settings) and then actually remotely deploy the applications.
+---
+layout: post
+title: "CI and Automated Deployments - Delete don't just Overwrite"
+shortDescription: "A lesson learnt about automatically updating production sites"
+date: 2010-02-08 14:59:34
+---
+At the moment I use [Nant](http://nant.sourceforge.net/) to configure/program my builds. Yes, programming in XML is hell. I have learnt my lesson. I use Teamcity to manage my builds. We use this setup to do our build (compilation and unit tests), configure deployments (mostly to set machine/deployment specific config settings) and then actually remotely deploy the applications.
 
 How does our remote deployment work? TeamCity runs a nant script that copies the files to the remote server, including a copy of nant and a "setup" build. It then ([utilising psexec](http://technet.microsoft.com/en-us/sysinternals/bb897553.aspx)[)](http://technet.microsoft.com/en-us/sysinternals/bb897553.aspx)) runs nant remotely to actually run the setup. This will then run any DB upgrade scripts, copy over the new website files including the deployment specific config files, then redeploy our SQLServer reports just in case they've been fiddled with.This is accomplished with a whole bunch of cool Nant Extensions I wrote. This has enabled me to move some of our code into C# instead of huge amounts of ugly XML.
 

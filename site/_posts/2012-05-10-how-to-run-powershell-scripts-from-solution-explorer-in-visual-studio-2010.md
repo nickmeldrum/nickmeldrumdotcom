@@ -1,4 +1,10 @@
-﻿## Why?
+---
+layout: post
+title: "How to run PowerShell scripts from Solution Explorer in Visual Studio 2010"
+shortDescription: "Customizing Visual Studio for PowerShell users"
+date: 2012-05-10 09:00:00
+---
+## Why?
 
 I find this a very useful customization to Visual Studio to run project specific tasks from PowerShell while developing. For example I have PowerShell .ps1 scripts in a Tasks or Deployment solution folders that do things like:
 
@@ -8,7 +14,7 @@ I find this a very useful customization to Visual Studio to run project specific
 
 It's nice to be able to right-click them (or use a shortcut key) to execute them in place just like this:
 
-![](/media/run%20powershell%20context%20menu.png)
+![](/assets/images/run%20powershell%20context%20menu.png)
 
 ## So on to how to set it up:
 
@@ -40,7 +46,7 @@ It's nice to be able to right-click them (or use a shortcut key) to execute them
 
 They should look something like this:
 
-![](/media/powershell%20script%20external%20tools%20dialog.png)
+![](/assets/images/powershell%20script%20external%20tools%20dialog.png)
 
 ### Step 2: Weird Step, trust me!
 
@@ -59,7 +65,7 @@ Check the index position it is in the external tools list. By default mine are a
 9.  Hit the "Ok" button again
 10.  Move them around till you are happy with their order (I usually put them somewhere below "Open With...")
 
-![](/media/powershell%20customize%20context%20menu.png)
+![](/assets/images/powershell%20customize%20context%20menu.png)
 
 ### Step 4: Add your keyboard shortcuts
 
@@ -68,7 +74,7 @@ Check the index position it is in the external tools list. By default mine are a
 3.  Find the Tools.ExternalCommand**N** item in the list (nightmare long list again, type "Tools" to get you roughly there again)
 4.  Select your shortcut key for each command: I like &lt;CTRL&gt; &lt;SHIFT&gt; &lt;P&gt; and &lt;CTRL&gt; &lt;SHIFT&gt; &lt;ALT&gt; &lt;P&gt; respectively
 
-![](/media/shortcut%20mapping%20external%20tools.png)
+![](/assets/images/shortcut%20mapping%20external%20tools.png)
 
 ## You are all done, enjoy your PowerShell efficiency!
 

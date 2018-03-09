@@ -1,4 +1,10 @@
-﻿### The problem
+---
+layout: post
+title: "Problem saving images as non-bmp with Internet Explorer"
+shortDescription: "Oh 3rd party components and proprietary code"
+date: 2010-02-01 11:26:26
+---
+### The problem
 
 We had a problem with our GIS Application. We use a 3rd party component to display our layers of maps and shapes etc. 
 as an image for the browser. So we can show some pretty WMS layers underneath, we opt for a transparent PNG for our own 

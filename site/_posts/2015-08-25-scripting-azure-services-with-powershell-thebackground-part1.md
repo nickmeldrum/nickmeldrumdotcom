@@ -1,4 +1,10 @@
-<img src="/media/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
+---
+layout: post
+title: "Scripting Azure Services With Powershell"
+shortDescription: "Part 1: What am I trying to do?"
+date: 2015-08-25 20:41:00
+---
+<img src="/assets/images/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
 
 ## It's a series of posts
 
@@ -17,7 +23,7 @@ So after talking to Azure support it turns out
 
 > *you cannot migrate your services from a disabled account*
 
-<img src="/media/no-entry.jpg" alt="No Entry!" title="No Entry!" width="200px" class="centered"/>
+<img src="/assets/images/no-entry.jpg" alt="No Entry!" title="No Entry!" width="200px" class="centered"/>
 
 So I learnt for this reason and many others: the best way to set up your azure account is from a Powershell script so if there's ever a problem you can just re-run the script.
 
@@ -29,7 +35,7 @@ Luckily I didn't store any data in these Azure services (or rather I only stored
 
 Off I went on a voyage of discovery into the land of automating Azure services. I will try to document what I learnt and my scripts here in the hope some of the pain I went through can help someone else in the future.
 
-<img src="/media/script.jpg" alt="Scripting" title="It's a script..." width="400px" class="centered"/>
+<img src="/assets/images/script.jpg" alt="Scripting" title="It's a script..." width="400px" class="centered"/>
 
 ## The requirement:
 
@@ -45,7 +51,7 @@ My requirement was to have my own website completely set up from scratch with 1 
 
 ### Deployment and staging/ production
 
-<img src="/media/github-logo.png" alt="Github" title="Github" width="200px" class="centered"/>
+<img src="/assets/images/github-logo.png" alt="Github" title="Github" width="200px" class="centered"/>
 
  * The code is in [github](https://github.com/nickmeldrum/nickmeldrum.com.markdownblog "markdown blog at github") with 2 branches: master and release. I code on the master branch and consider the release branch the current production version.
  * When the master branch is pushed, it gets automatically built and deployed to a [staging site](http://nickmeldrum-staging.azurewebsites.net/ "the blog's staging site"). This is important to test for issues that may not be exposed using the Azure emulators locally.
@@ -53,7 +59,7 @@ My requirement was to have my own website completely set up from scratch with 1 
 
 ### DNS
 
-<img src="/media/dnsimple.png" alt="dnsimple" title="dnsimple" width="200px" class="centered"/>
+<img src="/assets/images/dnsimple.png" alt="dnsimple" title="dnsimple" width="200px" class="centered"/>
 
  * I use [dnsimple](https://dnsimple.com/ "awesome dns") to manage my DNS records.
  * The staging site doesn't need any DNS records and is accessible from the default [azurewebsites.net](http://nickmeldrum-staging.azurewebsites.net/ "the blog's staging site") address
@@ -62,7 +68,7 @@ My requirement was to have my own website completely set up from scratch with 1 
 
 ### Lucene search and Azure storage
 
-<img src="/media/lucene.png" alt="lucene" title="lucene" width="200px" class="centered"/>
+<img src="/assets/images/lucene.png" alt="lucene" title="lucene" width="200px" class="centered"/>
 
  * The website has a search facility implemented by Lucene which requires indexes to be built and stored locally in files
  * These files are stored in Azure storage blob containers (because storing files locally on an Azure website is a recipe for pain) and both staging and production have their own container
@@ -80,4 +86,3 @@ In this first post I've talked about what I wanted to do and why. The next posts
 ## Next post
 
 * Part 2: Installing Azure Powershell and the Azure CLI and logging in - Post to come soon...
-

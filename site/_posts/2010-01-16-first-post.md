@@ -1,4 +1,10 @@
-﻿So I've created a WordPress blog and I've even joined twitter, *shudder*. Why? Well I should be honest here: I decided I need a better "online reputation". This is primarily to improve future job prospects. It's also probably an ego thing *shrug*.
+---
+layout: post
+title: "First post!"
+shortDescription: "I've started a blog!"
+date: 2010-01-16 12:41:43
+---
+So I've created a WordPress blog and I've even joined twitter, *shudder*. Why? Well I should be honest here: I decided I need a better "online reputation". This is primarily to improve future job prospects. It's also probably an ego thing *shrug*.
 
 I dreamed of writing my own blog engine and hosting it myself ([like a good Jedi like Rob Conery should](http://blog.wekeroad.com/blog/be-a-good-jedi-build-your-own-blog/ "Rob Conery")), however I realised this project was stopping my actually ever having the chance of posting anything. So for now I'm on WordPress and they are hosting it for me. This may change in the future, who knows&hellip;
 

@@ -1,4 +1,10 @@
-﻿I'm all about making things more efficient, and I'm increasingly finding the love for Vim. 
+---
+layout: post
+title: "Developer Productivity tip no. 42: Mouse-less Browsing with Vimium"
+shortDescription: "All about making things more efficient"
+date: 2013-09-26 09:00:00
+---
+I'm all about making things more efficient, and I'm increasingly finding the love for Vim. 
 It helps me stay in the flow and get closer to my code. It's also fantastic that so many tools have
 a Vim-like plug-in so that my hard won lessons with Vim productivity can be re-used in so many places!
 
@@ -7,7 +13,7 @@ a Vim-like plug-in so that my hard won lessons with Vim productivity can be re-u
 One area that I really wanted to get rid of the mouse is browsing the web. Most people look at me a bit
 funny when I say this, but trust me, just try it, it makes browsing so much quicker and easier. Enter Vimium.
 
-[![Vimium](/media/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
+[![Vimium](/assets/images/vimium_logo.png)](https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en "Vimium Chrome Extension")
 
 ### You don't use Chrome?
 

@@ -1,4 +1,10 @@
-﻿Now, I'm going to have to admit something: I'm still a Linq beginner. But every day I use it I love it more and more.
+---
+layout: post
+title: "Adventures in Linq and GroupBy"
+shortDescription: "Aggregating results using Linq"
+date: 2010-05-24 12:41:43
+---
+Now, I'm going to have to admit something: I'm still a Linq beginner. But every day I use it I love it more and more.
 
 ## Why is Linq so great?
 

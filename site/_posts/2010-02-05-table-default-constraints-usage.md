@@ -1,4 +1,10 @@
-﻿It's not uncommon to see a MS SqlServer table creation script like this:
+---
+layout: post
+title: "Table Default Constraints usage"
+shortDescription: "Getting specific about my sql"
+date: 2010-02-05 16:39:54
+---
+It's not uncommon to see a MS SqlServer table creation script like this:
 
        CREATE TABLE [Animal] (
         [Id] smallint IDENTITY(1,1) NOT NULL PRIMARY KEY CLUSTERED,
@@ -68,4 +74,3 @@ as I can get - and notice my strict naming conventions but that's for another ev
         CONSTRAINT [UQ_Animal_Name] UNIQUE ([Name]),
         CONSTRAINT [FK_Animal_Genus] FOREIGN KEY ([Genus]) REFERENCES [Genus] ([Id])
     )
-

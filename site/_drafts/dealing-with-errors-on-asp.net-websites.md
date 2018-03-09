@@ -1,4 +1,9 @@
-﻿This page is interesting:
+---
+layout: post
+title: "Dealing properly with errors on websites with ASP.Net"
+shortDescription: "Aka: Don't trust the default behavior of ASP.Net!"
+---
+This page is interesting:
 http://msdn.microsoft.com/en-us/library/aa479319.aspx
 See the "Passing Control" section and the quote: "The built-in customErrors feature uses Redirect and not Transfer for a reason. The rationale of the ASP.NET development team is that Redirect accurately displays the URL of the custom error page."
 It's an old page but it shows the fundamental design philosphy of dealing with errors from the ASP.Net development team was, in my opinion, wrong.

@@ -1,0 +1,4 @@
+#!/bin/sh
+git reset head --hard
+git clean -f
+node script/migrate-posts.js
