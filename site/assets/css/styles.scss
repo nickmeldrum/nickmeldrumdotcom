@@ -6,7 +6,7 @@
 @import "post";
 
 body {
-  font-family: 'Roboto', Helvetica, sans-serif;
+  font: 18px/1.5 -apple-system,BlinkMacSystemFont,"avenir next",avenir,"Segoe UI","lucida grande","helvetica neue",helvetica,"Fira Sans",roboto,noto,"Droid Sans",cantarell,oxygen,ubuntu,"franklin gothic medium","century gothic","Liberation Sans",sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,5 +14,5 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto Slab', Palatino, serif;
+  line-height: 1.2;
 }
