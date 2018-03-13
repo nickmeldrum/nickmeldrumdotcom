@@ -6,13 +6,25 @@
 @import "post";
 
 body {
-  font: 18px/1.5 -apple-system,BlinkMacSystemFont,"avenir next",avenir,"Segoe UI","lucida grande","helvetica neue",helvetica,"Fira Sans",roboto,noto,"Droid Sans",cantarell,oxygen,ubuntu,"franklin gothic medium","century gothic","Liberation Sans",sans-serif;
+  font: 16px/1.5 -apple-system,BlinkMacSystemFont,"avenir next",avenir,"Segoe UI","lucida grande","helvetica neue",helvetica,"Fira Sans",roboto,noto,"Droid Sans",cantarell,oxygen,ubuntu,"franklin gothic medium","century gothic","Liberation Sans",sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  color: #454545;
+  background-image: url(/assets/images/geek-half.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.2;
+}
+
+a {
+  color: #07a;
+}
+
+a:visited {
+  color: #941352;
 }
