@@ -1,10 +1,9 @@
 ---
 layout: post
 title: "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'"
+shortDescription: "Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding."
 date: 2016-03-29 11:13:00
 ---
-
-## Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding.
 
 Recently I had the opportunity to study different methods of implementing the [wrapper pattern aka the decorator pattern](https://en.wikipedia.org/wiki/Decorator_pattern) in JavaScript.
 

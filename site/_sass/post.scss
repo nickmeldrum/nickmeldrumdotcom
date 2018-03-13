@@ -1,17 +1,20 @@
-.post {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  word-break: break-word;
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-}
-
-.post__container {
+.container {
   max-width: 700px;
   padding: 0 40px 0 40px;
+  word-break: break-word;
+
+  article {
+    display: flex;
+    flex-direction: column;
+
+    .published {
+      font-style: italic;
+      margin-left: auto;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
 }

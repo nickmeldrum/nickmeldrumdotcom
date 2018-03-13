@@ -3,12 +3,13 @@
   {% include head.html %}
   <body>
     {% include header.html %}
-    <div class="post">
-      <div class="post__container">
-        {{ content }}
-        <hr />
-        {% include footer.html %}
-      </div>
+    <div class="container">
+      <article>
+        <h2>{{ page.shortDescription }}</h2>
+        <div class="published">published: {{ page.date | date: "%-d %B %Y" }}</div>
+      {{ content }}
+      </article>
+      {% include footer.html %}
     </div>
   </body>
 </html>
