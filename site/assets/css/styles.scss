@@ -14,18 +14,9 @@ body {
   justify-content: center;
   flex-direction: column;
   color: #454545;
-}
-
-.background {
-  width: 100%;
   background-image: url(/assets/images/geek-half.jpg);
   background-size: 100%;
   background-repeat: no-repeat;
-  height: 216px;
-  position: fixed;
-  left: 0px;
-  top: 0px;
-  z-index: -5;
 }
 
 h1 {
