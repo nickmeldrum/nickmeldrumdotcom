@@ -1,13 +1,5 @@
 header {
-  width: 100%;
-
-  nav {
-    a,a:visited {
-      text-decoration: none;
-      color: #666;
-    }
-    a:hover {
-      color: #222;
-    }
-  }
+  max-width: 900px;
+  padding: 0 40px 0 40px;
+  word-break: break-word;
 }
