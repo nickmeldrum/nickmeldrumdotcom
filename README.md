@@ -15,18 +15,16 @@ To run the jekyll site locally run the `local:run` command.
 
 ## TODO
 
- * get blog images working right
- * get favicon/site logo redesigned and in site right
- * build out a simple basecss based html layout structure
- * get my header image in and parallax scrolling (css only)
- * get all the weird head attributes we need in nowadays
- * get our gtm/ga integration in
- * get search in
- * get twitter plugin in
- * add all old blog articles in and transform them
+ * style the homepage
  * add cv page back in
  * rewrite cv page content for my new profile
- * add tests using html proofer
  * combine this repo with the travis automation one and get it autopublishing
+ * get our gtm/ga integration in
+ * get all the weird head attributes we need in nowadays
+ * add tests using html proofer
+ * get twitter plugin in
+ * get search in
+ * get favicon/site logo redesigned and in site right
+ * get my header image in and parallax scrolling (css only)
  * fix the jekyll deprecation warning: gems configuraiton option has been renamed to plugins
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
