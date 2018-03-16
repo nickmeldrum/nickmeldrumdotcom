@@ -35,13 +35,13 @@ function myComponentFactory() {
         printValue: value => console.log(`value is ${value + suffix}`)
     }
 }
-{% endhighlight %}
 
 const component = myComponentFactory()
 component.setSuffix('!')
 component.printValue('My Value')
+{% endhighlight %}
 
-It's a simple component with a `printValue(val)` method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
+It's a simple component with a {% ihighlight javascript %}printValue(val){% endihighlight %} method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
 
 We want to decorate the `printValue(val)` method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the `setSuffix(val)` method in order to flush out any complexities when decorating one method in a component that has other members.
 

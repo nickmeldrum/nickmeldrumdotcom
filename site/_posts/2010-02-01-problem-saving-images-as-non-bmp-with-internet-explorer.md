@@ -53,7 +53,9 @@ How come?
 
 I run [Fiddler](http://www.fiddlertool.com/) and notice that our 3rd party control puts in the HTTP Response Header:
 
-> "Cache-Control: private, no-store"
+{% highlight text %}
+Cache-Control: private, no-store
+{% endhighlight %}
 
 Oh dammit - "no-store"?
 

@@ -20,6 +20,8 @@ To run the jekyll site locally run the `local:run` command.
  * get syntax highlighting in all code snippets
  * get proper quotes in text
  * get disqus commenting back in
+ * create a previous / next article at bottom of post page?
+ * add "share" links at bottom of post page?
  * check all old posts - missing imgs, broken tags etc.
  * fix responsive width for svg in decorator post
  * check responsive width for all old posts is working
