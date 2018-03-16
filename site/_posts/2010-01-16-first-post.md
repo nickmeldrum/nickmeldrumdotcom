@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "First post!"
 shortDescription: "I've started a blog!"
 date: 2010-01-16 12:41:43

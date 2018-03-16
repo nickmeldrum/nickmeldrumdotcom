@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Dealing properly with errors on websites with ASP.Net"
 shortDescription: "Aka: Don't trust the default behavior of ASP.Net!"
 ---

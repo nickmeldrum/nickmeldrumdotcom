@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Scripting Azure Services With Powershell"
 shortDescription: "Part 1: What am I trying to do?"
 date: 2015-08-25 20:41:00

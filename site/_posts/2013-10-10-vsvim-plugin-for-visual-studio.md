@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Developer Productivity tip no. 43: VsVim plugin for Visual Studio"
 shortDescription: "Or How I Learned to Stop Worrying and Love the Keyboard"
 date: 2013-10-10 09:32:00

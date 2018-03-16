@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Problem solving and priorities"
 shortDescription: "Learning when NOT to solve the problem"
 date: 2010-02-02 13:24:21

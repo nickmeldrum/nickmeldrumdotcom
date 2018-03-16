@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Moved to SubText"
 shortDescription: "Moved my blog from WordPress to SubText"
 date: 2010-01-28 20:14:40

@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "Never let your domain expire"
 shortDescription: "dns lessons learnt"
 date: 2010-01-15 05:00:00

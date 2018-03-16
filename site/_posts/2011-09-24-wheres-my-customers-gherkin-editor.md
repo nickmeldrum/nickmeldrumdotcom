@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Where's my customers Gherkin editor?"
 shortDescription: "Who should write your bdd features"
 date: 2011-09-24 09:00:00

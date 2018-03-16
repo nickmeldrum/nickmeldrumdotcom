@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "What is Middleware? From Redux, ASP.Net, Node.js Connect and Ruby Rack all the way back to ODBC and Corba..."
 ---
 

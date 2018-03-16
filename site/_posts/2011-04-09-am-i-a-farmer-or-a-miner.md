@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Am I a farmer or a miner?"
 shortDescription: "On developers helping businesses grow"
 date: 2011-04-09 11:47:59

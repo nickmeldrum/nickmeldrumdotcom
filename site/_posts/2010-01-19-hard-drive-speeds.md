@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Hard Drive Speeds"
 shortDescription: "The bottleneck is the rotating disks!"
 date: 2010-01-19 12:10:39

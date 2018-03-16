@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "The decorator pattern in JavaScript using closures, monkey patching, prototypes, proxies and 'middleware'"
 shortDescription: "Five JavaScript implementations of the decorator pattern for fun, profit and improving understanding."
 date: 2016-03-29 11:13:00

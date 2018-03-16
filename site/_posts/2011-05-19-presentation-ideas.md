@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Presentation ideas"
 shortDescription: "Encouraging our developers to present to the team"
 date: 2011-05-19 10:54:23

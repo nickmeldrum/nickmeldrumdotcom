@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Scripting Azure Services With Powershell"
 ShortDescription: "Part 2: Installing Azure Powershell and the Azure CLI and logging in"
 ---

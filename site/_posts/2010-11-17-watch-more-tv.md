@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Watch more tv"
 shortDescription: "Learning through podcasts: some recommendations"
 date: 2010-11-17 01:48:15

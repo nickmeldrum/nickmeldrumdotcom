@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "A tricky subject"
 ShortDescription: "Aka creating a discrimination and harassment free workplace"
 ---

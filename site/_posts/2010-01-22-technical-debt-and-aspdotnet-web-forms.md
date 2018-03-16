@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Technical Debt and ASP.Net Web Forms"
 shortDescription: "Go fast now or go fast later?"
 date: 2010-01-22 15:00:29

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "my lovely Abit IP35 Pro - dead :("
 shortDescription: "Upgrading my home built pc"
 date: 2010-02-10 08:34:04

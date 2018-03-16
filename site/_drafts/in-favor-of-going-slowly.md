@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "In favour of going slowly"
 shortDescription: "Aka stop developers from writing code"
 ---

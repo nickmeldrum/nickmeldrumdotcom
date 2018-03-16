@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Problem saving images as non-bmp with Internet Explorer"
 shortDescription: "Oh 3rd party components and proprietary code"
 date: 2010-02-01 11:26:26

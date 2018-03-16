@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Adventures in Linq and GroupBy"
 shortDescription: "Aggregating results using Linq"
 date: 2010-05-24 12:41:43

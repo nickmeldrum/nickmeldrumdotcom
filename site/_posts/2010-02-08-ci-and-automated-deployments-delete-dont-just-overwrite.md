@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "CI and Automated Deployments - Delete don't just Overwrite"
 shortDescription: "A lesson learnt about automatically updating production sites"
 date: 2010-02-08 14:59:34

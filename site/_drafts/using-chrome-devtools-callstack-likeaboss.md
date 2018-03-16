@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Using the Chrome devtools call stack like a boss"
 shortDescription: "Learning to love the call stack in chrome"
 ---

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Mary and Tom talk about lean and 'A tale of two terminals'"
 shortDescription: "A roundup of a talk by Mary Poppendieck"
 date: 2011-05-25 09:00:00

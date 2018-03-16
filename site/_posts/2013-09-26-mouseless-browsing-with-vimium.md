@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Developer Productivity tip no. 42: Mouse-less Browsing with Vimium"
 shortDescription: "All about making things more efficient"
 date: 2013-09-26 09:00:00

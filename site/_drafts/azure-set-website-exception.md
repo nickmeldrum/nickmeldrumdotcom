@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title: "Updating appsettings using Set-AzureWebsite fails and how to fix it"
 ShortDescription: "Fixing the exception: \"Set-AzureWebsite : Cannot validate argument on parameter 'PhpVersion'\""
 ---
