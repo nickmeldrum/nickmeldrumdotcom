@@ -15,7 +15,6 @@ To run the jekyll site locally run the `local:run` command.
 
 ## TODO
 
- * fix all ^Ms
  * make post layout default layout
  * get a better li style
  * add cv page back in

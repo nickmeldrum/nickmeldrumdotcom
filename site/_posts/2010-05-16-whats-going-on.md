@@ -4,8 +4,11 @@ title: "What's going on?"
 shortDescription: "Changing blogs again - how and why"
 date: 2010-05-16 20:05:33
 ---
+
 <p>My blog looks different again? I've not posted anything in months?</p>
+
 <h2>Why does my blog look different?</h2>
+
 <h3>Did I really change blog engines again?!</h3>
 <p><img src="/assets/images/wordpress_thumb.png" alt="wordpress" style="padding: 10px;" align="right" height="111" width="124" />Yes I change blog engines more than I post. I fancied learning a bit more about hosted WordPress, so I've moved my blog to it. I've managed to get everything back up and running and learnt a little more about the whole blog engine thing from the user perspective.</p>
 <p>Last time I did this I moved from WordPress.com to a hosted SubText engine.I blogged about it <a href="http://www.nickmeldrum.com/blog/online-presence/moved-to-subtext/">here</a>. I moaned about the fact that WordPress doesn't have a BlogML export function - terrible lockin I said of course. Well SubText supposedly had a BlogML Export, but I couldn't get it to work without exceptions all over the place so I had to give up in the end. Thankfully I had access to the backend database so I could get my data out that way.</p>
