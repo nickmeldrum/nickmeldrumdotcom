@@ -21,27 +21,31 @@ Oh and before you do anything - go away and understand OOCSS concepts for good C
 ### NOT DRY:
 
 
-	p {
-		color: #DC842F;
-	}
+{% highlight css %}
+p {
+  color: #DC842F;
+}
 
-	h1 {
-		background-color: #DC842F;
-	}
+h1 {
+  background-color: #DC842F;
+}
+{% endhighlight %}
 
 
 ### DRY!:
 
 
-	$brand-primary-color: #DC842F;
+{% highlight sass %}
+$brand-primary-color: #DC842F;
 
-	p {
-		color: $brand-primary-color;
-	}
+p {
+  color: $brand-primary-color;
+}
 
-	h1 {
-		background-color: $brand-primary-color;
-	}
+h1 {
+  background-color: $brand-primary-color;
+}
+{% endhighlight %}
 
 
 "Well, search and replace works well for this" you say?
@@ -56,31 +60,34 @@ Organizing your CSS so that it's selectors are particular to a section of your H
 ### NOT DRY:
 
 
-	nav ul {
-	  margin: 0;
-	  padding: 0;
-	  list-style: none;
-	}
+{% highlight sass %}
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-	nav li {
-	  display: inline-block;
-	}
+nav li {
+  display: inline-block;
+}
+{% endhighlight %}
 
 
 ### DRY!:
 
+{% highlight sass %}
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-	nav {
-	  ul {
-	    margin: 0;
-	    padding: 0;
-	    list-style: none;
-	  }
-
-	  li {
-	  	display: inline-block;
-	  }
-	}
+  li {
+    display: inline-block;
+  }
+}
+{% endhighlight %}
 
 
 **Argument no. 2: Nesting is a useful addition to css and reduces duplication.**
@@ -92,36 +99,40 @@ So we use variables for some numbers now? But in order to get our CSS working co
 
 ### NOT DRY:
 
-	$primary-left-margin: 10px;
-	$special-panel-width: 300px;
-	$child-panel-width: 290px;
+{% highlight sass %}
+$primary-left-margin: 10px;
+$special-panel-width: 300px;
+$child-panel-width: 290px;
 
-	.special-parent-panel: {
-		margin-left: $primary-left-margin;
-		width: $special-panel-width;
-	}
+.special-parent-panel: {
+  margin-left: $primary-left-margin;
+  width: $special-panel-width;
+}
 
-	.panel-within-a-special-parent-panel: {
-		margin: 0px;
-		width: $child-panel-width;
-	}
+.panel-within-a-special-parent-panel: {
+  margin: 0px;
+  width: $child-panel-width;
+}
+{% endhighlight %}
 
 The child panel width is only being specified as it's the parent width minus the margin. but we've had to hardcode it. This is a refactoring pain point.
 
 ### DRY!:
 
-	$primary-left-margin: 10px;
-	$special-panel-width: 300px;
+{% highlight sass %}
+$primary-left-margin: 10px;
+$special-panel-width: 300px;
 
-	.special-parent-panel: {
-		margin-left: $primary-left-margin;
-		width: $special-panel-width;
-	}
+.special-parent-panel: {
+  margin-left: $primary-left-margin;
+  width: $special-panel-width;
+}
 
-	.panel-within-a-special-parent-panel: {
-		margin: 0px;
-		width: $special-panel-width - $primary-left-margin;
-	}
+.panel-within-a-special-parent-panel: {
+  margin: 0px;
+  width: $special-panel-width - $primary-left-margin;
+}
+{% endhighlight %}
 
 We didn't have to hard code anything about the child panel, we can go ahead and change the panel width in one place without changing anything else.
 

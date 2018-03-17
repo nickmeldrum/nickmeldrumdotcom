@@ -32,28 +32,31 @@ My first thought was "Dammit my model is wrong. A Note should have a set of chil
 
 Whether the model is slightly wrong or not, I decided that to change the model based purely on a UI display issue was wrong. And here was where Linq came in. I used the GroupBy method to group my notes by note and zing: I get a collection of unique Notes with a list of substances within each one.
 
-
-    NotesRepeater.DataSource = from n in Report.ReportNotes
-        group n by n.Note into g
-        select new ReportNotesDTO {
-            Note = g.Key.Name,
-            NoteDetails = g
-        };
+{% highlight csharp %}
+NotesRepeater.DataSource = from n in Report.ReportNotes
+    group n by n.Note into g
+    select new ReportNotesDTO {
+        Note = g.Key.Name,
+        NoteDetails = g
+    };
+{% endhighlight %}
 
 I can now use a repeater within a repeater to show each Note individually with a list of related Substances below it. (Note I'm using the ItemDataBound event to databind the child collection from the groupby.)
 
 
-    <asp:Repeater ID="NotesRepeater" runat="server" OnItemDataBound="NotesRepeater_ItemDataBound">
+{% highlight html %}
+<asp:Repeater ID="NotesRepeater" runat="server" OnItemDataBound="NotesRepeater_ItemDataBound">
+<ItemTemplate>
+<p>
+    <%# DataBinder.Eval(Container.DataItem, "Note")%>: used on substances:                          
+    <asp:Repeater ID="NoteDetailsRepeater" runat="server">
     <ItemTemplate>
-    <p>
-        <%# DataBinder.Eval(Container.DataItem, "Note")%>: used on substances:                          
-        <asp:Repeater ID="NoteDetailsRepeater" runat="server">
-        <ItemTemplate>
-            <%# DataBinder.Eval(Container.DataItem, "SubstanceInvolved")%><br />
-         </ItemTemplate>
-         </asp:Repeater>
-      </p>
-    </ItemTemplate>
-    </asp:Repeater>
+        <%# DataBinder.Eval(Container.DataItem, "SubstanceInvolved")%><br />
+     </ItemTemplate>
+     </asp:Repeater>
+  </p>
+</ItemTemplate>
+</asp:Repeater>
+{% endhighlight %}
 
 That was so easy. Thanks Linq!
