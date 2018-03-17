@@ -41,9 +41,9 @@ component.setSuffix('!')
 component.printValue('My Value')
 {% endhighlight %}
 
-It's a simple component with a {% ihighlight javascript %}printValue(val){% endihighlight %} method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
+It's a simple component with a {% ihighlight javascript %}printValue(val){% endihighlight %} method which will log the value with a suffix at the end. The suffix can be set using the {% ihighlight javascript %}setSuffix(val){% endihighlight %} method.
 
-We want to decorate the `printValue(val)` method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the `setSuffix(val)` method in order to flush out any complexities when decorating one method in a component that has other members.
+We want to decorate the {% ihighlight javascript %}printValue(val){% endihighlight %} method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the {% ihighlight javascript %}setSuffix(val){% endihighlight %} method in order to flush out any complexities when decorating one method in a component that has other members.
 
 It's worth noting that all my examples here except the last one will work for decorating an isolated function instead of a member function and is a much simpler case.
 
@@ -67,55 +67,61 @@ What is the most naïve implementation of a decorator I can think of? Just wrap 
 
 First I'll show the code as a whole then we'll go through it step by step:
 
-    function myComponentFactory() {
-        let suffix = ''
+{% highlight javascript %}
+function myComponentFactory() {
+    let suffix = ''
 
-        return {
-            setSuffix: suf => suffix = suf,
-            printValue: value => console.log(`value is ${value + suffix}`)
+    return {
+        setSuffix: suf => suffix = suf,
+        printValue: value => console.log(`value is ${value + suffix}`)
+    }
+}
+
+function toLowerDecorator(inner) {
+    return {
+        setSuffix: inner.setSuffix,
+        printValue: value => inner.printValue(value.toLowerCase())
+    }
+}
+
+function validatorDecorator(inner) {
+    return {
+        setSuffix: inner.setSuffix,
+        printValue: value => {
+            const isValid = ~value.indexOf('My')
+
+            setTimeout(() => {
+                if (isValid) inner.printValue(value)
+                else console.log('not valid man...')
+            }, 500)
         }
     }
+}
 
-    function toLowerDecorator(inner) {
-        return {
-            setSuffix: inner.setSuffix,
-            printValue: value => inner.printValue(value.toLowerCase())
-        }
-    }
-
-    function validatorDecorator(inner) {
-        return {
-            setSuffix: inner.setSuffix,
-            printValue: value => {
-                const isValid = ~value.indexOf('My')
-
-                setTimeout(() => {
-                    if (isValid) inner.printValue(value)
-                    else console.log('not valid man...')
-                }, 500)
-            }
-        }
-    }
-
-    const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 So what does that do?
 
 The component factory is still the same as shown above. However, we decorate it by wrapping the object creation in decorator factory methods:
 
-    const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
+{% highlight javascript %}
+const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
+{% endhighlight %}
 
 The decorator factory takes the original object and returns a wrapper object that just passes the calls through to the original object *except* for the 1 method we want to decorate:
 
-    function toLowerDecorator(inner) {
-        return {
-            setSuffix: inner.setSuffix,
-            printValue: value => inner.printValue(value.toLowerCase())
-        }
+{% highlight javascript %}
+function toLowerDecorator(inner) {
+    return {
+        setSuffix: inner.setSuffix,
+        printValue: value => inner.printValue(value.toLowerCase())
     }
+}
+{% endhighlight %}
 
 The decorated function does it's stuff (lower casing the value) and passes the value to the inner function "wrapping" it, or "decorating" it.
 
@@ -125,14 +131,18 @@ We can then keep wrapping our object creation in decorator factory methods on an
 
 So after the object creation and decoration is complete we run our test code:
 
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+{% highlight javascript %}
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 and this outputs:
 
-    "value is my value!
-    not valid man..."
+{% highlight text %}
+"value is my value!
+not valid man..."
+{% endhighlight %}
 
 The first function executed will be from the outer most decorator. In this instance, that's the validator. The first call is valid, so execution is passed into the second decorator "toLowerCase" which lower cases the value. It in turn calls the original function which logs the lower cased value with the suffix added on.
 
@@ -152,7 +162,7 @@ This "validator" function is emulating going off to a database to check the vali
 
 ### How do we make use of closures?
 
-We could have just stored the inner object on the new object in order to call it later. Why didn't we do that? Because it would have made it public and that would have been weird. I would have confused the user of my object. Do I call `instance.setSuffix()` or `instance._original.setSuffix()`. Far better to make the object a private member.
+We could have just stored the inner object on the new object in order to call it later. Why didn't we do that? Because it would have made it public and that would have been weird. I would have confused the user of my object. Do I call {% ihighlight javascript %}instance.setSuffix(){% endihighlight %} or {% ihighlight javascript %}instance._original.setSuffix(){% endihighlight %}. Far better to make the object a private member.
 
 >"But JavaScript doesn't have private members, oh noes!"
 
@@ -164,14 +174,16 @@ We can use closures to give us this private member access though.
 
 A simple example:
 
-    function wow() {
-        const val = 5
-        return () => console.log(val)
-    }
+{% highlight javascript %}
+function wow() {
+    const val = 5
+    return () => console.log(val)
+}
 
-    wow()()
+wow()()
+{% endhighlight %}
 
-(Just in case it wasn't obvious what the double brackets in `wow()()` do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
+(Just in case it wasn't obvious what the double brackets in {% ihighlight javascript %}wow()(){% endihighlight %} do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
 
 This is the simplest example I can imagine in JavaScript. The "wow" function returns a function that logs "val". However once "wow" has returned, "val" is no longer in scope.
 
@@ -181,16 +193,20 @@ This works fine though, because when the function that is capturing a locally sc
 
 Look again at the decorator:
 
-    function toLowerDecorator(inner) {
-        return {
-            setSuffix: inner.setSuffix,
-            printValue: value => inner.printValue(value.tolowercase())
-        }
+{% highlight javascript %}
+function toLowerDecorator(inner) {
+    return {
+        setSuffix: inner.setSuffix,
+        printValue: value => inner.printValue(value.tolowercase())
     }
+}
+{% endhighlight %}
 
 It returns an object with the function:
 
-    value => inner.printvalue(value.tolowercase())
+{% highlight javascript %}
+value => inner.printvalue(value.tolowercase())
+{% endhighlight %}
 
 but this function is referencing the "inner" object which will go out of scope as soon as the decorator method is returned. However, because there is an inner function referencing this variable, the inner function "captures" this variable and once the function is returned a [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is created.
 
@@ -208,9 +224,11 @@ We introduce closures here but that has little to do with this wrapper method, i
 
 Other than that this is a very simple implementation which has an obvious downside: we have to wrap every single method on the inner object, not just the one we are decorating. Like this:
 
-    return {
-        setSuffix: inner.setSuffix,
-        ...
+{% highlight javascript %}
+return {
+    setSuffix: inner.setSuffix,
+    ...
+{% endhighlight %}
     
 That is ugly and a pain. Wouldn't it be great if our decorators could just define the wrapper behaviour they desire and not have to worry about the rest? Happily there are a few techniques that will do just that.
 
@@ -237,60 +255,70 @@ So what is decorating using monkey patching?
 
 How do you do that you ask? Well, I'll show you. First I'll show the code as a whole then I'll take you through it step by step:
 
-    function myComponentFactory() {
-        let suffix = ''
+{% highlight javascript %}
+function myComponentFactory() {
+    let suffix = ''
 
-        return {
-            setSuffix: suf => suffix = suf,
-            printValue: value => console.log(`value is ${value + suffix}`)
-        }
+    return {
+        setSuffix: suf => suffix = suf,
+        printValue: value => console.log(`value is ${value + suffix}`)
     }
+}
 
-    function decorateWithToLower(inner) {
-        const originalPrintValue = inner.printValue
-        inner.printValue = value => originalPrintValue(value.toLowerCase())
+function decorateWithToLower(inner) {
+    const originalPrintValue = inner.printValue
+    inner.printValue = value => originalPrintValue(value.toLowerCase())
+}
+
+function decorateWithValidator(inner) {
+    const originalPrintValue = inner.printValue
+
+    inner.printValue = value => {
+        const isValid = ~value.indexOf('My')
+
+        setTimeout(() => {
+            if (isValid) originalPrintValue(value)
+            else console.log('not valid man...')
+        }, 500)
     }
+}
 
-    function decorateWithValidator(inner) {
-        const originalPrintValue = inner.printValue
+const component = myComponentFactory()
+decorateWithToLower(component)
+decorateWithValidator(component)
 
-        inner.printValue = value => {
-            const isValid = ~value.indexOf('My')
-
-            setTimeout(() => {
-                if (isValid) originalPrintValue(value)
-                else console.log('not valid man...')
-            }, 500)
-        }
-    }
-
-    const component = myComponentFactory()
-    decorateWithToLower(component)
-    decorateWithValidator(component)
-
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 So what does that do?
 
 The component is still the same; the decorators are different, and the way they are called is different. Instead of passing an object into a factory method that returns a new object, our decorator method is just operating on the existing object:
 
-    decorateWithToLower(component)
+{% highlight javascript %}
+decorateWithToLower(component)
+{% endhighlight %}
 
 This decorator method does it's monkey patching by storing the original "printValue" method in a local variable:
 
-    const originalPrintValue = inner.printValue
+{% highlight javascript %}
+const originalPrintValue = inner.printValue
+{% endhighlight %}
     
 and then overwrites the original function with it's own copy, which lower-cases the value, then passes that value onto the stored "inner" function:
 
-    inner.printValue = value => originalPrintValue(value.toLowerCase())
+{% highlight javascript %}
+inner.printValue = value => originalPrintValue(value.toLowerCase())
+{% endhighlight %}
 
 We set up our decorators the same way as before. We wrap the printValue() function in a lower-caser decorator. Then we wrap that in a validator decorator:
 
-    const component = myComponentFactory()
-    decorateWithToLower(component)
-    decorateWithValidator(component)
+{% highlight javascript %}
+const component = myComponentFactory()
+decorateWithToLower(component)
+decorateWithValidator(component)
+{% endhighlight %}
 
 Note the use of closure's here to do the storing of the chain of inner functions still. The real difference is that we are just swapping out 1 function in the existing object instead of returning a brand new object wrapper.
 
@@ -328,49 +356,53 @@ It's mechanism is quite simple in JavaScript too. All objects have a prototype. 
 
 You can tell 1 object to "base" itself off another object by setting it's prototype. What this really means is: if someone asks to access one of my members, first we will look on my object, but if I don't have it I will delegate the access to my prototype. On this will go, all the way up the prototype chain.
 
-I won't delve into why here, but I don't like the use of the "new" keyword in JavaScript. Go to the end of the article if you care. Therefore, in my opinion the best way to make use of [prototype inheritance is using `Object.create(protoype)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create):
+I won't delve into why here, but I don't like the use of the "new" keyword in JavaScript. Go to the end of the article if you care. Therefore, in my opinion the best way to make use of [prototype inheritance is using {% ihighlight javascript %}Object.create(protoype){% endihighlight %}](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create):
 
-    const myBaseObject = { myProperty: 'oh hai' }
+{% highlight javascript %}
+const myBaseObject = { myProperty: 'oh hai' }
 
-    const myNewObject = Object.create(myBaseObject)
-    myNewObject.newMethod = () => { console.log(myBaseObject.myProperty) }
+const myNewObject = Object.create(myBaseObject)
+myNewObject.newMethod = () => { console.log(myBaseObject.myProperty) }
+{% endhighlight %}
 
 Here, not only have we set up myNewObject to inherit from myBaseObject as it's prototype, but we show an example of reaching back to access a member on the base object as well. There is no protected or private scope to concern ourselves with. No virtual members either. If you want to hide the base object and only have the new object exposed, just wrap all that in a function and return what you want. Functions always seem to be the answer to any question you have in JavaScript.
 
 ### Show me the code:
 
-    function myComponentFactory() {
-        let suffix = ''
+{% highlight javascript %}
+function myComponentFactory() {
+    let suffix = ''
 
-        return {
-            setSuffix: suf => suffix = suf,
-            printValue: value => console.log(`value is ${value + suffix}`)
-        }
+    return {
+        setSuffix: suf => suffix = suf,
+        printValue: value => console.log(`value is ${value + suffix}`)
     }
+}
 
-    function toLowerDecorator(inner) {
-        const instance = Object.create(inner)
-        instance.printValue = value => inner.printValue(value.toLowerCase())
-        return instance
+function toLowerDecorator(inner) {
+    const instance = Object.create(inner)
+    instance.printValue = value => inner.printValue(value.toLowerCase())
+    return instance
+}
+
+function validatorDecorator(inner) {
+    const instance = Object.create(inner)
+    instance.printValue = value => {
+        const isValid = ~value.indexOf('My')
+
+        setTimeout(() => {
+            if (isValid) inner.printValue(value)
+            else console.log('not valid man...')
+        }, 500)
     }
+    return instance
+}
 
-    function validatorDecorator(inner) {
-        const instance = Object.create(inner)
-        instance.printValue = value => {
-            const isValid = ~value.indexOf('My')
-
-            setTimeout(() => {
-                if (isValid) inner.printValue(value)
-                else console.log('not valid man...')
-            }, 500)
-        }
-        return instance
-    }
-
-    const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+const component = validatorDecorator(toLowerDecorator(myComponentFactory()))
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 This example is extremely similar to the first example where we construct a new object that reaches into the inner object. The first example had the down side of having to copy every member to the new wrapper object in order to pass it through though. Here we take advantage of something called delegation in prototypal inheritance. Our new object is created using the inner object as it's prototype. This way I don't have to define "setSuffix" on my new object as when it is asked for my prototype will be checked for the existence of this member as well.
 
@@ -392,76 +424,86 @@ Oooo neat, we can inject custom behaviour into property lookup and function invo
 
 Once again I will show the whole code and then dissect and explain the important bits:
 
-    require('harmony-reflect')
+{% highlight javascript %}
+require('harmony-reflect')
 
-    function myComponentFactory() {
-        let suffix = ''
+function myComponentFactory() {
+    let suffix = ''
 
-        return {
-            setSuffix: suff => suffix = suff,
-            printValue: value => console.log(`value is ${value + suffix}`)
+    return {
+        setSuffix: suff => suffix = suff,
+        printValue: value => console.log(`value is ${value + suffix}`)
+    }
+}
+
+function toLowerDecorator(inner) {
+    return new Proxy(inner, {
+        get: (target, name) => {
+            return (name === 'printValue')
+                ? value => target.printValue(value.toLowerCase())
+                : target[name]
         }
-    }
+    })
+}
 
-    function toLowerDecorator(inner) {
-        return new Proxy(inner, {
-            get: (target, name) => {
-                return (name === 'printValue')
-                    ? value => target.printValue(value.toLowerCase())
-                    : target[name]
-            }
-        })
-    }
+function validatorDecorator(inner) {
+    return new Proxy(inner, {
+        get: (target, name) => {
+            return (name === 'printValue')
+                ? value => {
+                    const isValid = ~value.indexOf('my')
 
-    function validatorDecorator(inner) {
-        return new Proxy(inner, {
-            get: (target, name) => {
-                return (name === 'printValue')
-                    ? value => {
-                        const isValid = ~value.indexOf('my')
+                    setTimeout(() => {
+                        if (isValid) target.printValue(value)
+                        else console.log('not valid man...')
+                    }, 500)
+                }
+                : target[name]
+        }
+    })
+}
 
-                        setTimeout(() => {
-                            if (isValid) target.printValue(value)
-                            else console.log('not valid man...')
-                        }, 500)
-                    }
-                    : target[name]
-            }
-        })
-    }
-
-    const component = toLowerDecorator(validatorDecorator(myComponentFactory()))
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+const component = toLowerDecorator(validatorDecorator(myComponentFactory()))
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 Firstly, what's this?!
 
-    require('harmony-reflect')
+{% highlight javascript %}
+require('harmony-reflect')
+{% endhighlight %}
 
 Well, I have been testing this code using node.js. And node's support for proxies isn't great yet.
 
 Firstly if you want to make use of proxies you have to run node with a switch:
 
-    node.exe --harmony-proxies
+{% highlight javascript %}
+node.exe --harmony-proxies
+{% endhighlight %}
 
 Even then, the Proxy object in node ain't ES6 compliant at the time of writing this blog. However if you:
 
-    npm install harmony-reflect
+{% highlight javascript %}
+npm install harmony-reflect
+{% endhighlight %}
 
 and require it as above, then you get a lovely up to date ES6 compliant Proxy object to use. You still have to use the switch above though. (I guess the npm module still uses the non-compliant proxy object underneath it all.)
 
 Next you will notice the component factory is identical but the decorator methods look very different:
 
-    function toLowerDecorator(inner) {
-        return new Proxy(inner, {
-            get: (target, name) => {
-                return (name === 'printValue')
-                    ? value => target.printValue(value.toLowerCase())
-                    : target[name]
-            }
-        })
-    }
+{% highlight javascript %}
+function toLowerDecorator(inner) {
+    return new Proxy(inner, {
+        get: (target, name) => {
+            return (name === 'printValue')
+                ? value => target.printValue(value.toLowerCase())
+                : target[name]
+        }
+    })
+}
+{% endhighlight %}
 
 Proxies give an amazing amount of power and they are worth reading up about in [the Proxy section of mdn](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy).
 
@@ -500,62 +542,70 @@ What if our base object knows from the outset of it's own creation that one part
 
 By now you know the drill: I'll show you the whole code then break it down for you afterwards:
 
-    function myComponentFactory() {
-        let suffix = ''
-        const instance = {
-            setSuffix: suff => suffix = suff,
-            printValue: value => console.log(`value is ${value + suffix}`),
-            addDecorators: decorators => {
-                let printValue = instance.printValue
-                decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
-                instance.printValue = printValue
-            }
-        }
-        return instance
-    }
-
-    function toLowerDecorator(inner) {
-        return value => inner(value.toLowerCase())
-    }
-
-    function validatorDecorator(inner) {
-        return value => {
-            const isValid = ~value.indexOf('My')
-
-            setTimeout(() => {
-                if (isValid) inner(value)
-                else console.log('not valid man...')
-            }, 500)
+{% highlight javascript %}
+function myComponentFactory() {
+    let suffix = ''
+    const instance = {
+        setSuffix: suff => suffix = suff,
+        printValue: value => console.log(`value is ${value + suffix}`),
+        addDecorators: decorators => {
+            let printValue = instance.printValue
+            decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
+            instance.printValue = printValue
         }
     }
+    return instance
+}
 
-    const component = myComponentFactory()
-    component.addDecorators([toLowerDecorator, validatorDecorator])
-    component.setSuffix('!')
-    component.printValue('My Value')
-    component.printValue('Invalid Value')
+function toLowerDecorator(inner) {
+    return value => inner(value.toLowerCase())
+}
+
+function validatorDecorator(inner) {
+    return value => {
+        const isValid = ~value.indexOf('My')
+
+        setTimeout(() => {
+            if (isValid) inner(value)
+            else console.log('not valid man...')
+        }, 500)
+    }
+}
+
+const component = myComponentFactory()
+component.addDecorators([toLowerDecorator, validatorDecorator])
+component.setSuffix('!')
+component.printValue('My Value')
+component.printValue('Invalid Value')
+{% endhighlight %}
 
 Notice the main difference? Our original object **knows** it will be decorated and provides a specific method for you to add your decorators. Here our component sets up the decorator chain itself, you just have to supply it the list of decorators with the method:
 
-    component.addDecorators([toLowerDecorator, validatorDecorator])
+{% highlight javascript %}
+component.addDecorators([toLowerDecorator, validatorDecorator])
+{% endhighlight %}
     
 The "addDecorators" method then loops through each decorator passing in the inner function into it. It then take the last decorator method and assigns it to the public member. This way it has set up the decorator chain itself. Notice it is choosing to reverse the order of decoration to make the order in the array passed in more readable:
 
-    addDecorators: decorators => {
-        let printValue = instance.printValue
-        decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
-        instance.printValue = printValue
-    }
+{% highlight javascript %}
+addDecorators: decorators => {
+    let printValue = instance.printValue
+    decorators.slice().reverse().forEach(decorator => printValue = decorator(printValue))
+    instance.printValue = printValue
+}
+{% endhighlight %}
 
 The decorator method itself can then be extremely simple. All it has to do is return the wrapper function that wraps the function passed in as a parameter:
 
-    function toLowerDecorator(inner) {
-        return value => inner(value.toLowerCase())
-    }
+{% highlight javascript %}
+function toLowerDecorator(inner) {
+    return value => inner(value.toLowerCase())
+}
+{% endhighlight %}
 
 ### Pros and cons of the "middleware" approach
 
-We get more control over our decorators by setting up the chaining ourselves. We are making use of this here by changing the order in which we wrap the function using `reverse()` on the decorators array.
+We get more control over our decorators by setting up the chaining ourselves. We are making use of this here by changing the order in which we wrap the function using {% ihighlight javascript %}reverse(){% endihighlight %} on the decorators array.
 
 Taking more control of setting up the decorator chain also leads to vastly simpler decorator methods.
 
