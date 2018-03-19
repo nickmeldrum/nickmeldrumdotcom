@@ -4,13 +4,10 @@
   <body>
     {% include header.html %}
     <article>
-      {% if page.shortDescription %}
-        <h2>{{ page.shortDescription }}</h2>
-      {% endif %}
-      {% if page.date %}
-        <div class="published">published: {{ page.date | date: "%-d %B %Y" }}</div>
-      {% endif %}
-    {{ content }}
+      {% include post-metadata.html %}
+      {{ content }}
+      {% include post-navigation.html %}
+      {% include comments.html %}
     </article>
     {% include footer.html %}
   </body>

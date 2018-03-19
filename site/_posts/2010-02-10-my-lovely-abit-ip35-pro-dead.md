@@ -3,6 +3,7 @@ layout: default
 title: "my lovely Abit IP35 Pro - dead :("
 shortDescription: "Upgrading my home built pc"
 date: 2010-02-10 08:34:04
+comments: true
 ---
 So I've been without my main pc at home the last week. I've had a series of issues with it over the last year.
 

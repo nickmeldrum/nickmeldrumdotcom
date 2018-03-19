@@ -3,6 +3,7 @@ layout: default
 title: "Problem solving and priorities"
 shortDescription: "Learning when NOT to solve the problem"
 date: 2010-02-02 13:24:21
+comments: true
 ---
 So yesterday [I blogged about](http://nickmeldrum.com/blog/archive/2010/02/01/problem-saving-images-as-non-bmp-with-internet-explorer.aspx) a problem we had with users trying to save images off the GIS part of our site. We have a workaround now which will work fine.
 

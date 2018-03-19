@@ -2,6 +2,7 @@
 title: "Never let your domain expire"
 shortDescription: "dns lessons learnt"
 date: 2010-01-15 05:00:00
+comments: true
 ---
 So I was thinking about hosting this blog myself for a number of reasons:
 

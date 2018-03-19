@@ -3,6 +3,7 @@ layout: default
 title: "Developer Productivity tip no. 42: Mouse-less Browsing with Vimium"
 shortDescription: "All about making things more efficient"
 date: 2013-09-26 09:00:00
+comments: true
 ---
 I'm all about making things more efficient, and I'm increasingly finding the love for Vim. 
 It helps me stay in the flow and get closer to my code. It's also fantastic that so many tools have

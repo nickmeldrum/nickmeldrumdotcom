@@ -3,6 +3,7 @@ layout: default
 title: "First post!"
 shortDescription: "I've started a blog!"
 date: 2010-01-16 12:41:43
+comments: true
 ---
 So I've created a WordPress blog and I've even joined twitter, *shudder*. Why? Well I should be honest here: I decided I need a better "online reputation". This is primarily to improve future job prospects. It's also probably an ego thing *shrug*.
 

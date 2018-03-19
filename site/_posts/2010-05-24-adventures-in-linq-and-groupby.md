@@ -3,6 +3,7 @@ layout: default
 title: "Adventures in Linq and GroupBy"
 shortDescription: "Aggregating results using Linq"
 date: 2010-05-24 12:41:43
+comments: true
 ---
 Now, I'm going to have to admit something: I'm still a Linq beginner. But every day I use it I love it more and more.
 

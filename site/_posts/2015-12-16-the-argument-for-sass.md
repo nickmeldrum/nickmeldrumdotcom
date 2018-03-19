@@ -3,6 +3,7 @@ layout: default
 title: "The argument for SASS"
 shortDescription: "Some people don't like it, I would like to try to persuade them..."
 date: 2015-12-16 14:02:00
+comments: true
 ---
 
 ** TL/DR: DO NOT REPEAT YOURSELF. I REPEAT: DO NOT REPEAT YOURSELF. Gaffaw. **
