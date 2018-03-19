@@ -13,6 +13,10 @@ Note: to run any commands in a shell, you must run the `. script/init` command f
 
 To run the jekyll site locally run the `local:run` command.
 
+EXTRA TODO:
+
+ * check that /blog etc. don't show directory listings - maybe add a /blog page?
+
 ## TODO
 
  * add cv page back in
