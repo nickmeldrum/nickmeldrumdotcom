@@ -15,6 +15,7 @@ To run the jekyll site locally run the `local:run` command.
 
 ## TODO
 
+ * rewrite cv page content for my new profile
 improve logo/ header nav look and feel
 get redirects working - so the old /cv permalink redirects to /about
 the scripts in the decorators post!
@@ -29,7 +30,6 @@ test disqus commenting
  * fix responsive width for svg in decorator post
  * check responsive width for all old posts is working
  * get a better li style
- * rewrite cv page content for my new profile
  * build a 404 page
  * combine this repo with the travis automation one and get it autopublishing
  * get our gtm/ga integration in
