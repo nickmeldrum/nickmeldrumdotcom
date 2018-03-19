@@ -13,7 +13,7 @@ plugins:
 
 paginate_path: "blog/page:num"
 paginate: 5
-permalink: blog/:title
+permalink: blog/:title/
 markdown: kramdown
 highlighter: rouge
 
