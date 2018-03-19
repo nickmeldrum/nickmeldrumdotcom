@@ -1,6 +1,8 @@
 <nav>
-  <a href="/">nickmeldrum.com</a>
   <ul>
+    <li class="logo">
+      <a href="/">nickmeldrum.com</a>
+    </li>
     {% for entry in site.data.navigation %}
       {% if entry.url == current_page %}
         {% assign current = 'current' %}
@@ -9,7 +11,9 @@
       {% endif %}
 
       <li class="{{ current }}">
-        <a href="{{ site.url }}{{ site.baseurl }}/{{ entry.url }}">{{ entry.title }}</a>
+        <a href="{{ site.url }}{{ site.baseurl }}/{{ entry.url }}">
+          {{ entry.title }}
+        </a>
       </li>
     {% endfor %}
   </ul>
