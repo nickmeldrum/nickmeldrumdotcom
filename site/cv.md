@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About me
+title: My CV
 ---
 
 <ul>
