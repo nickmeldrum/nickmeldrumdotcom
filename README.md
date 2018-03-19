@@ -34,6 +34,7 @@ To run the jekyll site locally run the `local:run` command.
  * test disqus commenting
  * the scripts in the decorators post!
  * rewrite cv page content for my new profile
+ * add github etc. flair
  * older/newer, next/prev - are they in the right direction? (check medium?)
  * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
 
