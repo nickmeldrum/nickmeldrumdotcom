@@ -3,6 +3,7 @@ layout: default
 title: "Technical Debt and ASP.Net Web Forms"
 shortDescription: "Go fast now or go fast later?"
 date: 2010-01-22 15:00:29
+comments: true
 ---
 An InfoQ article on [Technical Debt](http://www.infoq.com/news/2010/01/is-technical-debt-technical) quoted Ward Cunningham's 
 original coining of the phrase "technical debt" that I will print out again here.

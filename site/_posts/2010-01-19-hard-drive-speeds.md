@@ -3,6 +3,7 @@ layout: default
 title: "Hard Drive Speeds"
 shortDescription: "The bottleneck is the rotating disks!"
 date: 2010-01-19 12:10:39
+comments: true
 ---
 So my project to get a hosted subtext blog up and running hit a snag over the weekend because once again I had Hard Drive problems. Once again it was all my own fault of course&hellip;
 

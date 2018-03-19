@@ -3,6 +3,7 @@ layout: default
 title: "CI and Automated Deployments - Delete don't just Overwrite"
 shortDescription: "A lesson learnt about automatically updating production sites"
 date: 2010-02-08 14:59:34
+comments: true
 ---
 At the moment I use [Nant](http://nant.sourceforge.net/) to configure/program my builds. Yes, programming in XML is hell. I have learnt my lesson. I use Teamcity to manage my builds. We use this setup to do our build (compilation and unit tests), configure deployments (mostly to set machine/deployment specific config settings) and then actually remotely deploy the applications.
 

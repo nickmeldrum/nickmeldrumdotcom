@@ -3,6 +3,7 @@ layout: default
 title: "Table Default Constraints usage"
 shortDescription: "Getting specific about my sql"
 date: 2010-02-05 16:39:54
+comments: true
 ---
 It's not uncommon to see a MS SqlServer table creation script like this:
 

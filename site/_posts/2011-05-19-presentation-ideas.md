@@ -3,6 +3,7 @@ layout: default
 title: "Presentation ideas"
 shortDescription: "Encouraging our developers to present to the team"
 date: 2011-05-19 10:54:23
+comments: true
 ---
 While trying to get volunteers from our development team excited about delivering some technical presentations to the rest of the team I created a list of talks that I would like to hear.
 

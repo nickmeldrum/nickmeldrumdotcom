@@ -3,6 +3,7 @@ layout: default
 title: "Watch more tv"
 shortDescription: "Learning through podcasts: some recommendations"
 date: 2010-11-17 01:48:15
+comments: true
 ---
 If there was 1 thing I wish I had learnt earlier in my professional career it would be:
 "read more blogs and watch/ listen to more podcasts/webcasts."

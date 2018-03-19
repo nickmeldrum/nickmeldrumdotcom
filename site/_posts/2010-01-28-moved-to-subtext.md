@@ -3,6 +3,7 @@ layout: default
 title: "Moved to SubText"
 shortDescription: "Moved my blog from WordPress to SubText"
 date: 2010-01-28 20:14:40
+comments: true
 ---
 So I've moved my blog to my own hosted [subtext ](http://subtextproject.com/)domain. 
 This was one of the least painful "setting up an OSS project on a shared host" experiences I've had. 

@@ -3,6 +3,7 @@ layout: default
 title: "Where's my customers Gherkin editor?"
 shortDescription: "Who should write your bdd features"
 date: 2011-09-24 09:00:00
+comments: true
 ---
 There's a request I have been hearing a few times recently. It goes something like this:
 

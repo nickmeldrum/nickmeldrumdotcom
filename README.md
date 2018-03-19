@@ -16,13 +16,13 @@ To run the jekyll site locally run the `local:run` command.
 ## TODO
 
 get redirects working - so the old /cv permalink redirects to /about
+the scripts in the decorators post!
+sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
+test disqus commenting
 
  * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
  * add mini bio in index.html
- * get syntax highlighting in all code snippets
  * get proper quotes in text
- * get disqus commenting back in
- * create a previous / next article at bottom of post page?
  * add "share" links at bottom of post page?
  * check all old posts - missing imgs, broken tags etc.
  * fix responsive width for svg in decorator post

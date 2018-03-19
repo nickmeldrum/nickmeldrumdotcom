@@ -3,6 +3,7 @@ layout: default
 title: "Mary and Tom talk about lean and 'A tale of two terminals'"
 shortDescription: "A roundup of a talk by Mary Poppendieck"
 date: 2011-05-25 09:00:00
+comments: true
 ---
 Thanks to [Skillsmatter](http://skillsmatter.com/) and the Poppendieck’s for putting on this wonderful [free talk](http://skillsmatter.com/podcast/agile-scrum/a-tale-of-two-terminals-mary-poppendieck/) up in Farringdon and I look forward to coming to more of these in the future! I feel very lucky to have heard [Mary &amp; Tom Poppendieck](http://www.poppendieck.com/)’s talk this evening.
 

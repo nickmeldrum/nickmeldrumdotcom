@@ -3,6 +3,7 @@ layout: default
 title: "What's going on?"
 shortDescription: "Changing blogs again - how and why"
 date: 2010-05-16 20:05:33
+comments: true
 ---
 
 <p>My blog looks different again? I've not posted anything in months?</p>

@@ -3,6 +3,7 @@ layout: default
 title: "Scripting Azure Services With Powershell"
 shortDescription: "Part 1: What am I trying to do?"
 date: 2015-08-25 20:41:00
+comments: true
 ---
 <img src="/assets/images/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
 

@@ -3,6 +3,7 @@ layout: default
 title: "Am I a farmer or a miner?"
 shortDescription: "On developers helping businesses grow"
 date: 2011-04-09 11:47:59
+comments: true
 ---
 So I read a great article by Wil Shipley about success and the types of software start-ups. He has this wonderful tortured analogy about whether your are behaving like a farmer ("You husband the soil to ensure that it&rsquo;ll keep providing for you for years and years") or a miner ("You&rsquo;ll make a big score, then the land will be spent, and you move on, leaving an unusable crater.")
 

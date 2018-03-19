@@ -3,6 +3,7 @@ layout: default
 title: "How to run PowerShell scripts from Solution Explorer in Visual Studio 2010"
 shortDescription: "Customizing Visual Studio for PowerShell users"
 date: 2012-05-10 09:00:00
+comments: true
 ---
 ## Why?
 
