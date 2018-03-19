@@ -17,18 +17,16 @@ To run the jekyll site locally run the `local:run` command.
 
 ### Before go live:
 
- * rewrite mini bio to be sensible
- * build a 404 page
- * combine this repo with the travis automation one and get it autopublishing
  * get our gtm/ga integration in
- * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
+ * combine this repo with the travis automation one and get it autopublishing
+ * make a 404 return our 404 page
  * check all old posts - missing imgs, broken tags etc.
- * fix responsive width for svg in decorator post
  * check responsive width for all old posts is working
- * get a better li style
 
 ### Maybe before?
 
+ * fix responsive width for svg in decorator post
+ * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
  * test disqus commenting
  * the scripts in the decorators post!
  * rewrite cv page content for my new profile
@@ -38,6 +36,7 @@ To run the jekyll site locally run the `local:run` command.
 
 ### After go live:
 
+ * get a better li style
  * get proper quotes in text
  * add "share" links at bottom of post page?
  * get all the weird head attributes we need in nowadays
