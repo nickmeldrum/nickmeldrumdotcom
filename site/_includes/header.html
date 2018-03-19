@@ -1,5 +1,18 @@
 <nav>
   <a href="/">nickmeldrum.com</a>
+  <ul>
+    {% for entry in site.data.navigation %}
+      {% if entry.url == current_page %}
+        {% assign current = 'current' %}
+      {% else %}
+        {% assign current = null %}
+      {% endif %}
+
+      <li class="{{ current }}">
+        <a href="{{ site.url }}{{ site.baseurl }}/{{ entry.url }}">{{ entry.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
 </nav>
 <header>
   <h1>{{ page.title }}</h1>

@@ -15,6 +15,8 @@ To run the jekyll site locally run the `local:run` command.
 
 ## TODO
 
+get redirects working - so the old /cv permalink redirects to /about
+
  * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
  * add mini bio in index.html
  * get syntax highlighting in all code snippets

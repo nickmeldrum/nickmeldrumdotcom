@@ -8,11 +8,12 @@ url: "https://nickmeldrum.com"
 twitter_username: jekyllrb
 github_username:  jekyll
 encoding: utf-8
-gems: [jekyll-paginate]
+plugins:
+  - jekyll-paginate
 
-paginate_path: "blog/page:num/"
+paginate_path: "blog/page:num"
 paginate: 5
-permalink: blog/:title/
+permalink: blog/:title
 markdown: kramdown
 highlighter: rouge
 

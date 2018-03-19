@@ -1,0 +1,14 @@
+.post-navigation {
+  width: auto;
+  overflow: hidden;
+
+  a {
+    width: 50%;
+    float: left;
+    margin: 20px 0;
+  }
+
+  .next {
+    text-align: right;
+  }
+}

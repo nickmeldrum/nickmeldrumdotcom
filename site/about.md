@@ -1,6 +1,6 @@
 ---
 layout: default
-title: About Nick
+title: About me
 ---
 
 <ul>
