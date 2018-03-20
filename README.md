@@ -16,6 +16,22 @@ To run the jekyll site locally run the `local:run` command.
 ## TODO
 
 ### Before go live:
+EXTRA TODO:
+
+ * check that /blog etc. don't show directory listings - maybe add a /blog page?
+
+ * add cv page back in
+ * rewrite cv page content for my new profile
+ * build a 404 page
+ * combine this repo with the travis automation one and get it autopublishing
+ * get our gtm/ga integration in
+ * add mini bio in index.html
+ * get disqus commenting back in
+improve logo/ header nav look and feel
+get redirects working - so the old /cv permalink redirects to /about
+the scripts in the decorators post!
+sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
+test disqus commenting
 
  * get our gtm/ga integration in
  * combine this repo with the travis automation one and get it autopublishing
