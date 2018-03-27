@@ -16,56 +16,46 @@ To run the jekyll site locally run the `local:run` command.
 ## TODO
 
 ### Before go live:
-EXTRA TODO:
 
- * check that /blog etc. don't show directory listings - maybe add a /blog page?
-
- * add cv page back in
+ * better title for site + fix the 2 nav home links
  * rewrite cv page content for my new profile
- * build a 404 page
- * combine this repo with the travis automation one and get it autopublishing
- * get our gtm/ga integration in
- * add mini bio in index.html
- * get disqus commenting back in
-improve logo/ header nav look and feel
-get redirects working - so the old /cv permalink redirects to /about
-the scripts in the decorators post!
-sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
-test disqus commenting
+ * rewrite mini bio
+ * improve logo/ header nav look and feel
+ * the scripts in the decorators post!
+ * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
+ * get canonical tag in head (check other existing head tags?)
 
- * get our gtm/ga integration in
- * combine this repo with the travis automation one and get it autopublishing
- * make a 404 return our 404 page
+### Test:
+
+ * disqus commenting
+ * ga integration
+ * 404's (on missing pages + /blog)
+ * canonicals (e.g. trailing slashes, index.html versions)
  * check all old posts - missing imgs, broken tags etc.
  * check responsive width for all old posts is working
-
-### Maybe before?
-
- * fix responsive width for svg in decorator post
- * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
- * test disqus commenting
- * the scripts in the decorators post!
- * rewrite cv page content for my new profile
- * add github etc. flair
- * older/newer, next/prev - are they in the right direction? (check medium?)
- * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
+ * check (webmaster tools?) that all old urls with juice are still in same place
 
 ### After go live:
 
+ * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
+ * get twitter plugin in
+ * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
+ * older/newer, next/prev - are they in the right direction? (check medium?)
+ * add github etc. flair
+ * fix responsive width for svg in decorator post
  * get a better li style
  * get proper quotes in text
  * add "share" links at bottom of post page?
  * get all the weird head attributes we need in nowadays
  * add tests using html proofer
- * get twitter plugin in
- * get search in
+ * get search in?
  * get my header image in and parallax scrolling (css only)
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
 
  * look at writing automation scripts for the platform setup:
    * s3 bucket create
-   * cloudfront create and set origin to s3
+   * cloudfront create and set origin to s3, behaviours for 404, 403
    * set access identity for cf to write to and read from s3
    * lambda edge triggered on cd origin request to rewrite index-html
    * setup execution roles for lambda edge trigger
