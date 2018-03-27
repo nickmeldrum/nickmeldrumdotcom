@@ -1,8 +1,5 @@
 <nav>
   <ul>
-    <li class="logo">
-      <a href="/">nickmeldrum.com</a>
-    </li>
     {% for entry in site.data.navigation %}
       {% if entry.url == current_page %}
         {% assign current = 'current' %}
