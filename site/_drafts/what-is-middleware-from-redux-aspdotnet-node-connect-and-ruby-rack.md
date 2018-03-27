@@ -15,7 +15,7 @@ I then entered into a personal well of confusion not understanding the differenc
 
 ### The professor's intepretation
 
-![Professor Heinz Wolff, nothing to do with middleware.](/media/professor.jpg "Professor Heinz Wolff. Nothing to do with middleware.")
+![Professor Heinz Wolff, nothing to do with middleware.](/media/egg-professor.jpg "Professor Heinz Wolff. Nothing to do with middleware.")
 
 The [Electrical and Computer Engineering Department of University of Toronto](https://www.ece.utoronto.ca/) does a course titled: "Introduction to Middleware" (possibly originally from the [Pôle Universitaire Léonard de Vinci](http://www.devinci.fr/en/).)
 

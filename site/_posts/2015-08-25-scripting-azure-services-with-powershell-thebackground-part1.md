@@ -5,7 +5,7 @@ shortDescription: "Part 1: What am I trying to do?"
 date: 2015-08-25 20:41:00
 comments: true
 ---
-<img src="/assets/images/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
+<img src="/assets/images/azure-logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
 
 ## It's a series of posts
 
@@ -24,7 +24,7 @@ So after talking to Azure support it turns out
 
 > *you cannot migrate your services from a disabled account*
 
-<img src="/assets/images/no-entry.jpg" alt="No Entry!" title="No Entry!" width="200px" class="centered"/>
+<img src="/assets/images/no-entry-sign.jpg" alt="No Entry!" title="No Entry!" width="200px" class="centered"/>
 
 So I learnt for this reason and many others: the best way to set up your azure account is from a Powershell script so if there's ever a problem you can just re-run the script.
 

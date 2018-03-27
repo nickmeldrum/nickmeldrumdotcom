@@ -62,3 +62,16 @@ test disqus commenting
  * get my header image in and parallax scrolling (css only)
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
+
+ * look at writing automation scripts for the platform setup:
+   * s3 bucket create
+   * cloudfront create and set origin to s3
+   * set access identity for cf to write to and read from s3
+   * lambda edge triggered on cd origin request to rewrite index-html
+   * setup execution roles for lambda edge trigger
+   * setup travis to auto deploy
+
+### References:
+
+ * https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html#lambda-edge-permissions
+ * https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/
