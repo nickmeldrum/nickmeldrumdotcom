@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Articles
+title: All articles
 ---
 
-<p>fdsafads articles yeah</p>
+{% include all-posts-list.html %}
