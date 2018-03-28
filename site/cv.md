@@ -8,7 +8,7 @@ title: My CV
 
 Nick is passionate about building web applications well. What does this mean? Huge amounts of waste and expense have engulfed our industry over and over again. Dealing with complexity and dealing with understanding the business or "what we really meant to built" is key to reducing this waste. Nick has extensive experience in designing and implementing systems in the most simple way possible. Nick has extensive experience in employing and practicing the latest agile principles and practices to dealing with a constantly changing business horizon.
 
-He has over 14 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change (i.e. ScrumMaster) and designs systems primarily for web applications. He is currently a Tech Lead at [Scribestar](http://www.scribestar.com/ "A legal sector tech startup") developing a SAAS platform for a startup disrupting the legal side of capital market transactions.
+He has over 15 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change (i.e. ScrumMaster) and designs systems primarily for web applications. He is currently a Tech Lead at [Scribestar](http://www.scribestar.com/ "A legal sector tech startup") developing a SAAS platform for a startup disrupting the legal side of capital market transactions.
 
 ## Overview
 

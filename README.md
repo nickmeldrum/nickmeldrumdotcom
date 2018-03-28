@@ -13,6 +13,18 @@ Note: to run any commands in a shell, you must run the `. script/init` command f
 
 To run the jekyll site locally run the `local:run` command.
 
+## Redirects and canonical urls
+
+Jekyll outputs files with .html on the end, and we don't like that - so we have a lambda converting the following urls:
+
+/blog => /blog.html
+/cv => /cv.html
+/ => /index.html
+/page/2 => /page/2/index.html
+/blog/beerware => /blog/beerware.html
+
+the 404 page is found at `/404.html` in S3
+
 ## TODO
 
 ### Before go live:
