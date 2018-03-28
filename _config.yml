@@ -1,5 +1,5 @@
 baseurl: ""
-url: "https://nickmeldrum.com"
+production_url: "https://nickmeldrum.com"
 twitter_username: nick_meldrum
 github_username:  nickmeldrum
 encoding: utf-8

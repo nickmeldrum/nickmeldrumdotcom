@@ -17,17 +17,14 @@ To run the jekyll site locally run the `local:run` command.
 
 ### Before go live:
 
- * better title for site + fix the 2 nav home links
  * rewrite cv page content for my new profile
- * rewrite mini bio
- * improve logo/ header nav look and feel
  * the scripts in the decorators post!
  * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
- * get canonical tag in head (check other existing head tags?)
 
 ### Test:
 
  * disqus commenting
+ * canonical is right in live - especially trailing slashes on /blog and /page/2 etc.
  * ga integration
  * 404's (on missing pages + /blog)
  * canonicals (e.g. trailing slashes, index.html versions)
