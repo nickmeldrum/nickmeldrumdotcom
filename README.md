@@ -19,7 +19,6 @@ To run the jekyll site locally run the `local:run` command.
 
  * rewrite cv page content for my new profile
  * the scripts in the decorators post!
- * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
 
 ### Test:
 

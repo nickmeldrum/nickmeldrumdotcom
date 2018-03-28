@@ -1,7 +1,5 @@
-baseurl: ""
-production_url: "https://nickmeldrum.com"
-twitter_username: nick_meldrum
-github_username:  nickmeldrum
+production_url: 'https://nickmeldrum.com'
+baseurl: ''
 encoding: utf-8
 plugins:
   - jekyll-paginate-v2
@@ -10,10 +8,12 @@ pagination:
   per_page: 6
   permalink: '/page/:num/'
   sort_reverse: true
-permalink: blog/:title
+permalink: 'blog/:title'
 markdown: kramdown
 highlighter: rouge
 source: site
 destination: _site
 sass:
   style: compressed
+twitter_username: 'nick_meldrum'
+github_username:  'nickmeldrum'
