@@ -6,7 +6,8 @@ plugins:
 pagination:
   enabled: true
   per_page: 6
-  permalink: '/page/:num/'
+  permalink: '/page/:num.html'
+  title: 'Articles - page :num'
   sort_reverse: true
 permalink: 'blog/:title'
 markdown: kramdown
