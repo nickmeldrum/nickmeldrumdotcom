@@ -22,8 +22,7 @@ describe('rewrite handler', () => {
       uri: 'http://www.something.com/somewhere/over/the/rainbow///',
       expected: 'http://www.something.com/somewhere/over/the/rainbow',
     },
-  ]
-    .forEach(testData => {
+  ].forEach(testData => {
       it('redirects on a trailing slash', () => {
         testUri(testData.uri).andAssert(request =>
           expect(request.status).toEqual('301')
@@ -31,17 +30,25 @@ describe('rewrite handler', () => {
       })
 
       it('redirects to a location without trailing slashes', () => {
+
         testUri(testData.uri).andAssert(request =>
           expect(request.headers.location[0].value).toEqual(testData.expected)
         )
       })
     })
 
-    [{ uri: 'something' }].forEach(testData => {
-      it('does not redirect', () => {
+    ;[
+      { uri: 'something.js', expected: 'something.js' },
+      { uri: 'something', expected: 'something.html' },
+      {
+        uri: 'http://www.something.com/somewhere/over/the/rainbow',
+        expected: 'http://www.something.com/somewhere/over/the/rainbow.html',
+      },
+    ].forEach(testData => {
+      it('adds .html when no file extension, adds nothing when extension present', () => {
         testUri(testData.uri).andAssert(request =>
-          expect(request.status).toEqual('200')
+          expect(request.uri).toEqual(testData.expected)
         )
       })
     })
-})
+}) 

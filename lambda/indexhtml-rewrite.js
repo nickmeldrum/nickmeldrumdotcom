@@ -20,7 +20,7 @@ exports.handler = (event, context, callback) => {
   }
   const setRequestWithExtensionInS3 = () => {
     if (!path.extname(uri)) {
-      request.uri = path.join(uri, '.html')
+      request.uri = uri + '.html'
     }
   }
 
