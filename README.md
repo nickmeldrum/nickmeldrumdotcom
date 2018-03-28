@@ -25,11 +25,6 @@ Jekyll outputs files with .html on the end, and we don't like that - so we have 
 
 the 404 page is found at `/404.html` in S3
 
-## TODO
-
-access denied on missing pages - need to do the proper 404
-
-
 ### Before go live:
 
  * rewrite cv page content for my new profile
