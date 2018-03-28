@@ -15,6 +15,9 @@ To run the jekyll site locally run the `local:run` command.
 
 ## TODO
 
+access denied on missing pages - need to do the proper 404
+
+
 ### Before go live:
 EXTRA TODO:
 
@@ -62,3 +65,6 @@ test disqus commenting
  * get my header image in and parallax scrolling (css only)
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
+
+
+ https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b
