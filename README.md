@@ -13,6 +13,14 @@ Note: to run any commands in a shell, you must run the `. script/init` command f
 
 To run the jekyll site locally run the `local:run` command.
 
+## The stuff
+
+ * https://github.com/nickmeldrum/nickmeldrumdotcom
+ * https://travis-ci.org/nickmeldrum/nickmeldrumdotcom
+ * https://s3.console.aws.amazon.com/s3/buckets/nickmeldrum-com-blog/?region=us-east-1&tab=overview
+ * https://console.aws.amazon.com/cloudfront/home?region=us-east-1#distribution-settings:EXF2TU584W09Y
+ * https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/indexhtml-rewrite/versions/10?tab=graph
+
 ## Redirects and canonical urls
 
 Jekyll outputs files with .html on the end, and we don't like that - so we have a lambda converting the following urls:
