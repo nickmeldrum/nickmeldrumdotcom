@@ -1,0 +1,16 @@
+{
+  "name": "nickmeldrumdotcom",
+  "version": "1.0.0",
+  "main": "indexhtml-rewrite.js",
+  "repository": "https://github.com/nickmeldrum/nickmeldrumdotcom.git",
+  "author": "Nick Meldrum <nick@nickmeldrum.com>",
+  "license": "MIT",
+  "scripts": {
+    "test:watch": "jest --watch",
+    "test": "eslint ./ && jest"
+  },
+  "dependencies": {
+    "eslint": "^4.19.1",
+    "jest": "^22.4.3"
+  }
+}

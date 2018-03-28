@@ -1,23 +1,19 @@
-title: nickmeldrum.com
-email: nick@nickmeldrum.com
-description: >-
-  Nick Meldrum's blog
-  and little corner of the interwebs
-baseurl: ""
-url: "https://nickmeldrum.com"
-twitter_username: jekyllrb
-github_username:  jekyll
+production_url: 'https://nickmeldrum.com'
+baseurl: ''
 encoding: utf-8
 plugins:
-  - jekyll-paginate
-
-paginate_path: "blog/page:num"
-paginate: 5
-permalink: blog/:title/
+  - jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 6
+  permalink: '/page/:num/'
+  sort_reverse: true
+permalink: 'blog/:title'
 markdown: kramdown
 highlighter: rouge
-
 source: site
 destination: _site
 sass:
   style: compressed
+twitter_username: 'nick_meldrum'
+github_username:  'nickmeldrum'

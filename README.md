@@ -13,58 +13,68 @@ Note: to run any commands in a shell, you must run the `. script/init` command f
 
 To run the jekyll site locally run the `local:run` command.
 
+## Redirects and canonical urls
+
+Jekyll outputs files with .html on the end, and we don't like that - so we have a lambda converting the following urls:
+
+/blog => /blog.html
+/cv => /cv.html
+/ => /index.html
+/page/2 => /page/2/index.html
+/blog/beerware => /blog/beerware.html
+
+the 404 page is found at `/404.html` in S3
+
 ## TODO
 
 access denied on missing pages - need to do the proper 404
 
 
 ### Before go live:
-EXTRA TODO:
 
- * check that /blog etc. don't show directory listings - maybe add a /blog page?
-
- * add cv page back in
  * rewrite cv page content for my new profile
- * build a 404 page
- * combine this repo with the travis automation one and get it autopublishing
- * get our gtm/ga integration in
- * add mini bio in index.html
- * get disqus commenting back in
-improve logo/ header nav look and feel
-get redirects working - so the old /cv permalink redirects to /about
-the scripts in the decorators post!
-sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
-test disqus commenting
 
- * get our gtm/ga integration in
- * combine this repo with the travis automation one and get it autopublishing
- * make a 404 return our 404 page
+### Test:
+
+ * disqus commenting
+ * canonical is right in live - especially trailing slashes on /blog and /page/2 etc.
+ * ga integration
+ * 404's (on missing pages + /blog)
+ * canonicals (e.g. trailing slashes, index.html versions)
  * check all old posts - missing imgs, broken tags etc.
  * check responsive width for all old posts is working
-
-### Maybe before?
-
- * fix responsive width for svg in decorator post
- * sort out permalinks - add permalink variable to disqus? - what else is permalink important for? canonical/ google webmaster tools?
- * test disqus commenting
- * the scripts in the decorators post!
- * rewrite cv page content for my new profile
- * add github etc. flair
- * older/newer, next/prev - are they in the right direction? (check medium?)
- * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
+ * check (webmaster tools?) that all old urls with juice are still in same place
 
 ### After go live:
 
+ * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
+ * add a booklist?
+ * add a project list?
+ * get twitter plugin in
+ * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
+ * older/newer, next/prev - are they in the right direction? (check medium?)
+ * add github etc. flair
+ * fix responsive width for svg in decorator post
  * get a better li style
  * get proper quotes in text
  * add "share" links at bottom of post page?
  * get all the weird head attributes we need in nowadays
  * add tests using html proofer
- * get twitter plugin in
- * get search in
+ * get search in?
  * get my header image in and parallax scrolling (css only)
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
 
+ * look at writing automation scripts for the platform setup:
+   * s3 bucket create
+   * cloudfront create and set origin to s3, behaviours for 404, 403
+   * set access identity for cf to write to and read from s3
+   * lambda edge triggered on cd origin request to rewrite index-html
+   * setup execution roles for lambda edge trigger
+   * setup travis to auto deploy
 
- https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b
+### References:
+
+ * https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html#lambda-edge-permissions
+ * https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/
+ * https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b

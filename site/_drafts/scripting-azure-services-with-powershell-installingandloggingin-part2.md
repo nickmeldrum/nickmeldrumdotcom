@@ -4,7 +4,7 @@ title: "Scripting Azure Services With Powershell"
 ShortDescription: "Part 2: Installing Azure Powershell and the Azure CLI and logging in"
 ---
 
-<img src="/media/azure_logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
+<img src="/media/azure-logo.png" alt="Microsoft Azure" title="Microsoft Azure" class="centered"/>
 
 ## It's a series of posts
 

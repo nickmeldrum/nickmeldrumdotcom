@@ -677,9 +677,9 @@ I am using ES6 syntax but *not* using the class keyword? There are 2 excellent r
 
 ### The scripts
 
- 1. [The "wrapper" method](/scripts/decorator-wrapper.js)
- 2. [The "monkey patching" method](/scripts/decorator-monkeypatching.js)
- 3. [The "prototype inheritance" method](/scripts/decorator-inheritance.js)
- 4. [The "proxy" method](/scripts/decorator-proxy.js)
- 5. [The "middleware" method](/scripts/decorator-middleware.js)
+ 1. [The "wrapper" method](/assets/scripts/decorator-wrapper.js)
+ 2. [The "monkey patching" method](/assets/scripts/decorator-monkeypatching.js)
+ 3. [The "prototype inheritance" method](/assets/scripts/decorator-inheritance.js)
+ 4. [The "proxy" method](/assets/scripts/decorator-proxy.js)
+ 5. [The "middleware" method](/assets/scripts/decorator-middleware.js)
 
