@@ -18,7 +18,6 @@ To run the jekyll site locally run the `local:run` command.
 ### Before go live:
 
  * rewrite cv page content for my new profile
- * the scripts in the decorators post!
 
 ### Test:
 
@@ -34,6 +33,8 @@ To run the jekyll site locally run the `local:run` command.
 ### After go live:
 
  * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
+ * add a booklist?
+ * add a project list?
  * get twitter plugin in
  * get proper color scheme - base link colors/ other site colors/ favicon and brand logo on them
  * older/newer, next/prev - are they in the right direction? (check medium?)
