@@ -35,6 +35,7 @@ the 404 page is found at `/404.html` in S3
 
 ### Before go live:
 
+ * create a domain redirect if the domain ain't nickmeldrum.com (https)
  * rewrite cv page content for my new profile
 
 ### Test:
