@@ -6,11 +6,19 @@
   "author": "Nick Meldrum <nick@nickmeldrum.com>",
   "license": "MIT",
   "scripts": {
-    "test:watch": "jest --watch",
-    "test": "eslint ./ && jest"
+    "start": "node ./lib/index.js",
+    "test": "eslint ./**/*.js && jest",
+    "test:watch": "jest --watch --notify"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "^1.11.1",
+    "jest": "^22.4.3"
   },
   "dependencies": {
-    "eslint": "^4.19.1",
-    "jest": "^22.4.3"
   }
 }
