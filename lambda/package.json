@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node ./lib/index.js",
-    "test": "eslint ./**/*.js && jest",
+    "test": "eslint ./**/*.js && jest --verbose",
     "test:watch": "jest --watch --notify"
   },
   "devDependencies": {
