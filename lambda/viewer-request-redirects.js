@@ -2,13 +2,13 @@ const { STATUS_CODES } = require('http')
 
 const canonicalHost = 'nickmeldrum.com'
 
-const modifyRequestToARedirect = (request, uri) => {
-  request.status = '301'
-  request.statusDescription = STATUS_CODES['301']
-  request.headers.location = [{ key: 'Location', value: uri }]
-  request.headers.host = [{ key: 'Host', value: canonicalHost }]
-  return request
-}
+const redirect = uri => ({
+  status: '301',
+  statusDescription: STATUS_CODES['301'],
+  headers: {
+    location: [{ key: 'Location', value: uri }]
+  }
+})
 
 const removeTrailingSlashes = uri => {
   if (uri === '/') return ''
@@ -28,6 +28,6 @@ exports.handler = (event, context, callback) => {
   let newUri = removeTrailingSlashes(uri)
   newUri = setCanonicalHost(host, newUri)
 
-  if (newUri !== uri) callback(null, modifyRequestToARedirect(request, newUri))
+  if (newUri !== uri) callback(null, redirect(newUri))
   else callback(null, request)
 }

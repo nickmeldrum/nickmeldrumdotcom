@@ -71,7 +71,6 @@ describe('viewer request redirects handler', () => {
           .andHost(testData.input.host)
           .andAssert(request => {
             expect(request.headers.location[0].value).toEqual(testData.expected.uri)
-            expect(request.headers.host[0].value).toEqual('nickmeldrum.com')
           })
       })
     }

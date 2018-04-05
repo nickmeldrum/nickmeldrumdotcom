@@ -2,6 +2,9 @@ const path = require('path')
 
 const modifyRequestWithExtension = request => {
   const { uri } = request
+  if (uri === '') {
+    request.uri = '/index.html'
+  }
   if (!path.extname(uri)) {
     request.uri = `${uri}.html`
   }
