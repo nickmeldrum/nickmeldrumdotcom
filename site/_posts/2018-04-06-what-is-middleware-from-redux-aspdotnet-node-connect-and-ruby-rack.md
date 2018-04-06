@@ -2,7 +2,7 @@
 layout: default
 title: "What is Middleware? From Redux, ASP.Net, Node.js Connect and Ruby Rack all the way back to ODBC and Corba..."
 shortDescription: "Are we using this term incorrectly?"
-date: 2016-04-06 07:36:00
+date: 2018-04-06 07:36:00
 comments: true
 ---
 
