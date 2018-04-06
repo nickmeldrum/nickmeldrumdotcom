@@ -1,6 +1,9 @@
 ---
 layout: default
 title: "What is Middleware? From Redux, ASP.Net, Node.js Connect and Ruby Rack all the way back to ODBC and Corba..."
+shortDescription: "Are we using this term incorrectly?"
+date: 2016-04-06 07:36:00
+comments: true
 ---
 
 ## Just a brief sojourn...
@@ -9,13 +12,13 @@ It turns out, after a little bit of research, that defining what middleware is w
 
 ## Why my interest?
 
-I [just posted](http://nickmeldrum.com/blog/decorators-in-javascript-using-monkey-patching-closures-prototypes-proxies-and-middleware) about looking at some JavaScript techniques for implementing the decorator pattern, sort of inspired by looking at [Dan Abramov's](https://medium.com/@dan_abramov) [Redux](https://github.com/reactjs/redux) middleware implementation.
+A while ago, I [posted](/blog/decorators-in-javascript-using-monkey-patching-closures-prototypes-proxies-and-middleware) about looking at some JavaScript techniques for implementing the decorator pattern, sort of inspired by looking at [Dan Abramov's](https://medium.com/@dan_abramov) [Redux](https://github.com/reactjs/redux) middleware implementation.
 
 I then entered into a personal well of confusion not understanding the difference between middleware, pipelines and decorators. So my journey began.
 
 ### The professor's intepretation
 
-![Professor Heinz Wolff, nothing to do with middleware.](/media/egg-professor.jpg "Professor Heinz Wolff. Nothing to do with middleware.")
+![Professor Heinz Wolff, nothing to do with middleware.](/assets/images/egg-professor.jpg "Professor Heinz Wolff. Nothing to do with middleware.")
 
 The [Electrical and Computer Engineering Department of University of Toronto](https://www.ece.utoronto.ca/) does a course titled: "Introduction to Middleware" (possibly originally from the [Pôle Universitaire Léonard de Vinci](http://www.devinci.fr/en/).)
 
@@ -56,7 +59,7 @@ It is *also* a decorator around an application. [This article](https://igor.io/2
 
 Here is an example that shows how people talk about Rack middleware:
 
-![Rack Middleware](/media/rack-middleware.jpg)
+![Rack Middleware](/assets/images/rack-middleware.jpg)
 
 But Rack for Ruby is 2 things, a general interface to multiple 3rd party proprietary systems (web servers) *AND* a decorator pattern for composing applications. It seems that the 1st thing was in line with the original definition of the word middleware, but everyone seems to talk about the Rack user applications (the decorators or pipeline apps) as the middleware like in the diagram above.
 
@@ -82,11 +85,11 @@ From the ASP.Net page:
 
 And if you will forgive me, I will use the image from the ASP.Net page to show the concept, as it's the best diagram I've seen:
 
-![middleware in request response](/media/middleware.png)
+![middleware in request response](/assets/images/middleware.png)
 
 So Connect and ASP.Net Core middleware are clearly both implementing the decorator pattern in the same way Rack does.
 
-They also give you an interface to a web server. In Connect's example it uses Node's built in http server. It's possible Connect allows other http implementations but I'm not sure. ASP.Net Core allows for [different web server implementations](https://docs.asp.net/en/latest/fundamentals/servers.html) by (at a minimum) requiring 2 interfaces: `IHttpRequestFeature` and `IHttpResponseFeature` that must be supported.
+They also give you an interface to a web server. In Connect's example it uses Node's built in http server. It's possible Connect allows other http implementations but I'm not sure. ASP.Net Core allows for [different web server implementations](https://docs.asp.net/en/latest/fundamentals/servers.html) by (at a minimum) requiring 2 interfaces: {% ihighlight text %}IHttpRequestFeature{% endihighlight %} and {% ihighlight text %}IHttpResponseFeature{% endihighlight %} that must be supported.
 
 So fundamentally Connect and ASP.Net Core implement the web server abstraction *as well* as the decorator just like Rack does. It seems they refer to the user applications as the Middleware just like Rack does as well.
 
@@ -102,9 +105,9 @@ Firstly, I love hot loading and I really love Redux and really feel uncomfortabl
 
 The usage of the term middleware in Redux confused me. The [documentation for Redux middleware](http://redux.js.org/docs/advanced/Middleware.html) is a good explanation of the concept but the TL/DR is that it is a very similar decorator pattern to the above implementations (especially unsurprisingly Connect as they are both JavaScript.)
 
-You can define a middleware component around a "dispatch" call, you just have to make sure you call the `next()` function the store gives you so that the middleware components can be chained together. This next() function is important in the JavaScript implementations in order to enable asynchronous invocations.
+You can define a middleware component around a "dispatch" call, you just have to make sure you call the {% ihighlight text %}next(){% endihighlight %} function the store gives you so that the middleware components can be chained together. This next() function is important in the JavaScript implementations in order to enable asynchronous invocations.
 
-Here's the kicker though: there is no 3rd party proprietary system that is being bridged or interfaced. This is purely a decorator pattern over his own base `store.dispatch()` function.
+Here's the kicker though: there is no 3rd party proprietary system that is being bridged or interfaced. This is purely a decorator pattern over his own base {% ihighlight text %}store.dispatch(){% endihighlight %} function.
 
 ### Summary: The evolution of language
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: My CV
+title: "Nick Meldrum: Software development consultant"
 ---
 
  * Contact: [email nick@nickmeldrum.com](mailto:nick@nickmeldrum.com "Email Nick")

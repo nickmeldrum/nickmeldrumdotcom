@@ -6,8 +6,8 @@ const redirect = uri => ({
   status: '301',
   statusDescription: STATUS_CODES['301'],
   headers: {
-    location: [{ key: 'Location', value: uri }]
-  }
+    location: [{ key: 'Location', value: uri }],
+  },
 })
 
 const removeTrailingSlashes = uri => {
