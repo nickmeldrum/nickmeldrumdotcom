@@ -7,3 +7,9 @@
 .no-indent {
   padding-left: 0px;
 }
+
+@media (max-width: 750px) {
+  .centered {
+    padding: 0 10px 0 10px;
+  }
+} 
