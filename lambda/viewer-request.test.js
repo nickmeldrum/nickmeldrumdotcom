@@ -1,4 +1,4 @@
-const { handler } = require('./viewer-request-redirects')
+const { handler } = require('./viewer-request')
 const testHandler = require('./test-lambda-edge-handler')
 
 describe('viewer request redirects handler', () => {
