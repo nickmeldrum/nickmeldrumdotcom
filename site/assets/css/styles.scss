@@ -26,6 +26,12 @@ h1 {
   font-weight: normal;
 }
 
+@media (max-width: 750px) {
+  h1 {
+    font-size: 36px;
+ } 
+} 
+
 h2 {
   margin-right: auto;
 }
