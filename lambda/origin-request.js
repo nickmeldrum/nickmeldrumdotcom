@@ -35,12 +35,18 @@ const removeIndex = uri => {
   return uri
 }
 
+const removeHtmlExtension = uri => {
+  if (uri.endsWith('.html')) return uri.substring(0, uri.length - 5)
+  return uri
+}
+
 const toLower = uri => uri.toLowerCase()
 
 exports.handler = (event, context, callback) => {
   const { request, request: { uri } } = event.Records[0].cf
 
   let newUri = removeIndex(uri)
+  newUri = removeHtmlExtension(newUri)
   newUri = removeTrailingSlashes(newUri)
   newUri = toLower(newUri)
 

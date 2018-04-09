@@ -54,6 +54,15 @@ describe('origin request rewrite handler', () => {
       })
   })
 
+  it('url ends in /x.html redirects to url without extension', () => {
+    testHandler(handler)
+      .withUri('a/url/x.html')
+      .andAssert(request => {
+        expect(request.status).toEqual('301')
+        expect(request.headers.location[0].value).toEqual('a/url/x')
+      })
+  })
+
   it('trailing slash redirects to no trailing slash', () => {
     testHandler(handler)
       .withUri('a/url/')
