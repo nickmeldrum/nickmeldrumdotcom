@@ -6,9 +6,13 @@ title: "Nick Meldrum: Software development consultant"
  * Contact: [email nick@nickmeldrum.com](mailto:nick@nickmeldrum.com "Email Nick")
  * Location: [High Wycombe (Just outside London, near Reading)](https://goo.gl/maps/8dVaqStCfdu "location")
 
-Nick is passionate about building web applications well. What does this mean? Huge amounts of waste and expense have engulfed our industry over and over again. Dealing with complexity and dealing with understanding the business or "what we really meant to built" is key to reducing this waste. Nick has extensive experience in designing and implementing systems in the most simple way possible. Nick has extensive experience in employing and practicing the latest agile principles and practices to dealing with a constantly changing business horizon.
+Nick is passionate about building systems well. What does this mean? Huge amounts of waste and expense have engulfed our industry over and over again. Dealing with complexity and understanding the business or "what we really meant to built" is the key to reducing this waste.
 
-He has over 15 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change (i.e. ScrumMaster) and designs systems primarily for web applications. He is currently a Tech Lead at [Scribestar](http://www.scribestar.com/ "A legal sector tech startup") developing a SAAS platform for a startup disrupting the legal side of capital market transactions.
+Nick has extensive experience in designing and implementing systems in the most simple way possible. He has spent years employing and practicing the latest agile principles and practices to deal with a constantly changing business horizon.
+
+He has over 15 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change and designs and develops high quality systems.
+
+He is currently consulting at [Waitrose](https://www.waitrose.com/ "A groceries ecommerce retail site") on both their agile transformation and their rebuild of their groceries ecommerce site; built on both a serverless and a docker/kubernetes microservice platform with a React/redux based front end website, and a native mobile application.
 
 ## Overview
 
@@ -16,8 +20,9 @@ He has over 15 years of developer experience including a stint at Microsoft. He 
  * Extensive experience leading teams and successfully delivering projects
  * Extensive architecture and design experience
  * Extensive developer coaching and mentoring skills
- * Over 14 years of developer experience building websites and applications
+ * Over 15 years of developer experience building websites and applications
  * Extensive knowledge of JavaScript: the language, ecosystem, frameworks and best practices
+ * Extensive knowledge of cloud services, having built on both Azure and AWS
  * Extensive experience of Agile, Scrum, XP, TDD and lean/ Kanban methodologies  (Certified ScrumMaster)
 
 ## Work Highlights
@@ -32,17 +37,12 @@ He has over 15 years of developer experience including a stint at Microsoft. He 
 
  * Strong leadership: forging strong teams, aligning people and vision, coaching and mentoring
  * Extensive agile: Scrum and lean/ Kanban, facilitating process, planning/ feature meetings, retros
- * Strong architecture and design: SOA, REST, OO, SOLID, design patterns, messaging, functional programming
- * Extensive testing and TDD: Mocha, Chai, Jasmine, Nunit, MSTest
- * Strong BDD: Gherkin, SpecFlow, Selenium
- * Extensive JavaScript: ES2015, React/ Redux, AngularJS 1.4, Knockout.js, many others
- * Strong JavaScript build tools: Grunt, Gulp, Webpack
- * Some Server side JavaScript: Node.js, Express, Socket.IO, MongoDB, Mongoose, Passport.js
- * Extensive Microsoft stack: C#, .NET Framework, ASP.Net MVC, Web Api, WCF
- * Extensive RDBMS: SQL Server, NHibernate, some Entity Framework
- * Some NoSQL: MongoDB, Neo4j, RavenDb
- * Extensive (D)VCS: Git, Mercurial, Subversion, TFS
- * Strong automation, continuous integration and deployment: PowerShell, TeamCity, Octopus, MSBuild
- * Some cloud: Azure automation, PAAS Web apps
+ * Strong architecture and design: Microservices, SOA, REST, OO, SOLID, design patterns, messaging, functional programming
+ * Extensive testing, BDD and TDD skills, code craftsman
+ * Extensive full stack JavaScript: nodejs, express, React/ Redux, Webpack
+ * Strong cloud service design: REST Apis, Microservice/ serverless design, Docker, AWS, Azure
+ * Neo4j, MongoDB, RavenDb, RDBMS
+ * Microsoft stack: C#, .NET Framework, ASP.Net MVC, Web Api
+ * Jenkins, Travis, PowerShell, TeamCity, Octopus, MSBuild
 
 A detailed work history and references are available on [request](mailto:nick@nickmeldrum.com "Email Nick").
