@@ -8,11 +8,13 @@ cache:
   bundler: true
   directories:
   - /home/travis/.rvm/
+  - ./functions/origin-request/node_modules/
 install:
   - pip install --user awscli
   - bundle install
 script:
   - ./script/ci:build
+  - cd ./functions/origin-request && yarn install
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -20,6 +22,8 @@ branches:
   only:
   - master
   - testing
+before_deploy:
+  - zip -r origin-request-function.zip ./functions/origin-request/index.js ./functions/origin-request/modules/ ./functions/origin-request/node_modules/
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
@@ -41,7 +45,18 @@ deploy:
     cache_control: "max-age=21600"
     on:
       branch: testing
-
+  - provider: lambda
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    function_name: nickmeldrumcom-blog-origin-request
+    region: $AWS_REGION_TESTING
+    handler_name: handler
+    runtime: nodejs6.10
+    publish: true 
+    zip: origin-request-function.zip
+    role: $ROLE
+    on:
+      branch: testing
 after_deploy:
   - aws configure set preview.cloudfront true
   - test $TRAVIS_BRANCH = "master" && aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"

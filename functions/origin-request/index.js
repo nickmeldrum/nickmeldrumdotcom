@@ -1,17 +1,6 @@
 const path = require('path')
-const { STATUS_CODES } = require('http')
-
-const compose2 = (f, g) => (...args) => f(g(...args))
-const pipe = (...fns) => fns.reduceRight(compose2)
-
-const redirect = uri => ({
-  status: '301',
-  statusDescription: STATUS_CODES['301'],
-  headers: {
-    'cache-control': [{ key: 'Cache-Control', value: 'public, max-age=10' }],
-    location: [{ key: 'Location', value: uri }],
-  },
-})
+const { pipe } = require('./modules/functional')
+const redirect = require('./modules/redirect')
 
 const modifyRequestWithExtension = request => {
   const { uri } = request

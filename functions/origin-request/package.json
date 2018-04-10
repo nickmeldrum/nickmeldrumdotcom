@@ -1,12 +1,12 @@
 {
-  "name": "nickmeldrumdotcom",
-  "version": "1.0.0",
-  "main": "indexhtml-rewrite.js",
+  "name": "nickmeldrumdotcom blog origin request function",
+  "version": "0.1.0",
+  "main": "index.js",
   "repository": "https://github.com/nickmeldrum/nickmeldrumdotcom.git",
   "author": "Nick Meldrum <nick@nickmeldrum.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node ./lib/index.js",
+    "start": "node ./index.js",
     "test": "eslint ./**/*.js && jest --verbose",
     "test:watch": "jest --watch --notify"
   },
