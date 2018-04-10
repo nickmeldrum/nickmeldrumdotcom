@@ -54,7 +54,7 @@ deploy:
     runtime: nodejs6.10
     publish: true 
     zip: origin-request-function.zip
-    role: service-role/fdsa
+    role: arn:aws:iam::277625601220:role/service-role/fdsa
     on:
       branch: testing
 after_deploy:
