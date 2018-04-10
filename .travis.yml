@@ -50,7 +50,7 @@ deploy:
     region: $AWS_REGION_TESTING
     handler_name: handler
     runtime: nodejs6.10
-    publish: true 
+    publish: false 
     zip: origin-request-function.zip
     role: arn:aws:iam::277625601220:role/service-role/fdsa
     on:
