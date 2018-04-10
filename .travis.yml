@@ -1,6 +1,12 @@
 language: ruby
 rvm:
 - 2.3.3
+python:
+  - "3.5"
+cache:
+  - pip
+install:
+  - pip install awscli
 
 script: ./script/ci:build
 
