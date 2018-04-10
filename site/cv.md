@@ -8,7 +8,7 @@ title: "Nick Meldrum: Software development consultant"
 
 Nick is passionate about building systems well. What does this mean? Huge amounts of waste and expense have engulfed our industry over and over again. Dealing with complexity and understanding the business or "what we really meant to built" is the key to reducing this waste.
 
-Nick has extensive experience in designing and implementing systems in the most simple way possible. He has spent years employing and practicing the latest agile principles and practices to deal with a constantly changing business horizon.
+He has extensive experience in designing and implementing systems in the most simple way possible. He has spent years employing and practicing the latest agile principles and practices to deal with a constantly changing business horizon.
 
 He has over 15 years of developer experience including a stint at Microsoft. He leads development teams, acts as an agile agent of change and designs and develops high quality systems.
 
