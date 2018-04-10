@@ -5,29 +5,30 @@ python:
   - "3.5"
 cache:
   - pip
+  - bundler
+    directories:
+    - /home/travis/.rvm/
 install:
   - pip install --user awscli
   - bundle install
-
 script:
   - ./script/ci:build
-
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
-
 deploy:
-  provider: s3
-  access_key_id: $AWS_ACCESS_KEY_ID
-  secret_access_key: $AWS_SECRET_ACCESS_KEY
-  bucket: nickmeldrum-com-blog
-  skip_cleanup: true
-  local_dir: _site
-  region: $AWS_DEFAULT_REGION
-  cache_control: "max-age=21600"
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: nickmeldrum-com-blog
+    skip_cleanup: true
+    local_dir: _site
+    region: $AWS_DEFAULT_REGION
+    cache_control: "max-age=21600"
+    on:
+      branch: master
 
 after_deploy:
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
-
 sudo: false
