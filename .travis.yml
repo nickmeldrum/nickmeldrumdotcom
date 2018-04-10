@@ -14,7 +14,7 @@ install:
   - bundle install
 script:
   - ./script/ci:build
-  - cd ./functions/origin-request && yarn install
+  - cd ./functions/origin-request && yarn install && cd ../..
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
