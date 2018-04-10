@@ -4,10 +4,10 @@ rvm:
 python:
   - "3.5"
 cache:
-  - pip
-  - bundler
-    directories:
-    - /home/travis/.rvm/
+  pip: true
+  bundler: true
+  directories:
+  - /home/travis/.rvm/
 install:
   - pip install --user awscli
   - bundle install
