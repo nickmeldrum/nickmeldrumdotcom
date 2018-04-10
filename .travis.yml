@@ -16,5 +16,9 @@ deploy:
   skip_cleanup: true
   local_dir: _site
   region: $AWS_DEFAULT_REGION
+  cache_control: "max-age=21600"
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
 
 sudo: false
