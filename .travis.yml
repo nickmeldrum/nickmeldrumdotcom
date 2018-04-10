@@ -13,8 +13,8 @@ install:
   - pip install --user awscli
   - bundle install
 script:
-  - ./script/ci:build
-  - cd ./functions/origin-request && yarn install --production && cd ../..
+  - ./script/ci:build-static-site
+  - ./script/ci:build-functions
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -22,8 +22,6 @@ branches:
   only:
   - master
   - testing
-before_deploy:
-  - zip -r origin-request-function.zip ./functions/origin-request/index.js ./functions/origin-request/modules/ ./functions/origin-request/node_modules/
 deploy:
   - provider: s3
     access_key_id: $AWS_ACCESS_KEY_ID
