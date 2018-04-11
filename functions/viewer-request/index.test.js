@@ -1,96 +1,74 @@
-const { handler } = require('./viewer-request')
-const testHandler = require('./test-lambda-edge-handler')
+const { handler } = require('./index')
+const testHandler = require('test-lambda-edge-handler')
 
 describe('viewer request redirects handler', () => {
-  it('empty uri does not redirect', () => {
+  it('host nickmeldrum.co.uk and url a/b redirects to https://nickmeldrum.com/a/b', () => {
     testHandler(handler)
-      .withUri('')
+      .withUri('a/b')
+      .andHost('nickmeldrum.co.uk')
       .andAssert(request => {
-        expect(request.status).not.toEqual('301')
-        expect(request.uri).toEqual('')
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.status).toEqual('301')
       })
   })
-  ;[
-    {
-      input: { host: 'nickmeldrum.com', uri: 'something' },
-      expected: { redirect: false },
-    },
-    {
-      input: { host: 'nickmeldrum.com', uri: 'something/' },
-      expected: { redirect: true, uri: 'something' },
-    },
-    {
-      input: { host: 'nickmeldrum.com', uri: 'something//' },
-      expected: { redirect: true, uri: 'something' },
-    },
-    {
-      input: { host: 'nickmeldrum.com', uri: 'something///' },
-      expected: { redirect: true, uri: 'something' },
-    },
-    {
-      input: { host: 'nickmeldrum.com', uri: 'over/the/something///' },
-      expected: { redirect: true, uri: 'over/the/something' },
-    },
-    {
-      input: { host: 'nickmeldrum.com', uri: 'over/the/something' },
-      expected: { redirect: false },
-    },
-    {
-      input: { host: 'nickmeldrum.co.uk', uri: 'over/the/something' },
-      expected: { redirect: true, uri: 'https://nickmeldrum.com/over/the/something' },
-    },
-    {
-      input: { host: 'www.nickmeldrum.com', uri: 'over/the/something///' },
-      expected: { redirect: true, uri: 'https://nickmeldrum.com/over/the/something' },
-    },
-    {
-      input: { host: 'sdhfialshjflidsa.cloudfront.net', uri: 'over/the/something/' },
-      expected: { redirect: true, uri: 'https://nickmeldrum.com/over/the/something' },
-    },
-  ].forEach(testData => {
-    if (testData.expected.redirect) {
-      it(`uri "${testData.input.uri}" and host "${testData.input.host}" redirects`, () => {
-        testHandler(handler)
-          .withUri(testData.input.uri)
-          .andHost(testData.input.host)
-          .andAssert(request => expect(request.status).toEqual('301'))
-      })
 
-      it('sets the description when redirecting', () => {
-        testHandler(handler)
-          .withUri(testData.input.uri)
-          .andHost(testData.input.host)
-          .andAssert(request => expect(request.statusDescription).toEqual('Moved Permanently'))
+  it('host nickmeldrum.co.uk and url /a/b redirects to https://nickmeldrum.com/a/b', () => {
+    testHandler(handler)
+      .withUri('/a/b')
+      .andHost('nickmeldrum.co.uk')
+      .andAssert(request => {
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.status).toEqual('301')
       })
+  })
 
-      it(`uri "${testData.input.uri}" and host "${testData.input.host}" redirects to "${
-        testData.expected.uri
-      }" and host "nickmeldrum.com"`, () => {
-        testHandler(handler)
-          .withUri(testData.input.uri)
-          .andHost(testData.input.host)
-          .andAssert(request => {
-            expect(request.headers.location[0].value).toEqual(testData.expected.uri)
-          })
+  it('host nickmeldrum.co.uk and url / redirects to https://nickmeldrum.com', () => {
+    testHandler(handler)
+      .withUri('/')
+      .andHost('nickmeldrum.co.uk')
+      .andAssert(request => {
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com')
+        expect(request.status).toEqual('301')
       })
-    }
+  })
 
-    if (!testData.expected.redirect) {
-      it(`uri "${testData.input.uri}" and host "${testData.input.host}" does not redirect`, () => {
-        testHandler(handler)
-          .withUri(testData.input.uri)
-          .andHost(testData.input.host)
-          .andAssert(request => expect(request.status).not.toEqual('301'))
+  it('host nickmeldrum.co.uk and url "" redirects to https://nickmeldrum.com', () => {
+    testHandler(handler)
+      .withUri('')
+      .andHost('nickmeldrum.co.uk')
+      .andAssert(request => {
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com')
+        expect(request.status).toEqual('301')
       })
+  })
 
-      it(`uri "${testData.input.uri}" and host "${testData.input.host}" returns uri "${
-        testData.expected.uri
-      }"`, () => {
-        testHandler(handler)
-          .withUri(testData.input.uri)
-          .andHost(testData.input.host)
-          .andAssert(request => expect(request.uri).toEqual(testData.input.uri))
+  it('host a23dj9ffdja.cloudfront.net and url a/b redirects to https://nickmeldrum.com/a/b', () => {
+    testHandler(handler)
+      .withUri('a/b')
+      .andHost('a23dj9ffdja.cloudfront.net')
+      .andAssert(request => {
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.status).toEqual('301')
       })
-    }
+  })
+
+  it('host www.nickmeldrum.com and url a/b redirects to https://nickmeldrum.com/a/b', () => {
+    testHandler(handler)
+      .withUri('a/b')
+      .andHost('www.nickmeldrum.com')
+      .andAssert(request => {
+        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.status).toEqual('301')
+      })
+  })
+
+  it('host nickmeldrum.com and url a/b does not redirect', () => {
+    testHandler(handler)
+      .withUri('a/b')
+      .andHost('nickmeldrum.com')
+      .andAssert(request => {
+        expect(request.uri).toEqual('a/b')
+        expect(request.status).not.toEqual('301')
+      })
   })
 })

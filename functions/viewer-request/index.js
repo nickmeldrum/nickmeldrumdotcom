@@ -1,32 +1,19 @@
-const { STATUS_CODES } = require('http')
+const redirect = require('redirect')
 
 const canonicalHost = 'nickmeldrum.com'
-
-const redirect = uri => ({
-  status: '301',
-  statusDescription: STATUS_CODES['301'],
-  headers: {
-    location: [{ key: 'Location', value: uri }],
-  },
-})
-
-const removeTrailingSlashes = uri => {
-  if (uri === '/') return ''
-  if (RegExp('.*?/+$').test(uri)) return uri.replace(/(\/+)$/gm, '')
-  return uri
-}
+const scheme = 'https://'
 
 const setCanonicalHost = (host, uri) => {
-  if (host !== canonicalHost) return `https://${canonicalHost}/${uri}`
-  return uri
+  const separator = !uri || uri === '/' || uri.startsWith('/') ? '' : '/'
+  const uriPart = uri === '/' ? '' : uri
+  return host !== canonicalHost ? `${scheme}${canonicalHost}${separator}${uriPart}` : uri
 }
 
 exports.handler = (event, context, callback) => {
   const { request, request: { uri } } = event.Records[0].cf
   const host = request.headers.host[0].value
 
-  let newUri = removeTrailingSlashes(uri)
-  newUri = setCanonicalHost(host, newUri)
+  const newUri = setCanonicalHost(host, uri)
 
   if (newUri !== uri) callback(null, redirect(newUri))
   else callback(null, request)

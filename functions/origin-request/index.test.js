@@ -1,7 +1,7 @@
-const { handler } = require('./origin-request')
-const testHandler = require('./test-lambda-edge-handler')
+const { handler } = require('./index')
+const testHandler = require('test-lambda-edge-handler')
 
-describe('origin request rewrite handler', () => {
+describe('origin request handler', () => {
   ;[
     { uri: 'something.js', expected: 'something.js' },
     { uri: 'something', expected: 'something.html' },

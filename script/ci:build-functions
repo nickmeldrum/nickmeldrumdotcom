@@ -2,5 +2,6 @@
 set -e
 cd ./functions/origin-request
 yarn install --production
-zip -r ../../origin-request-function.zip index.js modules/ node_modules/
+cp -r ../node_modules/* node_modules/
+zip -r ../../origin-request-function.zip index.js node_modules/
 cd ../..

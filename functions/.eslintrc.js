@@ -5,4 +5,7 @@ module.exports = {
     es6: true,
     jest: true,
   },
+  settings: {
+    'import/external-module-folders': [],
+  },
 }

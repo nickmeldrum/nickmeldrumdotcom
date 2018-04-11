@@ -1,4 +1,5 @@
 _site/
 .DS_Store
 .sass-cache/
-node_modules/
+functions/origin-request/node_modules/
+functions/viewer-request/node_modules/
