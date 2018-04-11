@@ -11,7 +11,9 @@ Run `. script/init` to setup shell to easily run script commands.
 
 Note: to run any commands in a shell, you must run the `. script/init` command first to setup the shell correctly.
 
-To run the jekyll site locally run the `local:run` command.
+ * To run the jekyll site locally run the `local:run` command.
+ * To test the origin request function run: `cd functions/origin-request && yarn && yarn test` 
+ * To test the viewer request function run: `cd functions/viewer-request && yarn && yarn test` 
 
 ## The stuff
 
