@@ -37,9 +37,24 @@ const toLower = uri => uri.toLowerCase()
 const createRedirectUrl = pipe(removeIndex, removeHtmlExtension, removeTrailingSlashes, toLower)
 
 exports.handler = (event, context, callback) => {
-  const { request, request: { uri } } = event.Records[0].cf
+  const { request, request: { uri, headers } } = event.Records[0].cf
 
   let newUri = createRedirectUrl(uri)
+
+  console.log(
+    'NICKINFO',
+    'now',
+    Date(),
+    'uri',
+    uri,
+    'newUri',
+    newUri,
+    'host',
+    headers.host.value,
+    'x-forwarded-host',
+    headers['x-forwarded-host'].value,
+    'ENDNICKINFO',
+  ) // eslint-disable-line no-console
 
   if (newUri !== uri) {
     if (!newUri) newUri = '/'
