@@ -35,11 +35,6 @@ Jekyll outputs files with .html on the end, and we don't like that - so we have 
 
 the 404 page is found at `/404.html` in S3
 
-### Before go live:
-
- * create a domain redirect if the domain ain't nickmeldrum.com (https)
- * rewrite cv page content for my new profile
-
 ### Test:
 
  * disqus commenting
@@ -51,8 +46,12 @@ the 404 page is found at `/404.html` in S3
  * check responsive width for all old posts is working
  * check (webmaster tools?) that all old urls with juice are still in same place
 
-### After go live:
+### TODO:
 
+ * build cloudformation template for updating lambda + cloudfront on deploy
+ * look at updating lambda code without bumping version?
+ * rewrite cv page content for my new profile
+ * create a domain redirect if the domain ain't nickmeldrum.com (https)
  * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
  * add a booklist?
  * add a project list?
@@ -86,3 +85,29 @@ the 404 page is found at `/404.html` in S3
  * https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b
  * https://forums.aws.amazon.com/thread.jspa?messageID=799381&tstart=0 ( make host available in origin request )
  * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html ( read clodufromation docs )
+
+
+### commands used:
+
+```
+# setup cloudformation:
+aws s3api create-bucket --bucket nickmeldrum-com-cloudformation --region us-east-1 --acl private
+aws s3api put-bucket-versioning --bucket nickmeldrum-com-cloudformation --versioning-configuration Status=Enabled
+
+# create stack:
+aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
+aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json
+hello_world_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json --stack-name hello-world --output text --query StackId)
+echo $hello_world_stack_id
+aws cloudformation list-stack-resources --stack-name $hello_world_stack_id
+
+# updating stack:
+aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
+hello_world_change_set=$(aws cloudformation create-change-set --stack-name $hello_world_stack_id --change-set-name hello-world-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json)
+aws cloudformation describe-change-set --change-set-name $hello_world_change_set
+aws cloudformation execute-change-set --change-set-name $hello_world_change_set
+aws cloudformation delete-change-set --change-set-name $hello_world_change_set
+
+#deleting the stack:
+aws cloudformation delete-stack --stack-name $hello_world_change_set
+```
