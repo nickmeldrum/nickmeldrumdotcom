@@ -50,9 +50,9 @@ exports.handler = (event, context, callback) => {
     'newUri',
     newUri,
     'host',
-    headers.host.value,
+    headers && headers.host && headers.host.value,
     'x-forwarded-host',
-    headers['x-forwarded-host'].value,
+    headers && headers['x-forwarded-host'] && headers['x-forwarded-host'].value,
     'ENDNICKINFO',
   ) // eslint-disable-line no-console
 
