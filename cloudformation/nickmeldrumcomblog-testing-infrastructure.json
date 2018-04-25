@@ -1,0 +1,16 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "nickmeldrum.com blog testing infrastructure",
+  "Resources": {
+    "NickMeldrumComBlogTestingBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "AccessControl": "Private"
+      }
+    },
+    "NickMeldrumComBlogTestingCloudFormation": {
+      "Type": "AWS::",
+      "Properties": {}
+    }
+  }
+}

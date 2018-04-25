@@ -96,18 +96,18 @@ aws s3api put-bucket-versioning --bucket nickmeldrum-com-cloudformation --versio
 
 # create stack:
 aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
-aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json
-hello_world_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json --stack-name hello-world --output text --query StackId)
-echo $hello_world_stack_id
-aws cloudformation list-stack-resources --stack-name $hello_world_stack_id
+aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
+nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId)
+echo $nickmeldrumcomblog_testing_infrastructure_stack_id
+aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
 
 # updating stack:
 aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
-hello_world_change_set=$(aws cloudformation create-change-set --stack-name $hello_world_stack_id --change-set-name hello-world-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/hello-world.json)
-aws cloudformation describe-change-set --change-set-name $hello_world_change_set
-aws cloudformation execute-change-set --change-set-name $hello_world_change_set
-aws cloudformation delete-change-set --change-set-name $hello_world_change_set
+nickmeldrumcomblog_testing_infrastructure_change_set_id=$(aws cloudformation create-change-set --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --change-set-name nickmeldrumcomblog_testing_infrastructure_change_set_id --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json)
+aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
+aws cloudformation execute-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
+aws cloudformation delete-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
 
 #deleting the stack:
-aws cloudformation delete-stack --stack-name $hello_world_change_set
+aws cloudformation delete-stack --stack-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
 ```
