@@ -85,29 +85,3 @@ the 404 page is found at `/404.html` in S3
  * https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b
  * https://forums.aws.amazon.com/thread.jspa?messageID=799381&tstart=0 ( make host available in origin request )
  * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html ( read clodufromation docs )
-
-
-### commands used:
-
-```
-# setup cloudformation:
-aws s3api create-bucket --bucket nickmeldrum-com-cloudformation --region us-east-1 --acl private
-aws s3api put-bucket-versioning --bucket nickmeldrum-com-cloudformation --versioning-configuration Status=Enabled
-
-# create stack:
-aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
-aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
-nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId)
-echo $nickmeldrumcomblog_testing_infrastructure_stack_id
-aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-
-# updating stack:
-aws s3 sync ./cloudformation/ s3://nickmeldrum-com-cloudformation/
-nickmeldrumcomblog_testing_infrastructure_change_set_id=$(aws cloudformation create-change-set --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --change-set-name nickmeldrumcomblog_testing_infrastructure_change_set_id --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json)
-aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-aws cloudformation execute-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-aws cloudformation delete-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-
-#deleting the stack:
-aws cloudformation delete-stack --stack-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-```

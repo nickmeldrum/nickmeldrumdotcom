@@ -1,4 +1,4 @@
 #!/bin/sh
-export PATH=./script:"$PATH"
+export PATH=./script:./cloudformation:"$PATH"
 echo list of commands:
-find . -maxdepth 2 -perm -111 -type f | sed -n '/init/ !p' | sed -e 's/\.\/script\///'
+find . -maxdepth 2 -perm -111 -type f | sed -n '/init/ !p' | sed -e 's/\.\/script\///' | sed -e 's/\.\/cloudformation\///'
