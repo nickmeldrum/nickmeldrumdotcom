@@ -9,8 +9,30 @@
       }
     },
     "NickMeldrumComBlogTestingCloudFormation": {
-      "Type": "AWS::",
-      "Properties": {}
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Comment": "testing cloudformation",
+          "Enabled": "true",
+          "PriceClass": "PriceClass_100",
+          "DefaultRootObject" : "index.html",
+          "ViewerCertificate" : { "CloudFrontDefaultCertificate" : "true" },
+          "Logging" : {
+            "IncludeCookies" : "false",
+            "Bucket" : "nickmeldrum-com-logs.s3.amazonaws.com",
+            "Prefix" : "testing-cf-logs/"
+          },
+          "Origins": [
+            {
+              "DomainName": {"Fn::GetAtt": ["NickMeldrumComBlogTestingBucket", "DomainName"]},
+              "Id" : "s3-testing-cloudformation",
+              "S3OriginConfig" : {
+                "OriginAccessIdentity" : "origin-access-identity/cloudfront/E127EXAMPLE51Z"
+              }
+            }
+          ]
+        }
+      }
     }
   }
 }
