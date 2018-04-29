@@ -1,7 +1,9 @@
 #!/bin/sh
+set -e
 
-aws s3 sync ./templates/ s3://nickmeldrum-com-cloudformation/
+aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
 aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
-nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId)
+nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId --region us-east-1)
 echo $nickmeldrumcomblog_testing_infrastructure_stack_id
+aws cloudformation wait stack-create-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
 aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id

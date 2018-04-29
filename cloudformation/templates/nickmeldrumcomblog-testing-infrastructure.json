@@ -22,6 +22,15 @@
             "Bucket" : "nickmeldrum-com-logs.s3.amazonaws.com",
             "Prefix" : "testing-cf-logs/"
           },
+          "DefaultCacheBehavior" : {
+            "AllowedMethods" : [ "GET", "HEAD" ],
+            "TargetOriginId" : "s3-testing-cloudformation",
+            "ForwardedValues" : {
+              "QueryString" : "false",
+              "Cookies" : { "Forward" : "none" }
+            },
+            "ViewerProtocolPolicy" : "redirect-to-https"
+          },
           "Origins": [
             {
               "DomainName": {"Fn::GetAtt": ["NickMeldrumComBlogTestingBucket", "DomainName"]},

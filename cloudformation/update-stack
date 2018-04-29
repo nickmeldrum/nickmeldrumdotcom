@@ -1,7 +1,10 @@
 #!/bin/sh
+set -e
 
-aws s3 sync ./templates/ s3://nickmeldrum-com-cloudformation/
-aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
-nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId)
-echo $nickmeldrumcomblog_testing_infrastructure_stack_id
-aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
+aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
+nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query Stacks[*].StackId --region us-east-1)
+nickmeldrumcomblog_testing_infrastructure_change_set_id=$(aws cloudformation create-change-set --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --change-set-name nickmeldrumcomblog-testing-infrastructure-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json)
+echo argh $nickmeldrumcomblog_testing_infrastructure_stack_id poo $nickmeldrumcomblog_testing_infrastructure_change_set_id
+#aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
+#aws cloudformation execute-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
+#aws cloudformation delete-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id

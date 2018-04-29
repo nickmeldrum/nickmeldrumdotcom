@@ -1,5 +1,4 @@
 #!/bin/sh
-set -e
-
 nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query Stacks[*].StackId --region us-east-1)
-aws cloudformation delete-stack --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
+echo $nickmeldrumcomblog_testing_infrastructure_stack_id
+#aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query Stacks[*].StackId --region us-east-1
