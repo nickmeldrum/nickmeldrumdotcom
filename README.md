@@ -7,11 +7,21 @@
 
 Run `. script/init` to setup shell to easily run script commands.
 
+(on local MacOS - to get ruby working and gems setup:
+```
+brew update
+brew install rbenv ruby-build
+rbenv install 2.3.3
+gem install bundler
+bundle install
+```
+
 ## Commands
 
 Note: to run any commands in a shell, you must run the `. script/init` command first to setup the shell correctly.
 
-To run the jekyll site locally run the `local:run` command.
+To run the jekyll site locally run the `local:serve` command.
+To run locally with drafts run the `local:serve-drafts` command.
 
 ## The stuff
 
