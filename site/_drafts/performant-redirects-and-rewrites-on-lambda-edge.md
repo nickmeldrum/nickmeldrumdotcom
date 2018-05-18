@@ -32,11 +32,24 @@ My setup was as follows:
 
 There is obviously a huge amount to this setup which if I have the time I will write about later. In this post I want to focus on what I did with Lambda@Edge to enable redirecting and rewriting in the most performant way possible.
 
-## Why do I 
+## Why do I need to manage redirects and rewrites?
 
-difference between redirect and rewrite
+### The difference between a redirect and rewrite
 
-redirect = telling the customer they got the url wrong by issuing a 301 redirect with the correct location back to the customer
+#### *Redirect* = Telling the customer they got the url wrong by issuing a 301 redirect with the correct location back to the customer
+
+For example: I only want 1 canonical version of a url to be retrievable. other similarly valid but non-canonical urls I want to redirect to the canonical instead of just serving the page on a weird url.
+
+(Yes for the most part nowadays, specifying a `<link rel="canonical"` is apparently sufficient to persuade google that you aren't serving multiple versions of this page (so they aren't indexed separately, or worse that you are considered to be abusing PageRank by serving duplicate content). But considering the [number of articles discussing whether 301's or canonical are sufficient](https://www.google.co.uk/search?q=redirects+or+canonical), along with search engines being very opaque about their policies leads me to prefer forcing a redirect when anyone is attempting to access a resource via a link that is anything other than the canonical.)
+
+Another reason for redirects is that it guards against mistakes entering search indexes or indeed customers browsers. For example, if my canonical url is `https://nickmeldrum.com/cv` I shudder if I ever see something like this `https://nickmeldrum//cv//index.html`.
+
+Of course I also want a mechanism to move urls when I want them renamed for any reason.
+
+
+#### *Rewrite* = Changing the url on the way to the origin server. Useful for mapping a public version of a url to an internal representation.
+
+For example: we have jekyll set up to generate files in the form `/page/index.html` but I want customers to be able to type `/page`. Therefore all requests (that don't end in a file extension already) must have `/index.html` added to them in order for the jekyll rendered file to be found.
 
 e.g.
 
@@ -46,7 +59,6 @@ not using the canonical domain:
  * {% ihighlight text %}https://23hufh22zy.cloudfront.net/cv{% endihighlight %}
  
 and we redirect them to browse to {% ihighlight text %}https://nickmeldrum.com/cv{% endihighlight %} instead.
-
 
 or customer including trailing slashes when there shouldn't be any:
 

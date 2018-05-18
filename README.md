@@ -2,16 +2,39 @@
 
  * Ruby (to run jekyll and gem install the dependencies)
  * Git client (to push updates to a github repo)
+ * Python 2.6.5 and pip (to install the aws cli)
 
 ## Installation
 
 Run `. script/init` to setup shell to easily run script commands.
 
+MacOS: to get ruby working and gems setup:
+```
+brew update
+brew install rbenv ruby-build
+rbenv install 2.3.3
+gem install bundler
+bundle install
+```
+
+to get aws cli setup:
+```
+brew install python
+curl -O https://bootstrap.pypa.io/get-pip.py
+python3 get-pip.py --user
+pip3 install awscli --upgrade --user
+```
+add line
+`export PATH="/Users/tpunmeld/Library/Python/3.6/bin:$PATH"`
+to your .zshrc :)
+
 ## Commands
 
 Note: to run any commands in a shell, you must run the `. script/init` command first to setup the shell correctly.
 
- * To run the jekyll site locally run the `local:run` command.
+To run jekyll locally run the `local:serve` command.
+To run jekyll locally with drafts run the `local:serve-drafts` command.
+
  * To test the origin request function run: `cd functions/origin-request && yarn && yarn test` 
  * To test the viewer request function run: `cd functions/viewer-request && yarn && yarn test` 
 
