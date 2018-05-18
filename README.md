@@ -3,6 +3,7 @@
  * Ruby (to run jekyll and gem install the dependencies)
  * Git client (to push updates to a github repo)
  * Python 2.6.5 and pip (to install the aws cli)
+ * node & yarn to run/test the lambda edge functions locally
 
 ## Installation
 
@@ -28,15 +29,20 @@ add line
 `export PATH="/Users/tpunmeld/Library/Python/3.6/bin:$PATH"`
 to your .zshrc :)
 
+## Branch/test/deployment strategy
+
+ * Don't touch master branch. Do everything on testing branch.
+ * Build it locally, test it locally on the testing branch.
+ * then test the testing branch by pushing (which triggers a travis deployment onto the test aws infrastructure.)
+ * once happy push to production by merging to master (which triggers the product infrastructure deployment via travis.)
+
 ## Commands
 
 Note: to run any commands in a shell, you must run the `. script/init` command first to setup the shell correctly.
 
-To run jekyll locally run the `local:serve` command.
-To run jekyll locally with drafts run the `local:serve-drafts` command.
-
- * To test the origin request function run: `cd functions/origin-request && yarn && yarn test` 
- * To test the viewer request function run: `cd functions/viewer-request && yarn && yarn test` 
+ * To run jekyll locally run the `local:serve` command.
+ * To run jekyll locally with drafts run the `local:serve-drafts` command.
+ * To test the request functions run: `test-functions` command.
 
 ## The stuff
 
