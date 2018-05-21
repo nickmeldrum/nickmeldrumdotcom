@@ -1,5 +1,12 @@
 #!/bin/sh
 set -e
+export AWS_DEFAULT_REGION=us-east-1
 
+if [[ $(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}') != *nickmeldrumcomblog-testing-infrastructure* ]]; then
+  echo "no stack to delete..."
+  exit 1
+fi
+
+echo "deleting..."
 nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query Stacks[*].StackId --region us-east-1)
 aws cloudformation delete-stack --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id

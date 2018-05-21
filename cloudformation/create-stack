@@ -1,9 +1,19 @@
 #!/bin/sh
 set -e
+export AWS_DEFAULT_REGION=us-east-1
 
+if [[ $(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}') = nickmeldrumcomblog-testing-infrastructure ]]; then
+  echo "stack already created. perhaps you meant to call update-stack?..."
+  exit 1
+fi
+
+echo sync...
 aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
+echo validate template...
 aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
+echo create stack...
 nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId --region us-east-1)
 echo $nickmeldrumcomblog_testing_infrastructure_stack_id
+echo wait for stack completion...
 aws cloudformation wait stack-create-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
 aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
