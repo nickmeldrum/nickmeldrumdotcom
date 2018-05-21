@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-export AWS_DEFAULT_REGION=us-east-1
+AWS_DEFAULT_REGION=us-east-1
 
 if [[ $(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}') != *nickmeldrumcomblog-testing-infrastructure* ]]; then
   echo "no stack to update, did you mean to create?..."
@@ -9,7 +9,7 @@ fi
 
 echo sync...
 aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
-nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query Stacks[*].StackId --region us-east-1)
+nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query 'Stacks[*].StackId' --region us-east-1)
 echo creating change set...
 nickmeldrumcomblog_testing_infrastructure_change_set_id=$(aws cloudformation create-change-set --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --change-set-name nickmeldrumcomblog-testing-infrastructure-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --output text --query 'Id')
 echo $nickmeldrumcomblog_testing_infrastructure_change_set_id
@@ -17,7 +17,7 @@ echo $nickmeldrumcomblog_testing_infrastructure_change_set_id
 echo waiting for change set creation...
 set +e
 aws cloudformation wait change-set-create-complete --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-export CS_CREATION_WORKED=$?
+CS_CREATION_WORKED=$?
 set -e
 if [ $CS_CREATION_WORKED -eq 0 ]
 then
@@ -27,7 +27,18 @@ then
   aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id --output text --query $QUERY
 else
   echo "change set creation failed!"
-  exit 1
+  set +e
+  aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id --output text --query "StatusReason" | grep "didn't contain changes"
+  NO_CHANGES=$?
+  set -e
+  aws cloudformation delete-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
+  if [ $NO_CHANGES -eq 0 ]
+  then
+    echo "exiting as success as no changes necessary"
+    exit 0
+  else
+    exit 1
+  fi
 fi
 
 echo executing...
@@ -35,7 +46,7 @@ aws cloudformation execute-change-set --change-set-name $nickmeldrumcomblog_test
 echo wait for stack update...
 set +e
 aws cloudformation wait stack-update-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-export UPDATE_WORKED=$?
+UPDATE_WORKED=$?
 set -e
 if [ $UPDATE_WORKED -eq 0 ]
 then
