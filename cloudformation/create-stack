@@ -25,6 +25,6 @@ then
   aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
 else
   echo getting events...
-  aws cloudformation describe-stack-events --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
+  aws cloudformation describe-stack-events --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
   ./cloudformation/delete-stack
 fi
