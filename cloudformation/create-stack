@@ -17,9 +17,9 @@ echo $nickmeldrumcomblog_testing_infrastructure_stack_id
 echo wait for stack completion...
 set +e
 aws cloudformation wait stack-create-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-CREATION_WORKED=$?
+export CREATION_WORKED=$?
 set -e
-if [ CREATION_WORKED -eq 0 ]
+if [ $CREATION_WORKED -eq 0 ]
 then
   echo stack created!
   aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
