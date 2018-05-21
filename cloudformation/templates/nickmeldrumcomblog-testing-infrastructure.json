@@ -36,7 +36,7 @@
               "DomainName": {"Fn::GetAtt": ["NickMeldrumComBlogTestingBucket", "DomainName"]},
               "Id" : "s3-testing-cloudformation",
               "S3OriginConfig" : {
-                "OriginAccessIdentity" : "origin-access-identity/cloudfront/cf"
+                "OriginAccessIdentity" : "origin-access-identity/cloudfront/fbf0e1242a12882fdef328ea6eb49496de9c455550bd739b9e4ac0f41eba13f4"
               }
             }
           ]

@@ -15,5 +15,16 @@ echo create stack...
 nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query StackId --region us-east-1)
 echo $nickmeldrumcomblog_testing_infrastructure_stack_id
 echo wait for stack completion...
+set +e
 aws cloudformation wait stack-create-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
+CREATION_WORKED=$?
+set -e
+if [ CREATION_WORKED -eq 0 ]
+then
+  echo stack created!
+  aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
+else
+  echo getting events...
+  aws cloudformation describe-stack-events --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
+  ./cloudformation/delete-stack
+fi
