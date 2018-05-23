@@ -15,6 +15,7 @@ install:
 script:
   - ./script/ci:build-static-site
   - ./script/ci:build-functions
+  - ./cloudformation/update-stack
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true

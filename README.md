@@ -75,6 +75,13 @@ the 404 page is found at `/404.html` in S3
  * check responsive width for all old posts is working
  * check (webmaster tools?) that all old urls with juice are still in same place
 
+### Next steps:
+ 
+ * get update-stack working in travis yml for testing
+ * modify update-stack to work against test stack instead of spike stack
+ * get the newly updated lambda version linked to the cloudfront distribution
+ * get the travis stuff parameterised to testing and prod versions
+
 ### TODO:
 
  * build cloudformation template for updating lambda + cloudfront on deploy
