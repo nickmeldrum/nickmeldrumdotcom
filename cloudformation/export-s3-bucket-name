@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+export AWS_DEFAULT_REGION=us-east-1
+
+nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query 'Stacks[*].StackId' --region us-east-1)
+export AWS_S3_BUCKET_TESTING=$(aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --output text --query "StackResourceSummaries[?ResourceType=='AWS::S3::Bucket'].[PhysicalResourceId]")
+echo 'set testing s3 bucket' $AWS_S3_BUCKET_TESTING

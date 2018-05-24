@@ -16,6 +16,7 @@ script:
   - ./script/ci:build-static-site
   - ./script/ci:build-functions
   - ./cloudformation/update-stack
+  - source ./cloudformation/export-s3-bucket-name
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
