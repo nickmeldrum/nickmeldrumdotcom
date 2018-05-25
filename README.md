@@ -78,13 +78,13 @@ the 404 page is found at `/404.html` in S3
 ### Next steps:
  
  * create a create or update stack script for ci
+ * get the newly updated lambda version linked to the cloudfront distribution
  * export cloudfront env var in travis yml via script
    * check correct cloudfront is invalidated
+ * modify update-stack to be named/described like the test stack
+ * get the travis stuff parameterised to testing and prod versions
  * check can you aws sync content + invalidate inside cloudformation stack?
  * get lambda published via sam template + integrated into cloudformation stack update?
- * modify update-stack to be named/described like the test stack
- * get the newly updated lambda version linked to the cloudfront distribution
- * get the travis stuff parameterised to testing and prod versions
 
 ### TODO:
 
