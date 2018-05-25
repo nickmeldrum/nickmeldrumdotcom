@@ -8,6 +8,23 @@
         "AccessControl": "Private"
       }
     },
+    "SampleBucketPolicy" : {
+      "Type" : "AWS::S3::BucketPolicy",
+      "Properties" : {
+        "Bucket" : {"Ref" : "NickMeldrumComBlogTestingBucket"},
+        "PolicyDocument": {
+          "Id": "Origin-Identity-Get-Access",
+          "Statement": [{
+            "Action": ["s3:GetObject"],
+            "Effect": "Allow",
+            "Resource": { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "NickMeldrumComBlogTestingBucket" } , "/*" ]]},
+            "Principal": {
+              "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EYMUL4VP44ACS"
+            }
+          }]
+        }
+      }
+    },
     "NickMeldrumComBlogTestingCloudFormation": {
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
