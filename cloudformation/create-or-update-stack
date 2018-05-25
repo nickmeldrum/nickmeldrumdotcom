@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+export AWS_DEFAULT_REGION=us-east-1
+
+if [[ $(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}') = nickmeldrumcomblog-testing-infrastructure ]]; then
+  update-stack
+else
+  create-stack
+fi
+

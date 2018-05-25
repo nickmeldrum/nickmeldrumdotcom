@@ -15,7 +15,7 @@ install:
 script:
   - ./script/ci:build-static-site
   - ./script/ci:build-functions
-  - ./cloudformation/update-stack
+  - ./cloudformation/create-or-update-stack
   - source ./cloudformation/export-s3-bucket-name
 env:
   global:
