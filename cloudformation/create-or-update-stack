@@ -2,7 +2,8 @@
 set -e
 export AWS_DEFAULT_REGION=us-east-1
 
-if [[ $(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}') = nickmeldrumcomblog-testing-infrastructure ]]; then
+STACK_NAME=$(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}')
+if [ $STACK_NAME = nickmeldrumcomblog-testing-infrastructure ]; then
   echo "updating stack..."
   ./cloudformation/update-stack
 else
