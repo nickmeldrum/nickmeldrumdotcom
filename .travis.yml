@@ -15,6 +15,7 @@ install:
 script:
   - ./script/build-pages
   - ./script/build-functions
+  - ./script/deploy
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -22,9 +23,4 @@ branches:
   only:
   - master
   - testing
-deploy:
-  - provider: script
-    script: bash script/deploy
-    on:
-      branch: testing
 sudo: false
