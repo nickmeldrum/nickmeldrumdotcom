@@ -40,28 +40,21 @@ to your .zshrc :)
 
 ### prep stage:
 
-#### for jekyll
-
+for jekyll:
  * install ruby, bundler, bundle install (for the gems)
-
-#### for aws
-
+for aws:
  * install python, pip, awscli
-
 
 ### build stage:
 
  * build static site (jekyll build)
  * build lambda functions (yarn install + zip modules)
 
-
 ### deploy stage:
 
  * update aws stack (s3 + cloudfront) via cloudformation stack
- * sync static site to s3 bucket
- * create new version of lambda function
- * update cloudfront with new lambda function
- * invalidate cloudfront cache
+ * sync static site to s3 bucket and invalidate cf distribution
+ * create new version of lambda function and update cf to trigger new version
 
 ## Commands
 

@@ -4,3 +4,5 @@ _site/
 functions/origin-request/node_modules/
 functions/viewer-request/node_modules/
 *.zip
+cf-testing-config.json
+cf-testing-config-new.json

@@ -15,8 +15,6 @@ install:
 script:
   - ./script/build-pages
   - ./script/build-functions
-  - ./cloudformation/create-or-update-stack
-  - source ./cloudformation/export-s3-bucket-name
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
@@ -25,40 +23,8 @@ branches:
   - master
   - testing
 deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: $AWS_S3_BUCKET
-    skip_cleanup: true
-    local_dir: _site
-    region: $AWS_REGION
-    cache_control: "max-age=21600"
-    on:
-      branch: master
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    bucket: $AWS_S3_BUCKET_TESTING
-    skip_cleanup: true
-    local_dir: _site
-    region: $AWS_REGION_TESTING
-    cache_control: "max-age=21600"
+  - provider: script
+    script: bash script/deploy
     on:
       branch: testing
-  - provider: lambda
-    access_key_id: $AWS_ACCESS_KEY_ID
-    secret_access_key: $AWS_SECRET_ACCESS_KEY
-    function_name: nickmeldrumcom-blog-origin-request
-    region: $AWS_REGION_TESTING
-    handler_name: handler
-    runtime: nodejs6.10
-    publish: true 
-    zip: origin-request-function.zip
-    role: arn:aws:iam::277625601220:role/service-role/fdsa
-    on:
-      branch: testing
-after_deploy:
-  - aws configure set preview.cloudfront true
-  - test $TRAVIS_BRANCH = "master" && aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
-  - test $TRAVIS_BRANCH = "testing" && aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID_TESTING --paths "/*"
 sudo: false

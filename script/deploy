@@ -1,0 +1,7 @@
+#!/bin/sh
+set -e
+export AWS_DEFAULT_REGION=us-east-1
+
+. ./cloudformation/create-or-update-stack
+. ./cloudformation/sync-bucket
+. ./cloudformation/update-lambda
