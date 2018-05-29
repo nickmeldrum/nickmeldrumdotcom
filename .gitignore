@@ -3,3 +3,4 @@ _site/
 .sass-cache/
 functions/origin-request/node_modules/
 functions/viewer-request/node_modules/
+*.zip

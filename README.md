@@ -36,12 +36,39 @@ to your .zshrc :)
  * then test the testing branch by pushing (which triggers a travis deployment onto the test aws infrastructure.)
  * once happy push to production by merging to master (which triggers the product infrastructure deployment via travis.)
 
+## ci build/deploy structure:
+
+### prep stage:
+
+#### for jekyll
+
+ * install ruby, bundler, bundle install (for the gems)
+
+#### for aws
+
+ * install python, pip, awscli
+
+
+### build stage:
+
+ * build static site (jekyll build)
+ * build lambda functions (yarn install + zip modules)
+
+
+### deploy stage:
+
+ * update aws stack (s3 + cloudfront) via cloudformation stack
+ * sync static site to s3 bucket
+ * create new version of lambda function
+ * update cloudfront with new lambda function
+ * invalidate cloudfront cache
+
 ## Commands
 
 Note: to run any commands in a shell, you must run the `. script/init` command first to setup the shell correctly.
 
- * To run jekyll locally run the `local:serve` command.
- * To run jekyll locally with drafts run the `local:serve-drafts` command.
+ * To run jekyll locally run the `serve-pages` command.
+ * To run jekyll locally with drafts run the `serve-drafts` command.
  * To test the request functions run: `test-functions` command.
 
 ## The stuff
@@ -77,7 +104,6 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
  
- * create a create or update stack script for ci
  * get the newly updated lambda version linked to the cloudfront distribution
  * export cloudfront env var in travis yml via script
    * check correct cloudfront is invalidated
