@@ -98,6 +98,8 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
 
+ * check for [['s in script - e.g. update-stack as they fail in travis?
+ * rationalise exporting of variables so done only once into expected format
  * modify update-stack to be named/described like the test stack
  * get the travis stuff parameterised to testing and prod versions
  * get testing into ci (jekyll + functions)
