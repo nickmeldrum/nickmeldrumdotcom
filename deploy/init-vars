@@ -1,0 +1,4 @@
+#!/bin/sh
+set -e
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_STACK_NAME=nickmeldrumcomblog-testing-infrastructure

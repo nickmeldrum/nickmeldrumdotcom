@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if ! ./cloudformation/stack-created ; then
+  echo "no stack to delete..."
+  exit 1
+fi
+
+echo "deleting stack..."
+aws cloudformation delete-stack --stack-name $AWS_STACK_ID
+aws cloudformation wait stack-delete-complete --stack-name $AWS_STACK_ID

@@ -1,0 +1,6 @@
+#!/bin/sh
+set -e
+
+. ./dep/init-vars
+
+. ./cloudformation/create-or-update-stack

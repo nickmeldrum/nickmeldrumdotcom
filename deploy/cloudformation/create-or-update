@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+if ./cloudformation/stack-created ; then
+  echo "updating stack..."
+  ./cloudformation/update-stack
+else
+  echo "creating stack..."
+  ./cloudformation/create-stack
+fi
+. ./cloudformation/export-s3-bucket-name
