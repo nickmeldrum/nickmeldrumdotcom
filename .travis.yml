@@ -15,7 +15,7 @@ install:
 script:
   - ./script/build-pages
   - ./script/build-functions
-  - ./script/deploy
+  - bash ./script/deploy
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
