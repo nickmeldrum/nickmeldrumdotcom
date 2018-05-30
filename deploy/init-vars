@@ -1,4 +1,11 @@
 #!/bin/sh
 set -e
 export AWS_DEFAULT_REGION=us-east-1
+echo "DEFAULT_REGION $AWS_DEFAULT_REGION"
 export AWS_STACK_NAME=nickmeldrumcomblog-testing-infrastructure
+echo "STACK_NAME $AWS_STACK_NAME"
+
+# other vars exported in scripts:
+# AWS_STACK_ID
+# AWS_BUCKET_ID
+# AWS_CLOUDFRONT_ID

@@ -4,4 +4,4 @@ echo "### jekyll/lambda commands:"
 find ./script -maxdepth 2 -perm -111 -type f | sed -n '/init/ !p' | sed -e 's/\.\/script\///'
 echo
 echo "### cloudformation commands:"
-find ./cloudformation -maxdepth 2 -perm -111 -type f | sed -n '/init/ !p' | sed -e 's/\.\/cloudformation\///'
+find ./deploy -maxdepth 2 -perm -111 -type f

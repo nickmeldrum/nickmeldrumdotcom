@@ -1,21 +1,20 @@
 #!/bin/sh
 set -e
 
-if ./cloudformation/stack-created ; then
+if ./deploy/cloudformation/created ; then
   echo "stack already created. perhaps you meant to call update-stack?..."
   exit 1
 fi
 
 echo 'creating stack...'
-exit 0
 
 echo sync template...
-aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
+aws s3 sync ./deploy/cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
 echo validate template...
 aws cloudformation validate-template --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json
 echo create stack...
 export $AWS_STACK_ID=$(aws cloudformation create-stack --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --stack-name $AWS_STACK_NAME --output text --query StackId --region us-east-1)
-echo "cloudformation stack id $AWS_STACK_ID"
+echo "STACK_ID $AWS_STACK_ID"
 echo wait for stack completion...
 
 if aws cloudformation wait stack-create-complete --stack-name $AWS_STACK_ID then
@@ -24,5 +23,5 @@ if aws cloudformation wait stack-create-complete --stack-name $AWS_STACK_ID then
 else
   echo getting events...
   aws cloudformation describe-stack-events --stack-name $AWS_STACK_ID --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
-  ./cloudformation/delete-stack
+  ./deploy/cloudformation/delete
 fi

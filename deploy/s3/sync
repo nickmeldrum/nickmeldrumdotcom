@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+echo 'syncing s3 bucket...'
+aws s3 sync _site "s3://$AWS_BUCKET_ID" --delete

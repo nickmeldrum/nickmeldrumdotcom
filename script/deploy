@@ -2,6 +2,13 @@
 set -e
 export AWS_DEFAULT_REGION=us-east-1
 
-. ./cloudformation/create-or-update-stack
-. ./cloudformation/sync-bucket
-. ./cloudformation/update-lambda
+. ./deploy/init-vars
+
+. ./deploy/cloudformation/create-or-update
+. ./deploy/cloudformation/get-resource-ids
+
+. ./deploy/s3/sync
+. ./deploy/cloudfront/invalidate-cache
+
+. ./deploy/lambda/update
+. ./deploy/cloudfront/update-distribution

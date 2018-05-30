@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const os = require('os')
 
-const rootDir = path.join(__dirname, '..')
+const rootDir = path.join(__dirname, '../..')
 const distributionConfig = 'cf-testing-config.json'
 const newConfig = 'cf-testing-config-new.json'
 const distributionConfigPath = path.join(rootDir, distributionConfig)

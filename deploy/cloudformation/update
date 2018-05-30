@@ -1,59 +1,44 @@
 #!/bin/sh
 set -e
-export AWS_DEFAULT_REGION=us-east-1
 
-if ! ./cloudformation/stack-created ; then
+if ! ./deploy/cloudformation/created ; then
   echo "no stack to update, did you mean to create?..."
   exit 1
 fi
 
-echo sync...
-aws s3 sync ./cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
-nickmeldrumcomblog_testing_infrastructure_stack_id=$(aws cloudformation describe-stacks --stack-name nickmeldrumcomblog-testing-infrastructure --output text --query 'Stacks[*].StackId' --region us-east-1)
+echo template sync...
+aws s3 sync ./deploy/cloudformation/templates/ s3://nickmeldrum-com-cloudformation/
+. ./deploy/cloudformation/get-stack-id
 echo creating change set...
-nickmeldrumcomblog_testing_infrastructure_change_set_id=$(aws cloudformation create-change-set --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --change-set-name nickmeldrumcomblog-testing-infrastructure-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --output text --query 'Id')
-echo $nickmeldrumcomblog_testing_infrastructure_change_set_id
+AWS_CHANGESET_ID=$(aws cloudformation create-change-set --stack-name $AWS_STACK_ID --change-set-name nickmeldrumcomblog-testing-infrastructure-change-set --template-url https://s3.amazonaws.com/nickmeldrum-com-cloudformation/nickmeldrumcomblog-testing-infrastructure.json --output text --query 'Id')
+echo "CHANGESET_ID $AWS_CHANGESET_ID"
 
 echo waiting for change set creation...
-set +e
-aws cloudformation wait change-set-create-complete --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-CS_CREATION_WORKED=$?
-set -e
-if [ $CS_CREATION_WORKED -eq 0 ]
+if aws cloudformation wait change-set-create-complete --change-set-name $AWS_CHANGESET_ID ;
 then
   echo "change set created..."
   echo change set details...
   QUERY='Changes[*].[Type,ResourceChange.Action,ResourceChange.ResourceType,ResourceChange.Details[*].Target.Name,ResourceChange.Details[*].Target.Attribute]'
-  aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id --output text --query $QUERY
+  aws cloudformation describe-change-set --change-set-name $AWS_CHANGESET_ID --output text --query $QUERY
+
+  echo executing...
+  aws cloudformation execute-change-set --change-set-name $AWS_CHANGESET_ID
+  echo wait for stack update...
+  if aws cloudformation wait stack-update-complete --stack-name $AWS_STACK_ID ;
+  then
+    echo stack updated!
+    aws cloudformation list-stack-resources --stack-name $AWS_STACK_ID
+  else
+    echo stack update failed...
+    echo getting events...
+    aws cloudformation describe-stack-events --stack-name $AWS_STACK_ID --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
+  fi
 else
   echo "change set creation failed!"
-  set +e
-  aws cloudformation describe-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id --output text --query "StatusReason" | grep "didn't contain changes"
-  NO_CHANGES=$?
-  set -e
-  aws cloudformation delete-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-  if [ $NO_CHANGES -eq 0 ]
+  if ! aws cloudformation describe-change-set --change-set-name $AWS_CHANGESET_ID --output text --query "StatusReason" | grep -q "didn't contain changes" ;
   then
-    echo "exiting as success as no changes necessary"
-    exit 0
-  else
     exit 1
+  else
+    echo "no changes necessary"
   fi
-fi
-
-echo executing...
-aws cloudformation execute-change-set --change-set-name $nickmeldrumcomblog_testing_infrastructure_change_set_id
-echo wait for stack update...
-set +e
-aws cloudformation wait stack-update-complete --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-UPDATE_WORKED=$?
-set -e
-if [ $UPDATE_WORKED -eq 0 ]
-then
-  echo stack updated!
-  aws cloudformation list-stack-resources --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id
-else
-  echo stack update failed...
-  echo getting events...
-  aws cloudformation describe-stack-events --stack-name $nickmeldrumcomblog_testing_infrastructure_stack_id --output text --query "StackEvents[*].{Status:ResourceStatus,Reason:ResourceStatusReason}"
 fi
