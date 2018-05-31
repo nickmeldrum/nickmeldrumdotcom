@@ -130,6 +130,7 @@ the 404 page is found at `/404.html` in S3
 
 ### References:
 
+ * https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html
  * https://docs.aws.amazon.com/lambda/latest/dg/lambda-edge.html#lambda-edge-permissions
  * https://aws.amazon.com/blogs/compute/implementing-default-directory-indexes-in-amazon-s3-backed-amazon-cloudfront-origins-using-lambdaedge/
  * https://read.acloud.guru/supercharging-a-static-site-with-lambda-edge-da5a1314238b
