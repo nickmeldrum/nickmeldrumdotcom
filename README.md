@@ -45,7 +45,7 @@ Note: to run any commands in a shell, you must run the `. script/init` command f
  * To test the request functions run: `test-functions` command.
  * to deploy everything run: `deploy` command. This assumes the static pages and the functions are already built (using `build-pages` and `build-functions`) and then deploys the cf stack, does the s3 sync, the cf invalidation, the lambda publish and cf behaviour triggering.
 
-## ci build/deploy structure in detail
+## CI build/deploy structure in detail
 
 ### prep stage:
 
@@ -65,14 +65,6 @@ for aws:
  * sync static site to s3 bucket and invalidate cf distribution
  * create new version of lambda function and update cf to trigger new version
 
-## The stuff
-
- * https://github.com/nickmeldrum/nickmeldrumdotcom
- * https://travis-ci.org/nickmeldrum/nickmeldrumdotcom
- * https://s3.console.aws.amazon.com/s3/buckets/nickmeldrum-com-blog/?region=us-east-1&tab=overview
- * https://console.aws.amazon.com/cloudfront/home?region=us-east-1#distribution-settings:EXF2TU584W09Y
- * https://console.aws.amazon.com/lambda/home?region=us-east-1#/functions/indexhtml-rewrite/versions/10?tab=graph
-
 ## Redirects and canonical urls
 
 Jekyll outputs files with .html on the end, and we don't like that - so we have a lambda converting the following urls:
@@ -85,6 +77,14 @@ Jekyll outputs files with .html on the end, and we don't like that - so we have 
 
 the 404 page is found at `/404.html` in S3
 
+## TODO:
+
+### Next steps:
+
+ * modify update-stack to be named/described like the test stack
+ * get the travis stuff parameterised to testing and prod versions
+ * get testing into ci (jekyll + functions)
+
 ### Test:
 
  * disqus commenting
@@ -96,20 +96,9 @@ the 404 page is found at `/404.html` in S3
  * check responsive width for all old posts is working
  * check (webmaster tools?) that all old urls with juice are still in same place
 
-### Next steps:
-
- * check for [['s in script - e.g. update-stack as they fail in travis?
- * rationalise exporting of variables so done only once into expected format
- * modify update-stack to be named/described like the test stack
- * get the travis stuff parameterised to testing and prod versions
- * get testing into ci (jekyll + functions)
- * check can you aws sync content + invalidate inside cloudformation stack?
- * get lambda published via sam template + integrated into cloudformation stack update?
-
-### TODO:
+### Site content:
 
  * rewrite cv page content for my new profile
- * create a domain redirect if the domain ain't nickmeldrum.com (https)
  * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
  * add a booklist?
  * add a project list?
@@ -127,6 +116,17 @@ the 404 page is found at `/404.html` in S3
  * get my header image in and parallax scrolling (css only)
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
+
+### Infrastructure:
+
+ * check can you aws sync content + invalidate inside cloudformation stack?
+ * get lambda published via sam template + integrated into cloudformation stack update?
+ * create a domain redirect if the domain ain't nickmeldrum.com (https)
+
+## Links
+
+ * https://github.com/nickmeldrum/nickmeldrumdotcom
+ * https://travis-ci.org/nickmeldrum/nickmeldrumdotcom
 
 ### References:
 
