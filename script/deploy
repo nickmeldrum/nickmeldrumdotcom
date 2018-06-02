@@ -2,6 +2,7 @@
 set -e
 export AWS_DEFAULT_REGION=us-east-1
 
+. ./script/set-branch-name
 . ./deploy/init-vars
 
 . ./deploy/cloudformation/create-or-update

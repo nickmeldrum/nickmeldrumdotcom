@@ -1,23 +1,34 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Description": "nickmeldrum.com blog testing infrastructure",
+  "Description": "nickmeldrum.com blog",
+  "Parameters" : {
+    "BranchName" : {
+      "Type" : "String",
+      "Default" : "testing",
+      "AllowedValues" : ["master", "testing"],
+      "Description" : "master(prod) or testing branch"
+    }
+  },
+  "Conditions" : {
+    "ProductionBuild" : {"Fn::Equals" : [{"Ref" : "BranchName"}, "master"]}
+  },
   "Resources": {
-    "NickMeldrumComBlogTestingBucket": {
+    "ContentBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "AccessControl": "Private"
       }
     },
-    "SampleBucketPolicy" : {
+    "ContentBucketReadPolicy" : {
       "Type" : "AWS::S3::BucketPolicy",
       "Properties" : {
-        "Bucket" : {"Ref" : "NickMeldrumComBlogTestingBucket"},
+        "Bucket" : {"Ref" : "ContentBucket"},
         "PolicyDocument": {
           "Id": "Origin-Identity-Get-Access",
           "Statement": [{
             "Action": ["s3:GetObject"],
             "Effect": "Allow",
-            "Resource": { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "NickMeldrumComBlogTestingBucket" } , "/*" ]]},
+            "Resource": { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ContentBucket" } , "/*" ]]},
             "Principal": {
               "AWS": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EYMUL4VP44ACS"
             }
@@ -25,23 +36,23 @@
         }
       }
     },
-    "NickMeldrumComBlogTestingCloudFormation": {
+    "BlogDistribution": {
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
-          "Comment": "testing cloudformation",
+          "Comment": { "Fn::Join" : ["", ["nm blog", { "Ref" : "BranchNameParameter" } ]]},
           "Enabled": "true",
-          "PriceClass": "PriceClass_100",
+          "PriceClass": { "Fn::Join" : ["", ["PriceClass_", { "Fn::If": ["ProductionBuild", "200", "100"] } ]]},
           "DefaultRootObject" : "index.html",
           "ViewerCertificate" : { "CloudFrontDefaultCertificate" : "true" },
           "Logging" : {
             "IncludeCookies" : "false",
             "Bucket" : "nickmeldrum-com-logs.s3.amazonaws.com",
-            "Prefix" : "testing-cf-logs/"
+            "Prefix": { "Fn::Join" : ["", ["cf-logs-", { "Ref" : "BranchNameParameter" }, "/" ]]}
           },
           "DefaultCacheBehavior" : {
             "AllowedMethods" : [ "GET", "HEAD" ],
-            "TargetOriginId" : "s3-testing-cloudformation",
+            "TargetOriginId" : "content-origin",
             "ForwardedValues" : {
               "QueryString" : "false",
               "Cookies" : { "Forward" : "none" }
@@ -50,8 +61,8 @@
           },
           "Origins": [
             {
-              "DomainName": {"Fn::GetAtt": ["NickMeldrumComBlogTestingBucket", "DomainName"]},
-              "Id" : "s3-testing-cloudformation",
+              "DomainName": {"Fn::GetAtt": ["ContentBucket", "DomainName"]},
+              "Id" : "content-origin",
               "S3OriginConfig" : {
                 "OriginAccessIdentity" : "origin-access-identity/cloudfront/EYMUL4VP44ACS"
               }

@@ -81,8 +81,10 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
 
- * modify update-stack to be named/described like the test stack
  * get the travis stuff parameterised to testing and prod versions
+  * have parameterised the formation template and create/update
+  * still to parameterise the lambda name so we have 2 lambdas - 1 for each branch
+ * still to do a "create or update" version of lambda infra config - currently just update
  * get testing into ci (jekyll + functions)
 
 ### Test:

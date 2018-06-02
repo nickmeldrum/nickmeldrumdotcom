@@ -2,7 +2,11 @@
 set -e
 export AWS_DEFAULT_REGION=us-east-1
 echo "DEFAULT_REGION $AWS_DEFAULT_REGION"
-export AWS_STACK_NAME=nickmeldrumcomblog-testing-infrastructure
+if [ $BRANCH_NAME = 'master' ]; then
+export AWS_STACK_NAME=nickmeldrumcomblog-production
+else
+export AWS_STACK_NAME=nickmeldrumcomblog-testing
+fi
 echo "STACK_NAME $AWS_STACK_NAME"
 
 # other vars exported in scripts:
