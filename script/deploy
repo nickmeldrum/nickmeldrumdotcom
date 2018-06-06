@@ -11,5 +11,5 @@ export AWS_DEFAULT_REGION=us-east-1
 . ./deploy/s3/sync
 . ./deploy/cloudfront/invalidate-cache
 
-. ./deploy/lambda/update
+. ./deploy/lambda/create-or-update
 . ./deploy/cloudfront/update-distribution

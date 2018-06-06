@@ -82,10 +82,11 @@ the 404 page is found at `/404.html` in S3
 ### Next steps:
 
  * get the travis stuff parameterised to testing and prod versions
-  * have parameterised the formation template and create/update
-  * still to parameterise the lambda name so we have 2 lambdas - 1 for each branch
- * still to do a "create or update" version of lambda infra config - currently just update
+   * test the 2 stack creations and updates including lambda create/update
+   * still to get the nickmeldrum domain names and certificate correctly applied to the prod CF in cloudformation based on parameters
+   * then move over to the new stacks and remove the old manually created resources
  * get testing into ci (jekyll + functions)
+ * get the service role into the cloudformation template
 
 ### Test:
 

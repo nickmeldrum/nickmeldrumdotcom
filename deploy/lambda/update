@@ -2,5 +2,5 @@
 set -e
 
 echo 'updating lambda code and publishing new version...'
-export AWS_ORIGIN_REQUEST_LAMBDA_ID=$(aws lambda update-function-code --function-name nickmeldrumcom-blog-origin-request --zip-file fileb://origin-request-function.zip --publish --output text --query 'FunctionArn')
+export AWS_ORIGIN_REQUEST_LAMBDA_ID=$(aws lambda update-function-code --function-name $AWS_LAMBDA_NAME --zip-file fileb://origin-request-function.zip --publish --output text --query 'FunctionArn')
 echo "ORIGIN_REQUEST_LAMBDA_ID $AWS_ORIGIN_REQUEST_LAMBDA_ID"
