@@ -40,7 +40,7 @@
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
-          "Comment": { "Fn::Join" : ["", ["nm blog", { "Ref" : "BranchNameParameter" } ]]},
+          "Comment": { "Fn::Join" : ["", ["nm blog", { "Ref" : "BranchName" } ]]},
           "Enabled": "true",
           "PriceClass": { "Fn::Join" : ["", ["PriceClass_", { "Fn::If": ["ProductionBuild", "200", "100"] } ]]},
           "DefaultRootObject" : "index.html",
@@ -48,7 +48,7 @@
           "Logging" : {
             "IncludeCookies" : "false",
             "Bucket" : "nickmeldrum-com-logs.s3.amazonaws.com",
-            "Prefix": { "Fn::Join" : ["", ["cf-logs-", { "Ref" : "BranchNameParameter" }, "/" ]]}
+            "Prefix": { "Fn::Join" : ["", ["cf-logs-", { "Ref" : "BranchName" }, "/" ]]}
           },
           "DefaultCacheBehavior" : {
             "AllowedMethods" : [ "GET", "HEAD" ],
