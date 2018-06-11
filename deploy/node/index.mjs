@@ -1,14 +1,12 @@
-import branchName from './src/branch-name.mjs'
-import config from './src/config.mjs'
+import config from './src/config'
 
 const executeasync = async () => {
+  /* eslint-disable no-console */
   try {
-    /* eslint-disable no-console */
-    console.log(await branchName())
-    await config()
-    /* eslint-enable no-console */
+    console.log(await config())
   } catch (e) {
-    console.error(e)
+    console.error('unhandled error, exiting', e)
   }
+  /* eslint-enable no-console */
 }
 executeasync()
