@@ -1,0 +1,5 @@
+{
+  "default_region": "us-east-1",
+  "stack_name_prefix": "nickmeldrumblog",
+  "lambda_name_prefix": "nickmeldrumblog-origin-request"
+}

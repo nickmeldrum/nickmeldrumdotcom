@@ -3,4 +3,4 @@ set -e
 
 AWS_STACK_NAMES=$(aws cloudformation list-stacks --output text --query 'StackSummaries[?StackStatus!=`DELETE_COMPLETE`].{Name:StackName}')
 
-echo $AWS_STACK_NAMES | grep -q "^$AWS_STACK_NAME$"
+echo $AWS_STACK_NAMES | grep -q "$AWS_STACK_NAME"
