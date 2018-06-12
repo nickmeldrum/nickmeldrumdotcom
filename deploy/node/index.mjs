@@ -1,12 +1,12 @@
-import config from './src/config'
+import createOrUpdateStack from './src/cloudformation'
+import { setup } from './src/config'
 
 const executeasync = async () => {
-  /* eslint-disable no-console */
   try {
-    console.log(await config())
+    await setup()
+    await createOrUpdateStack()
   } catch (e) {
     console.error('unhandled error, exiting', e)
   }
-  /* eslint-enable no-console */
 }
 executeasync()

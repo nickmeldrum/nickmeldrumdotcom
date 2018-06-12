@@ -1,10 +1,28 @@
-import { readJsonFile } from '../file/read-local-file.mjs'
-import branchName from './branch-name.mjs'
-import { interpolateAllValues } from './interpolate.mjs'
+import Aws from 'aws-sdk'
+import { readJsonFile } from '../file/read-local-file'
+import getBranchName from './branch-name'
+import { interpolateAllValues } from './interpolate'
 
 const configFilename = 'config.json'
 
-export default async () => {
+let config
+
+const getConfig = async () => {
+  if (config) return config
   const configTemplate = await readJsonFile(configFilename)
-  return interpolateAllValues(configTemplate, { BRANCH_NAME: await branchName() })
+  const branchName = await getBranchName()
+  config = interpolateAllValues(configTemplate, {
+    BRANCH_NAME: branchName,
+  })
+  config.branchName = branchName
+  console.log('config setup:')
+  console.log(config)
+  return config
 }
+
+export const setup = async () => {
+  await getConfig()
+  Aws.config.update({ region: config.defaultRegion })
+}
+
+export default getConfig
