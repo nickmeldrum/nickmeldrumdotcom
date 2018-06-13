@@ -2,9 +2,54 @@ import Aws from 'aws-sdk'
 import { getResourceId } from '../cloudformation'
 import getConfig from '../config'
 
-export default async () => {
-  const cloudfront = new Aws.CloudFront()
-  const config = await getConfig()
+let config
+let cloudfront
+
+const init = async () => {
+  if (cloudfront) return
+  config = await getConfig()
+  cloudfront = new Aws.CloudFront()
+}
+
+export const updateDistributionWithLambda = async lambdaArn => {
+  await init()
+
+  console.log('updating distribution with lambda association...')
+
+  const Id = await getResourceId(config.distributionName)
+
+  const distConfig = await cloudfront
+    .getDistributionConfig({
+      Id,
+    })
+    .promise()
+
+  distConfig.DistributionConfig.DefaultCacheBehavior.LambdaFunctionAssociations = {
+    Quantity: 1,
+    Items: [
+      {
+        LambdaFunctionARN: lambdaArn,
+        EventType: 'origin-request',
+      },
+    ],
+  }
+  console.log(
+    distConfig.DistributionConfig.DefaultCacheBehavior
+      .LambdaFunctionAssociations,
+  )
+
+  const updateDist = await cloudfront
+    .updateDistribution({
+      DistributionConfig: distConfig.DistributionConfig,
+      Id,
+      IfMatch: distConfig.ETag,
+    })
+    .promise()
+  console.log(updateDist)
+}
+
+export const invalidate = async () => {
+  await init()
   const DistributionId = await getResourceId(
     config.distributionName,
   )

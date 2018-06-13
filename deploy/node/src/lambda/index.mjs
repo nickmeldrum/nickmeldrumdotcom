@@ -1,6 +1,7 @@
 import Aws from 'aws-sdk'
 import getConfig from '../config'
 import { readBinaryFileSync } from '../file/read-local-file'
+import { updateDistributionWithLambda } from '../cloudfront'
 
 let config
 let lambda
@@ -38,6 +39,7 @@ const create = async () => {
     .promise()
 
   console.log(func)
+  return func.FunctionArn
 }
 
 const update = async () => {
@@ -55,14 +57,18 @@ const update = async () => {
     .promise()
 
   console.log(func)
+  return func.FunctionArn
 }
 
 const createOrUpdate = async () => {
   console.log('## create or update lambda ##')
   await init()
 
-  if (await created()) await update()
-  else await create()
+  let lambdaArn
+  if (await created()) lambdaArn = await update()
+  else lambdaArn = await create()
+
+  updateDistributionWithLambda(lambdaArn)
 }
 
 export default createOrUpdate
