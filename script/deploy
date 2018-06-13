@@ -2,8 +2,4 @@
 set -e
 
 cd infrastructure/
-echo "NICK oh hai"
-echo $TRAVIS
-echo $TRAVIS_BRANCH
-echo "NICK oh hai2"
 yarn && yarn start
