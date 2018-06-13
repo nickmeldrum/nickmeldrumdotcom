@@ -4,9 +4,9 @@
   "stackTemplateBucket": "nickmeldrum-com-cloudformation",
   "stackTemplateName": "nickmeldrumblog.json",
   "contentBucketName": "ContentBucket",
-  "contentSourceLocation": "../../_site",
+  "contentSourceLocation": "../dist/_site",
   "distributionName": "BlogDistribution",
   "lambdaName": "nickmeldrumblog-origin-request-${BRANCH_NAME}",
   "lambdaServiceRole": "arn:aws:iam::277625601220:role/service-role/fdsa",
-  "lambdaZipLocation": "../../origin-request-function.zip"
+  "lambdaZipLocation": "../dist/origin-request-function.zip"
 }

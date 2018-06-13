@@ -1,5 +1,0 @@
-#!/bin/sh
-set -e
-
-export AWS_STACK_ID=$(aws cloudformation describe-stacks --stack-name $AWS_STACK_NAME --output text --query 'Stacks[*].StackId')
-echo "STACK_ID $AWS_STACK_ID"

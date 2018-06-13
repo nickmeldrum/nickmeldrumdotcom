@@ -1,8 +1,0 @@
-#!/bin/sh
-set -e
-
-if [ $TRAVIS ]; then
-  export BRANCH_NAME=$TRAVIS_BRANCH
-else
-  export BRANCH_NAME=$(git symbolic-ref --short HEAD)
-fi

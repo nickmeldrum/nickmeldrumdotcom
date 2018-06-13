@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-
-echo 'creating lambda code and publishing new version...'
-export AWS_ORIGIN_REQUEST_LAMBDA_ID=$(aws lambda create-function --function-name $AWS_LAMBDA_NAME --zip-file fileb://origin-request-function.zip --runtime nodejs6.10 --role arn:aws:iam::277625601220:role/service-role/fdsa --handler index.handler --publish --output text --query 'FunctionArn')
-echo "ORIGIN_REQUEST_LAMBDA_ID $AWS_ORIGIN_REQUEST_LAMBDA_ID"

@@ -1,9 +1,8 @@
-_site/
+dist/
 .DS_Store
 .sass-cache/
 functions/origin-request/node_modules/
 functions/viewer-request/node_modules/
 deploy/node/node_modules/
-*.zip
 cf-testing-config.json
 cf-testing-config-new.json

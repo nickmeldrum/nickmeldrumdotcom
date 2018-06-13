@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-
-echo 'invalidating cf...'
-aws configure set preview.cloudfront true
-aws cloudfront create-invalidation --distribution-id "$AWS_CLOUDFRONT_ID" --paths "/*" --output text --query "Invalidation.Status"

@@ -1,6 +1,0 @@
-#!/bin/sh
-set -e
-
-AWS_LAMBDA_NAMES=$(aws lambda list-functions --output text --query 'Functions[*].{Name:FunctionName}')
-
-echo $AWS_LAMBDA_NAMES | grep -q "^$AWS_LAMBDA_NAME$"

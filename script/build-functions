@@ -1,7 +1,0 @@
-#!/bin/sh
-set -e
-cd ./functions/origin-request
-yarn install --production
-cp -r ../node_modules/* node_modules/
-zip -r ../../origin-request-function.zip index.js node_modules/
-cd ../..

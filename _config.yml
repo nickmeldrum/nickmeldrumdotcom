@@ -13,7 +13,7 @@ permalink: 'blog/:title'
 markdown: kramdown
 highlighter: rouge
 source: site
-destination: _site
+destination: 'dist/_site'
 sass:
   style: compressed
 twitter_username: 'nick_meldrum'

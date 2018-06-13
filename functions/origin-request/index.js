@@ -29,7 +29,7 @@ const removeHtmlExtension = uri => {
 const removeTrailingSlashes = uri => {
   if (uri === '' || uri === '/') return uri
   if (RegExp('.*?/+$').test(uri)) return uri.replace(/(\/+)$/gm, '')
-  return uri;
+  return uri
 }
 
 const toLower = uri => uri.toLowerCase()

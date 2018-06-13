@@ -1,15 +1,5 @@
 #!/bin/sh
 set -e
-export AWS_DEFAULT_REGION=us-east-1
 
-. ./script/set-branch-name
-. ./deploy/init-vars
-
-. ./deploy/cloudformation/create-or-update
-. ./deploy/cloudformation/get-resource-ids
-
-. ./deploy/s3/sync
-. ./deploy/cloudfront/invalidate-cache
-
-. ./deploy/lambda/create-or-update
-. ./deploy/cloudfront/update-distribution
+cd infrastructure/
+yarn && yarn start
