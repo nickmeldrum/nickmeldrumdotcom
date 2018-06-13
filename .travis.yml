@@ -1,7 +1,5 @@
-language: ruby
 language: node_js
 node_js:
-  - "node"
   - "10"
 rvm:
   - 2.3.3
