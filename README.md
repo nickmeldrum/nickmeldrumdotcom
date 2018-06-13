@@ -80,9 +80,8 @@ the 404 page is found at `/404.html` in S3
 ## TODO:
 
 ### Next steps:
- 
- * first next step: run script/deploy - tries to update stack then moans it doesn't exist - some error in the scripts now
 
+ * look at the infra modules that have an init func - this should be a constrctor function or something?
  * get the travis stuff parameterised to testing and prod versions
    * test the 2 stack creations and updates including lambda create/update
    * still to get the nickmeldrum domain names and certificate correctly applied to the prod CF in cloudformation based on parameters
