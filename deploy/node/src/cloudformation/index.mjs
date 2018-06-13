@@ -19,8 +19,7 @@ const init = async () => {
   }/${config.stackTemplateName}`
 }
 
-export const created = async () => {
-  await init()
+const created = async () => {
   const list = await cloudformation
     .listStacks({
       StackStatusFilter: [
@@ -155,7 +154,7 @@ const createChangeSet = async StackName => {
       ChangeSetName: changeSet.Id,
     })
   } catch (e) {
-    console.error('wait for changeset complete failed', e)
+    console.warn('wait for changeset complete failed', e)
   }
 
   if (changeSetDescription.Status === 'FAILED') {
@@ -186,8 +185,7 @@ const executeChangeSet = async (StackName, ChangeSetName) => {
   })
 }
 
-export const create = async () => {
-  await init()
+const create = async () => {
   if (await created()) throw new Error('stack already created')
 
   await syncTemplate()
@@ -196,8 +194,7 @@ export const create = async () => {
   await createStack()
 }
 
-export const update = async () => {
-  await init()
+const update = async () => {
   const isCreated = await created()
   if (!isCreated) throw new Error('stack not created yet')
 
@@ -208,9 +205,32 @@ export const update = async () => {
 }
 
 const createOrUpdate = async () => {
+  console.log('## create or update stack ##')
   await init()
   if (await created()) await update()
   else await create()
+}
+
+const getStackResourceInfo = async () => {
+  const StackName = await getStackId()
+
+  console.log('getting stack resource info...')
+  const resources = await cloudformation
+    .listStackResources({
+      StackName,
+    })
+    .promise()
+
+  console.log(resources)
+  return resources
+}
+
+export const getResourceId = async resourceName => {
+  await init()
+  const resources = await getStackResourceInfo()
+  return resources.StackResourceSummaries.find(
+    r => r.LogicalResourceId === resourceName,
+  ).PhysicalResourceId
 }
 
 export default createOrUpdate

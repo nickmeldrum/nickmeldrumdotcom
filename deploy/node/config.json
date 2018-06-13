@@ -1,7 +1,12 @@
 {
   "defaultRegion": "us-east-1",
   "stackName": "nickmeldrumblog-${BRANCH_NAME}",
-  "lambdaName": "nickmeldrumblog-origin-request-${BRANCH_NAME}",
   "stackTemplateBucket": "nickmeldrum-com-cloudformation",
-  "stackTemplateName": "nickmeldrumblog.json"
+  "stackTemplateName": "nickmeldrumblog.json",
+  "contentBucketName": "ContentBucket",
+  "contentSourceLocation": "../../_site",
+  "distributionName": "BlogDistribution",
+  "lambdaName": "nickmeldrumblog-origin-request-${BRANCH_NAME}",
+  "lambdaServiceRole": "arn:aws:iam::277625601220:role/service-role/fdsa",
+  "lambdaZipLocation": "../../origin-request-function.zip"
 }
