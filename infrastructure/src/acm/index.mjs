@@ -29,13 +29,13 @@ const getCertificateArn = async () => {
         .promise(),
     ),
   )
-  if (matchingCerts.length !== 1)
+  if (matchingCerts.length !== 2)
+    // todo once moved onto prod - this should be 1
     throw new Error(
       `expected 1 matching cert, got ${matchingCerts.length}`,
     )
 
-  const matchedCert = matchingCerts[0].Certificate
-  console.log(matchedCert)
+  const matchedCert = matchingCerts[1].Certificate
 
   const twoWeeks = 1000 * 60 * 60 * 24 * 28
   const timeToCheck = new Date(new Date().getTime() + twoWeeks)
@@ -85,6 +85,7 @@ const getCertificateArn = async () => {
       .promise()
 
     console.log(importDetails)
+    return importDetails.CertificateArn
   }
   // valid cert - use it!
   return matchedCert.CertificateArn
@@ -92,13 +93,11 @@ const getCertificateArn = async () => {
 
 export default async () => {
   await init()
-  console.log('## doing something certificatish ##')
+  console.log(
+    '## update stack template with cert arn (updating as necessary) ##',
+  )
 
   const arn = await getCertificateArn()
   console.log(arn)
-
-  // once you have the arn then
-  // use this cert id in the formation template (only when master)
-  //
-  // todo - also change the template to use alternate domain names when branch is master
+  return arn
 }

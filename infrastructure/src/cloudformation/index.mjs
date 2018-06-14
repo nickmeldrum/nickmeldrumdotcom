@@ -1,11 +1,13 @@
 import Aws from 'aws-sdk'
 import getConfig from '../config'
 import { getStream } from '../file/read-local-file'
+import updateCertificate from '../acm'
 
 let config
 let s3
 let cloudformation
 let templateUrl
+let certArn
 
 const init = async () => {
   if (s3) return
@@ -89,19 +91,25 @@ const waitForChangesetCompletion = waitFor(
   'describeChangeSet',
 )
 
+const getParameters = () => [
+  {
+    ParameterKey: 'BranchName',
+    ParameterValue: config.branchName,
+  },
+  {
+    ParameterKey: 'ProdCertificateArn',
+    ParameterValue: certArn,
+  },
+]
+
 const createStack = async () => {
   console.log('creating stack...')
   const stack = await cloudformation
     .createStack({
       StackName: config.stackName,
       TemplateURL: templateUrl,
-      OnFailure: 'DELETE',
-      Parameters: [
-        {
-          ParameterKey: 'BranchName',
-          ParameterValue: config.branchName,
-        },
-      ],
+      OnFailure: 'ROLLBACK',
+      Parameters: getParameters(),
       ResourceTypes: ['AWS::*'],
     })
     .promise()
@@ -131,12 +139,7 @@ const createChangeSet = async StackName => {
       ChangeSetName: `${config.stackName}-changeset`,
       TemplateURL: templateUrl,
       ChangeSetType: 'UPDATE',
-      Parameters: [
-        {
-          ParameterKey: 'BranchName',
-          ParameterValue: config.branchName,
-        },
-      ],
+      Parameters: getParameters(),
       ResourceTypes: ['AWS::*'],
     })
     .promise()
@@ -188,7 +191,6 @@ const executeChangeSet = async (StackName, ChangeSetName) => {
 const create = async () => {
   if (await created()) throw new Error('stack already created')
 
-  await syncTemplate()
   await validateTemplate()
 
   await createStack()
@@ -198,7 +200,6 @@ const update = async () => {
   const isCreated = await created()
   if (!isCreated) throw new Error('stack not created yet')
 
-  await syncTemplate()
   const StackName = await getStackId()
   const ChangeSetId = await createChangeSet(StackName)
   if (ChangeSetId) await executeChangeSet(StackName, ChangeSetId)
@@ -207,6 +208,8 @@ const update = async () => {
 const createOrUpdate = async () => {
   console.log('## create or update stack ##')
   await init()
+  certArn = await updateCertificate()
+  await syncTemplate()
   if (await created()) await update()
   else await create()
 }

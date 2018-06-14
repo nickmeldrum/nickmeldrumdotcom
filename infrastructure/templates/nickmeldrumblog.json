@@ -7,6 +7,10 @@
       "Default" : "testing",
       "AllowedValues" : ["master", "testing"],
       "Description" : "master(prod) or testing branch"
+    },
+    "ProdCertificateArn" : {
+      "Type" : "String",
+      "Description" : "acm cert arn"
     }
   },
   "Conditions" : {
@@ -40,11 +44,15 @@
       "Type": "AWS::CloudFront::Distribution",
       "Properties": {
         "DistributionConfig": {
-          "Comment": { "Fn::Join" : ["", ["nm blog", { "Ref" : "BranchName" } ]]},
+          "Comment": { "Fn::Join" : ["", ["nm blog - ", { "Ref" : "BranchName" } ]]},
           "Enabled": "true",
+          "Aliases": { "Fn::If": ["ProductionBuild", ["nickmeldrum.com", "www.nickmeldrum.com"], {"Ref" : "AWS::NoValue" }] },
           "PriceClass": { "Fn::Join" : ["", ["PriceClass_", { "Fn::If": ["ProductionBuild", "200", "100"] } ]]},
           "DefaultRootObject" : "index.html",
-          "ViewerCertificate" : { "CloudFrontDefaultCertificate" : "true" },
+          "ViewerCertificate" : {
+            "AcmCertificateArn": { "Fn::If": ["ProductionBuild", {"Ref" : "ProdCertificateArn"}, {"Ref" : "AWS::NoValue" }] },
+            "CloudFrontDefaultCertificate" : { "Fn::If": ["ProductionBuild", {"Ref" : "AWS::NoValue" }, "true"] }
+          },
           "Logging" : {
             "IncludeCookies" : "false",
             "Bucket" : "nickmeldrum-com-logs.s3.amazonaws.com",
