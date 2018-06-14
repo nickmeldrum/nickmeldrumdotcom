@@ -82,6 +82,8 @@ the 404 page is found at `/404.html` in S3
 ### Next steps:
 
  * look at the infra modules that have an init func - this should be a constrctor function or something?
+ * in infra - add a onde contet to remove relative path lookups
+ * renew the letsencrypt certs - create a plan for automating letsencrypt certs
  * get the travis stuff parameterised to testing and prod versions
    * test the 2 stack creations and updates including lambda create/update
    * still to get the nickmeldrum domain names and certificate correctly applied to the prod CF in cloudformation based on parameters

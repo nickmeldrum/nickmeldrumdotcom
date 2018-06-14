@@ -247,6 +247,10 @@ del@^2.0.2:
     pinkie-promise "^2.0.0"
     rimraf "^2.2.8"
 
+dnsimple@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/dnsimple/-/dnsimple-2.7.0.tgz#9114cc75d3344ffe87aaa61ab911dbf30c44344a"
+
 doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"

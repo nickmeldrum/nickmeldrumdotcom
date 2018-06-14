@@ -1,5 +1,8 @@
 {
   "defaultRegion": "us-east-1",
+  "certificateDomainName": "www.nickmeldrum.com",
+  "dnsimpleDomainName": "nickmeldrum.com",
+  "dnsimpleAccountId": 26264,
   "stackName": "nickmeldrumblog-${BRANCH_NAME}",
   "stackTemplateBucket": "nickmeldrum-com-cloudformation",
   "stackTemplateName": "nickmeldrumblog.json",
