@@ -1,7 +1,7 @@
 import Aws from 'aws-sdk'
-import getConfig from '../config'
-import { readBinaryFileSync } from '../file/read-local-file'
-import { updateDistributionWithLambda } from '../cloudfront'
+import getConfig from 'src/config'
+import { readBinaryFileSync } from 'src/file/read-local-file'
+import { updateDistributionWithLambda } from 'src/cloudfront'
 
 let config
 let lambda

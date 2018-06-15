@@ -5,7 +5,7 @@
   "author": "Nick Meldrum",
   "license": "MIT",
   "scripts": {
-    "start": "node --experimental-modules index.mjs"
+    "start": "ln -sf ../src node_modules/src && node --experimental-modules index.mjs"
   },
   "dependencies": {
     "aws-sdk": "^2.254.1",

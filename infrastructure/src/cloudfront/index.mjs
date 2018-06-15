@@ -1,6 +1,6 @@
 import Aws from 'aws-sdk'
-import { getResourceId } from '../cloudformation'
-import getConfig from '../config'
+import { getResourceId } from 'src/cloudformation'
+import getConfig from 'src/config'
 
 let config
 let cloudfront

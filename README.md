@@ -81,8 +81,8 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
 
+ * add error pages to the dist 403 + 404 -> /404.html
  * look at the infra modules that have an init func - this should be a constrctor function or something?
- * in infra - add a onde contet to remove relative path lookups
  * renew the letsencrypt certs - create a plan for automating letsencrypt certs
  * get the travis stuff parameterised to testing and prod versions
    * test the 2 stack creations and updates including lambda create/update

@@ -1,7 +1,7 @@
 import Aws from 'aws-sdk'
-import getConfig from '../config'
-import { getStream } from '../file/read-local-file'
-import updateCertificate from '../acm'
+import getConfig from 'src/config'
+import { getStream } from 'src/file/read-local-file'
+import updateCertificate from 'src/acm'
 
 let config
 let s3

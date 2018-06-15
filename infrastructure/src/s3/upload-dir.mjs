@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import Aws from 'aws-sdk'
-import dirname from '../file/dir-name'
+import dirname from 'src/file/dir-name'
 
 let s3
 
