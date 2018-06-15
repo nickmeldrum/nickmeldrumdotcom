@@ -9,4 +9,8 @@ const executeasync = async () => {
   await updateContent()
   await createOrUpdateLambda()
 }
-executeasync()
+
+executeasync().catch(e => {
+  console.error(e)
+  process.exit(42)
+})
