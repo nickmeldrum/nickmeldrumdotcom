@@ -65,6 +65,18 @@
               "QueryString" : "false",
               "Cookies" : { "Forward" : "none" }
             },
+            "CustomErrorResponses": [
+              {
+                "ErrorCode": 403,
+                "ResponsePagePath": "/404.html",
+                "ResponseCode": 404
+              },
+              {
+                "ErrorCode": 404,
+                "ResponsePagePath": "/404.html",
+                "ResponseCode": 404
+              }
+            ],
             "ViewerProtocolPolicy" : "redirect-to-https"
           },
           "Origins": [
