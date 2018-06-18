@@ -48,7 +48,6 @@
           "Enabled": "true",
           "Aliases": { "Fn::If": ["ProductionBuild", ["nickmeldrum.com", "www.nickmeldrum.com"], {"Ref" : "AWS::NoValue" }] },
           "PriceClass": { "Fn::Join" : ["", ["PriceClass_", { "Fn::If": ["ProductionBuild", "200", "100"] } ]]},
-          "DefaultRootObject" : "index.html",
           "ViewerCertificate" : {
             "AcmCertificateArn": { "Fn::If": ["ProductionBuild", {"Ref" : "ProdCertificateArn"}, {"Ref" : "AWS::NoValue" }] },
             "CloudFrontDefaultCertificate" : { "Fn::If": ["ProductionBuild", {"Ref" : "AWS::NoValue" }, "true"] }

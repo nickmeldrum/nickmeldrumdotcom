@@ -2,7 +2,7 @@ const path = require('path')
 const { pipe } = require('functional')
 const redirect = require('redirect')
 
-const modifyRequestWithExtension = request => {
+const rewriteRequestWithExtension = request => {
   const { uri } = request
 
   if (uri === '' || uri === '/') {
@@ -34,10 +34,18 @@ const removeTrailingSlashes = uri => {
 
 const toLower = uri => uri.toLowerCase()
 
-const createRedirectUrl = pipe(removeIndex, removeHtmlExtension, removeTrailingSlashes, toLower)
+const createRedirectUrl = pipe(
+  removeIndex,
+  removeHtmlExtension,
+  removeTrailingSlashes,
+  toLower,
+)
 
 exports.handler = (event, context, callback) => {
-  const { request, request: { uri } } = event.Records[0].cf
+  const {
+    request,
+    request: { uri },
+  } = event.Records[0].cf
 
   let newUri = createRedirectUrl(uri)
 
@@ -46,6 +54,6 @@ exports.handler = (event, context, callback) => {
     callback(null, redirect(newUri))
   } else {
     if (!request.uri) request.uri = '/'
-    callback(null, modifyRequestWithExtension(request))
+    callback(null, rewriteRequestWithExtension(request))
   }
 }
