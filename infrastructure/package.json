@@ -10,7 +10,8 @@
   "dependencies": {
     "aws-sdk": "^2.254.1",
     "branch-name": "^1.0.0",
-    "dnsimple": "^2.7.0"
+    "dnsimple": "^2.7.0",
+    "mime-types": "^2.1.18"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

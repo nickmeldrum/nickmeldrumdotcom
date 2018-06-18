@@ -1,7 +1,7 @@
 import getConfig from 'src/config'
 import { getResourceId } from 'src/cloudformation'
-import uploadDir from './upload-dir'
 import { invalidate } from 'src/cloudfront'
+import uploadDir from './upload-dir'
 
 export default async () => {
   const config = await getConfig()

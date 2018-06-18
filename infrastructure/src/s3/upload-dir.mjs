@@ -1,5 +1,6 @@
 import fs from 'fs'
 import path from 'path'
+import mime from 'mime-types'
 import Aws from 'aws-sdk'
 import dirname from 'src/file/dir-name'
 
@@ -35,6 +36,7 @@ export default async (bucket, sourcePath) => {
     const params = {
       Key: bucketPath,
       Body: fs.readFileSync(filePath),
+      ContentType: mime.lookup(filePath),
     }
     console.log(await s3.upload(params).promise())
   })
