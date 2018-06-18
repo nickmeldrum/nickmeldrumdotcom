@@ -16,9 +16,9 @@ const init = async () => {
     params: { Bucket: config.stackTemplateBucket },
   })
   cloudformation = new Aws.CloudFormation()
-  templateUrl = `https://s3.amazonaws.com/${
-    config.stackTemplateBucket
-  }/${config.stackTemplateName}`
+  templateUrl = `https://s3.amazonaws.com/${config.stackTemplateBucket}/${
+    config.stackTemplateName
+  }`
 }
 
 const created = async () => {
@@ -40,9 +40,7 @@ const created = async () => {
     })
     .promise()
 
-  return list.StackSummaries.some(
-    stack => stack.StackName === config.stackName,
-  )
+  return list.StackSummaries.some(stack => stack.StackName === config.stackName)
 }
 
 const syncTemplate = async () => {
@@ -71,9 +69,7 @@ const waitFor = (type, describeMethod) => async params => {
   await cloudformation.waitFor(type, params).promise()
 
   console.log('wait over!')
-  const description = await cloudformation[describeMethod](
-    params,
-  ).promise()
+  const description = await cloudformation[describeMethod](params).promise()
 
   console.log(description)
 }
@@ -131,24 +127,13 @@ const getStackId = async () => {
   return stackId
 }
 
-const deleteChangeSet = async (ChangeSetName, StackName) => {
-  console.log('deleting changeset...')
-  const deleteDetails = await cloudformation
-    .deleteChangeSet({
-      StackName,
-      ChangeSetName,
-    })
-    .promise()
-
-  console.log(deleteDetails)
-}
-
 const createChangeSet = async StackName => {
   console.log('creating changeset...')
+  const timestamp = Number(new Date())
   const changeSet = await cloudformation
     .createChangeSet({
       StackName,
-      ChangeSetName: `${config.stackName}-changeset`,
+      ChangeSetName: `${config.stackName}-changeset-${timestamp}`,
       TemplateURL: templateUrl,
       ChangeSetType: 'UPDATE',
       Parameters: getParameters(),
@@ -175,13 +160,8 @@ const createChangeSet = async StackName => {
   }
 
   if (changeSetDescription.Status === 'FAILED') {
-    if (
-      changeSetDescription.StatusReason.includes(
-        "didn't contain changes",
-      )
-    ) {
+    if (changeSetDescription.StatusReason.includes("didn't contain changes")) {
       console.log('changeset had no changes...')
-      await deleteChangeSet(StackName, changeSet.Id)
       return null
     }
     throw new Error(changeSetDescription.StatusReason)

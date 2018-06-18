@@ -4,6 +4,6 @@ module.exports = {
   singleQuote: true,
   arrowParens: 'avoid',
   trailingComma: 'all',
-  printWidth: 65,
+  printWidth: 85,
   parser: 'flow',
 }
