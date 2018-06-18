@@ -163,6 +163,8 @@ const createChangeSet = async StackName => {
     })
     .promise()
 
+  console.log(changeSetDescription)
+
   try {
     await waitForChangesetCompletion({
       StackName,
