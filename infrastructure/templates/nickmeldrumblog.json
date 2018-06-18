@@ -50,7 +50,8 @@
           "PriceClass": { "Fn::Join" : ["", ["PriceClass_", { "Fn::If": ["ProductionBuild", "200", "100"] } ]]},
           "ViewerCertificate" : {
             "AcmCertificateArn": { "Fn::If": ["ProductionBuild", {"Ref" : "ProdCertificateArn"}, {"Ref" : "AWS::NoValue" }] },
-            "CloudFrontDefaultCertificate" : { "Fn::If": ["ProductionBuild", {"Ref" : "AWS::NoValue" }, "true"] }
+            "CloudFrontDefaultCertificate" : { "Fn::If": ["ProductionBuild", {"Ref" : "AWS::NoValue" }, "true"] },
+            "SslSupportMethod": { "Fn::If": ["ProductionBuild", "sni-only", {"Ref" : "AWS::NoValue" }] }
           },
           "Logging" : {
             "IncludeCookies" : "false",
