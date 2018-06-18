@@ -131,6 +131,18 @@ const getStackId = async () => {
   return stackId
 }
 
+const deleteChangeSet = async (ChangeSetName, StackName) => {
+  console.log('deleting changeset...')
+  const deleteDetails = await cloudformation
+    .deleteChangeSet({
+      StackName,
+      ChangeSetName,
+    })
+    .promise()
+
+  console.log(deleteDetails)
+}
+
 const createChangeSet = async StackName => {
   console.log('creating changeset...')
   const changeSet = await cloudformation
@@ -167,6 +179,7 @@ const createChangeSet = async StackName => {
       )
     ) {
       console.log('changeset had no changes...')
+      await deleteChangeSet(StackName, changeSet.Id)
       return null
     }
     throw new Error(changeSetDescription.StatusReason)

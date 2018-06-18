@@ -81,11 +81,8 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
 
- * add error pages to the dist 403 + 404 -> /404.html
  * fix issue with node_modules and gitignore: in the functions folder we are using a node_modules folder that is not to be gitignored as it's our own modules, but i added a global node_modules ignore in gitignore
-      but the infrastructure folder is using a symlink created in the start script to link the src folder into a node_modules folder - make it consistent
- * look at the infra modules that have an init func - this should be a constrctor function or something?
- * renew the letsencrypt certs - create a plan for automating letsencrypt certs
+   but the infrastructure folder is using a symlink created in the start script to link the src folder into a node_modules folder - make it consistent
  * get the travis stuff parameterised to testing and prod versions
    * test the 2 stack creations and updates including lambda create/update
    * still to get the nickmeldrum domain names and certificate correctly applied to the prod CF in cloudformation based on parameters
@@ -103,6 +100,7 @@ the 404 page is found at `/404.html` in S3
  * check all old posts - missing imgs, broken tags etc.
  * check responsive width for all old posts is working
  * check (webmaster tools?) that all old urls with juice are still in same place
+ * autorenewal of letsencrypt certs is working
 
 ### Site content:
 
