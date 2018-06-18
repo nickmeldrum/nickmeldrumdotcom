@@ -6,7 +6,7 @@ describe('origin request handler', () => {
     { uri: 'something.js', expected: 'something.js' },
     { uri: 'something', expected: 'something.html' },
     { uri: 'over/the/rainbow.png', expected: 'over/the/rainbow.png' },
-    { uri: 'over/the/rainbow', expected: 'over/the/rainbow.html' },
+    { uri: 'over/the/rainbow', expected: 'over/the/rainbow.html' }
   ].forEach(testData => {
     it('adds .html when no file extension, adds nothing when extension present', () => {
       testHandler(handler)
@@ -94,7 +94,9 @@ describe('origin request handler', () => {
     testHandler(handler)
       .withUri('a/url/')
       .andAssert(request => {
-        expect(request.headers['cache-control'][0].value).toEqual('public, max-age=10')
+        expect(request.headers['cache-control'][0].value).toEqual(
+          'public, max-age=10'
+        )
       })
   })
 })

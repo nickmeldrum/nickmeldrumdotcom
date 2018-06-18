@@ -38,13 +38,13 @@ const createRedirectUrl = pipe(
   removeIndex,
   removeHtmlExtension,
   removeTrailingSlashes,
-  toLower,
+  toLower
 )
 
 exports.handler = (event, context, callback) => {
   const {
     request,
-    request: { uri },
+    request: { uri }
   } = event.Records[0].cf
 
   let newUri = createRedirectUrl(uri)
