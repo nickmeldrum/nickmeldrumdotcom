@@ -89,6 +89,11 @@ the 404 page is found at `/404.html` in S3
    * then move over to the new stacks and remove the old manually created resources
  * get testing into ci (jekyll + functions)
  * get the service role into the cloudformation template
+ * upgrade to TLSv1.1_2016 (recommended) and HTTP/2, HTTP/1.1, HTTP/1.0
+ * automate dnsimple alias and cname creation if not created against correct cf domain name
+ * get .co.uk and .net domains in dnsimple redirecting to .com domain
+ * grant read permissions on bucket was default no on cf creation - or did it?
+ * first lambda version created fails the build with no specific version - 2nd run fixes it in deploy scripts
 
 ### Test:
 
