@@ -17,7 +17,7 @@ module.exports = {
     ],
   },
   settings: {
-    'import/external-module-folders': [],
+    'import/external-module-folders': ['src'],
     'import/resolver': {
       node: { extensions: ['.js', '.mjs'] },
     },
