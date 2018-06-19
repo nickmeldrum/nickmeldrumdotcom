@@ -79,37 +79,9 @@ the 404 page is found at `/404.html` in S3
 
 ## TODO:
 
-### Next steps:
-
- * add a sitemap
- * fix issue with node_modules and gitignore: in the functions folder we are using a node_modules folder that is not to be gitignored as it's our own modules, but i added a global node_modules ignore in gitignore
-   but the infrastructure folder is using a symlink created in the start script to link the src folder into a node_modules folder - make it consistent
- * get the travis stuff parameterised to testing and prod versions
-   * test the 2 stack creations and updates including lambda create/update
-   * still to get the nickmeldrum domain names and certificate correctly applied to the prod CF in cloudformation based on parameters
-   * then move over to the new stacks and remove the old manually created resources
- * get testing into ci (jekyll + functions)
- * get the service role into the cloudformation template
- * upgrade to TLSv1.1_2016 (recommended) and HTTP/2, HTTP/1.1, HTTP/1.0
- * automate dnsimple alias and cname creation if not created against correct cf domain name
- * get .co.uk and .net domains in dnsimple redirecting to .com domain
- * grant read permissions on bucket was default no on cf creation - or did it?
- * first lambda version created fails the build with no specific version - 2nd run fixes it in deploy scripts
-
-### Test:
-
- * disqus commenting
- * canonical is right in live - especially trailing slashes on /blog and /page/2 etc.
- * ga integration
- * 404's (on missing pages + /blog)
- * canonicals (e.g. trailing slashes, index.html versions)
- * check all old posts - missing imgs, broken tags etc.
- * check responsive width for all old posts is working
- * check (webmaster tools?) that all old urls with juice are still in same place
- * autorenewal of letsencrypt certs is working
-
 ### Site content:
 
+ * add a sitemap
  * rewrite cv page content for my new profile
  * look at progressively upgrading to nicer downloadable font (without compromising initial render times)
  * add a booklist?
@@ -129,11 +101,22 @@ the 404 page is found at `/404.html` in S3
  * create a dark theme switch
  * look at gradual font improvement on load (currently waits for css/ fonts to download before rendering)
 
+### Edge functions:
+
+ * fix issue with node_modules and gitignore: in the functions folder we are using a node_modules folder that is not to be gitignored as it's our own modules, but i added a global node_modules ignore in gitignore
+   but the infrastructure folder is using a symlink created in the start script to link the src folder into a node_modules folder - make it consistent
+
 ### Infrastructure:
 
- * check can you aws sync content + invalidate inside cloudformation stack?
  * get lambda published via sam template + integrated into cloudformation stack update?
  * create a domain redirect if the domain ain't nickmeldrum.com (https)
+ * get testing into ci (jekyll + functions)
+ * get the service role into the cloudformation template
+ * upgrade to TLSv1.1_2016 (recommended) and HTTP/2, HTTP/1.1, HTTP/1.0
+ * automate dnsimple alias and cname creation if not created against correct cf domain name
+ * get .co.uk and .net domains in dnsimple redirecting to .com domain
+ * grant read permissions on bucket was default no on cf creation - or did it?
+ * first lambda version created fails the build with no specific version - 2nd run fixes it in deploy scripts
 
 ## Links
 
