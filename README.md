@@ -81,8 +81,6 @@ the 404 page is found at `/404.html` in S3
 
 ### Next steps:
 
- * 404 pages aren't working any more! :(
- * make robots disallow all on non-master branch deployments
  * add a sitemap
  * fix issue with node_modules and gitignore: in the functions folder we are using a node_modules folder that is not to be gitignored as it's our own modules, but i added a global node_modules ignore in gitignore
    but the infrastructure folder is using a symlink created in the start script to link the src folder into a node_modules folder - make it consistent
