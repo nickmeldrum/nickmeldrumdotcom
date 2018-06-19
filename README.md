@@ -108,6 +108,7 @@ the 404 page is found at `/404.html` in S3
 
 ### Infrastructure:
 
+ * check for changes in cfn template/ lambda/ site code before bothering to initiate a deploy of cfn / lambda / s3 content
  * get lambda published via sam template + integrated into cloudformation stack update?
  * create a domain redirect if the domain ain't nickmeldrum.com (https)
  * get testing into ci (jekyll + functions)
