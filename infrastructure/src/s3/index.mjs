@@ -9,7 +9,7 @@ const addRobotsForNonProd = async (config, Bucket) => {
     console.log('adding robots.txt to disallow all as non prod deployment...')
     const s3 = new Aws.S3({ params: { Bucket } })
     const params = {
-      Key: '/robots.txt',
+      Key: 'robots.txt',
       Body: 'User-agent: *\nDisallow: /',
       ContentType: 'text/plain',
     }
