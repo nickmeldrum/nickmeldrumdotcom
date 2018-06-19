@@ -30,9 +30,7 @@ export default async (bucket, sourcePath) => {
   }
 
   walkSync(fullSourcePath, async filePath => {
-    const bucketPath = filePath.substring(
-      fullSourcePath.length + 1,
-    )
+    const bucketPath = filePath.substring(fullSourcePath.length + 1)
     const params = {
       Key: bucketPath,
       Body: fs.readFileSync(filePath),
