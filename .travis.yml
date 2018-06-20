@@ -22,6 +22,10 @@ jobs:
       script: ./script/build
     - stage: deploy
       script: ./script/deploy
+stages:
+  - test
+  - build
+  - deploy
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
