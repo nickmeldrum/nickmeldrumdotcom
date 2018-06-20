@@ -11,21 +11,19 @@ cache:
   directories:
   - /home/travis/.rvm/
   - ./functions/origin-request/node_modules/
-install:
-  - pip install --user awscli
-  - bundle install
 jobs:
   include:
     - stage: test
       script: ./script/test-functions
-    - stage: build
+    - stage: build-and-deploy
+      install:
+        - pip install --user awscli
+        - bundle install
       script: ./script/build
-    - stage: deploy
       script: ./script/deploy
 stages:
   - test
-  - build
-  - deploy
+  - build-and-deploy
 env:
   global:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
