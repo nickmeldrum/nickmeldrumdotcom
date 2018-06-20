@@ -15,6 +15,7 @@ install:
   - pip install --user awscli
   - bundle install
 script:
+  - ./script/test-functions
   - ./script/build
   - ./script/deploy
 env:
