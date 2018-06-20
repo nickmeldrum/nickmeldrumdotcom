@@ -6,7 +6,9 @@ const scheme = 'https://'
 const setCanonicalHost = (host, uri) => {
   const separator = !uri || uri === '/' || uri.startsWith('/') ? '' : '/'
   const uriPart = uri === '/' ? '' : uri
-  return host !== canonicalHost ? `${scheme}${canonicalHost}${separator}${uriPart}` : uri
+  return host !== canonicalHost
+    ? `${scheme}${canonicalHost}${separator}${uriPart}`
+    : uri
 }
 
 exports.handler = (event, context, callback) => {

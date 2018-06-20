@@ -7,7 +7,9 @@ describe('viewer request redirects handler', () => {
       .withUri('a/b')
       .andHost('nickmeldrum.co.uk')
       .andAssert(request => {
-        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.headers.location[0].value).toEqual(
+          'https://nickmeldrum.com/a/b'
+        )
         expect(request.status).toEqual('301')
       })
   })
@@ -17,7 +19,9 @@ describe('viewer request redirects handler', () => {
       .withUri('/a/b')
       .andHost('nickmeldrum.co.uk')
       .andAssert(request => {
-        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.headers.location[0].value).toEqual(
+          'https://nickmeldrum.com/a/b'
+        )
         expect(request.status).toEqual('301')
       })
   })
@@ -47,7 +51,9 @@ describe('viewer request redirects handler', () => {
       .withUri('a/b')
       .andHost('a23dj9ffdja.cloudfront.net')
       .andAssert(request => {
-        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.headers.location[0].value).toEqual(
+          'https://nickmeldrum.com/a/b'
+        )
         expect(request.status).toEqual('301')
       })
   })
@@ -57,7 +63,9 @@ describe('viewer request redirects handler', () => {
       .withUri('a/b')
       .andHost('www.nickmeldrum.com')
       .andAssert(request => {
-        expect(request.headers.location[0].value).toEqual('https://nickmeldrum.com/a/b')
+        expect(request.headers.location[0].value).toEqual(
+          'https://nickmeldrum.com/a/b'
+        )
         expect(request.status).toEqual('301')
       })
   })
