@@ -5,7 +5,8 @@
   "author": "Nick Meldrum",
   "license": "MIT",
   "scripts": {
-    "start": "ln -sf ../src node_modules/src && node --experimental-modules index.mjs"
+    "start": "ln -sf ../src node_modules/src && node --experimental-modules index.mjs",
+    "test": "node --experimental-modules test/request-speeds.test.mjs"
   },
   "dependencies": {
     "aws-sdk": "^2.254.1",
@@ -19,6 +20,8 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-import": "^2.10.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "prettier": "^1.11.1"
+    "prettier": "^1.11.1",
+    "request": "^2.87.0",
+    "request-promise-native": "^1.0.5"
   }
 }
