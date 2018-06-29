@@ -9,7 +9,9 @@
   "contentBucketName": "ContentBucket",
   "contentSourceLocation": "../dist/_site",
   "distributionName": "BlogDistribution",
-  "lambdaName": "nickmeldrumblog-origin-request-${BRANCH_NAME}",
   "lambdaServiceRole": "arn:aws:iam::277625601220:role/service-role/fdsa",
-  "lambdaZipLocation": "../dist/origin-request-function.zip"
+  "originRequestLambdaName": "nickmeldrumblog-origin-request-${BRANCH_NAME}",
+  "originRequestLambdaZipLocation": "../dist/origin-request-function.zip",
+  "viewerRequestLambdaName": "nickmeldrumblog-viewer-request-${BRANCH_NAME}",
+  "viewerRequestLambdaZipLocation": "../dist/viewer-request-function.zip"
 }

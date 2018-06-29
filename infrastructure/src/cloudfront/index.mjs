@@ -11,10 +11,10 @@ const init = async () => {
   cloudfront = new Aws.CloudFront()
 }
 
-export const updateDistributionWithLambda = async lambdaArn => {
+export const updateDistributionWithLambda = async options => {
   await init()
 
-  console.log('updating distribution with lambda association...')
+  console.log('updating distribution with lambda associations...')
 
   const Id = await getResourceId(config.distributionName)
 
@@ -24,18 +24,24 @@ export const updateDistributionWithLambda = async lambdaArn => {
     })
     .promise()
 
+  const associations = []
+  if (options.originLambdaArn)
+    associations.push({
+      LambdaFunctionARN: options.originLambdaArn,
+      EventType: 'origin-request',
+    })
+  if (options.viewerLambdaArn)
+    associations.push({
+      LambdaFunctionARN: options.viewerLambdaArn,
+      EventType: 'viewer-request',
+    })
+
   distConfig.DistributionConfig.DefaultCacheBehavior.LambdaFunctionAssociations = {
-    Quantity: 1,
-    Items: [
-      {
-        LambdaFunctionARN: lambdaArn,
-        EventType: 'origin-request',
-      },
-    ],
+    Quantity: associations.length,
+    Items: associations,
   }
   console.log(
-    distConfig.DistributionConfig.DefaultCacheBehavior
-      .LambdaFunctionAssociations,
+    distConfig.DistributionConfig.DefaultCacheBehavior.LambdaFunctionAssociations,
   )
 
   const updateDist = await cloudfront
@@ -50,9 +56,7 @@ export const updateDistributionWithLambda = async lambdaArn => {
 
 export const invalidate = async () => {
   await init()
-  const DistributionId = await getResourceId(
-    config.distributionName,
-  )
+  const DistributionId = await getResourceId(config.distributionName)
   console.log('invalidating cloudfront...')
   const timestamp = Number(new Date()).toString()
   const invalidation = await cloudfront

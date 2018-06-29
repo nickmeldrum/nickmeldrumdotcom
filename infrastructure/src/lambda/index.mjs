@@ -12,24 +12,22 @@ const init = async () => {
   lambda = new Aws.Lambda({})
 }
 
-const created = async () => {
+const created = async lambdaName => {
   const list = await lambda.listFunctions({}).promise()
 
-  return list.Functions.some(
-    func => func.FunctionName === config.lambdaName,
-  )
+  return list.Functions.some(func => func.FunctionName === lambdaName)
 }
 
-const create = async () => {
-  if (await created()) throw new Error('lambda already created')
+const create = async (name, zipLocation) => {
+  if (await created(name)) throw new Error('lambda already created')
 
   console.log('creating lambda...')
 
   const func = await lambda
     .createFunction({
-      FunctionName: config.lambdaName,
+      FunctionName: name,
       Code: {
-        ZipFile: readBinaryFileSync(config.lambdaZipLocation),
+        ZipFile: readBinaryFileSync(zipLocation),
       },
       Runtime: 'nodejs6.10',
       Role: config.lambdaServiceRole,
@@ -42,16 +40,16 @@ const create = async () => {
   return func.FunctionArn
 }
 
-const update = async () => {
-  const isCreated = await created()
+const update = async (name, zipLocation) => {
+  const isCreated = await created(name)
   if (!isCreated) throw new Error('lambda not created yet')
 
   console.log('updating lambda...')
 
   const func = await lambda
     .updateFunctionCode({
-      FunctionName: config.lambdaName,
-      ZipFile: readBinaryFileSync(config.lambdaZipLocation),
+      FunctionName: name,
+      ZipFile: readBinaryFileSync(zipLocation),
       Publish: true,
     })
     .promise()
@@ -60,15 +58,33 @@ const update = async () => {
   return func.FunctionArn
 }
 
-const createOrUpdate = async () => {
-  console.log('## create or update lambda ##')
-  await init()
-
+const createOrUpdate = async (name, zipLocation) => {
   let lambdaArn
-  if (await created()) lambdaArn = await update()
-  else lambdaArn = await create()
-
-  updateDistributionWithLambda(lambdaArn)
+  if (await created(name)) lambdaArn = await update(name, zipLocation)
+  else lambdaArn = await create(name, zipLocation)
+  return lambdaArn
 }
 
-export default createOrUpdate
+const createOrUpdateAll = async () => {
+  console.log('## create or update lambdas ##')
+  await init()
+
+  console.log(`${config.originRequestLambdaName}...`)
+  const originLambdaArn = await createOrUpdate(
+    config.originRequestLambdaName,
+    config.originRequestLambdaZipLocation,
+  )
+
+  console.log(`${config.viewerRequestLambdaName}...`)
+  const viewerLambdaArn = await createOrUpdate(
+    config.viewerRequestLambdaName,
+    config.viewerRequestLambdaZipLocation,
+  )
+
+  await updateDistributionWithLambda({
+    originLambdaArn,
+    viewerLambdaArn,
+  })
+}
+
+export default createOrUpdateAll
