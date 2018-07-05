@@ -1,0 +1,36 @@
+100 sequential calls of 1 concurrent calls:
+{ inMilliseconds: { min: 30, max: 393, mean: 41.89 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '3': 74, '4': 22, '5': 1, '10': 1, '17': 1, '39': 1 },
+     median: 3,
+     mode: 3 } }
+10 sequential calls of 10 concurrent calls:
+{ inMilliseconds: { min: 30, max: 460, mean: 39.49 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '3': 83, '4': 15, '5': 1, '46': 1 },
+     median: 3,
+     mode: 3 } }
+1 sequential calls of 100 concurrent calls:
+{ inMilliseconds: { min: 29, max: 54, mean: 33.67 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '2': 3, '3': 90, '4': 6, '5': 1 },
+     median: 3,
+     mode: 3 } }
+100 sequential calls of 1 concurrent calls:
+{ inMilliseconds: { min: 30, max: 90, mean: 37.22 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '3': 72, '4': 26, '5': 1, '9': 1 },
+     median: 3,
+     mode: 3 } }
+10 sequential calls of 10 concurrent calls:
+{ inMilliseconds: { min: 29, max: 48, mean: 33.86 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '2': 2, '3': 91, '4': 7 },
+     median: 3,
+     mode: 3 } }
+1 sequential calls of 100 concurrent calls:
+{ inMilliseconds: { min: 29, max: 60, mean: 35.95 },
+  inTenthsOfAMillisecond:
+   { numberOfValues: { '2': 1, '3': 76, '4': 20, '5': 2, '6': 1 },
+     median: 3,
+     mode: 3 } }
