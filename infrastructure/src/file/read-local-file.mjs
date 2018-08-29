@@ -3,8 +3,7 @@ import path from 'path'
 import util from 'util'
 import dirname from './dir-name'
 
-const getAbsolutePath = filename =>
-  path.join(dirname, '../..', filename)
+const getAbsolutePath = filename => path.join(dirname, '../..', filename)
 
 const readTextFile = async filename => {
   const filePath = getAbsolutePath(filename)

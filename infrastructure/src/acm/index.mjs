@@ -14,7 +14,7 @@ const init = async () => {
 const getCertificateArn = async () => {
   const certs = await acm
     .listCertificates({
-      CertificateStatuses: ['ISSUED'],
+      CertificateStatuses: ['ISSUED', 'EXPIRED'],
     })
     .promise()
   console.log(certs)
@@ -29,13 +29,11 @@ const getCertificateArn = async () => {
         .promise(),
     ),
   )
-  if (matchingCerts.length !== 2)
+  if (matchingCerts.length !== 1)
     // todo once moved onto prod - this should be 1
-    throw new Error(
-      `expected 1 matching cert, got ${matchingCerts.length}`,
-    )
+    throw new Error(`expected 1 matching cert, got ${matchingCerts.length}`)
 
-  const matchedCert = matchingCerts[1].Certificate
+  const matchedCert = matchingCerts[0].Certificate
 
   const twoWeeks = 1000 * 60 * 60 * 24 * 28
   const timeToCheck = new Date(new Date().getTime() + twoWeeks)
@@ -93,9 +91,7 @@ const getCertificateArn = async () => {
 
 export default async () => {
   await init()
-  console.log(
-    '## update stack template with cert arn (updating as necessary) ##',
-  )
+  console.log('## update stack template with cert arn (updating as necessary) ##')
 
   const arn = await getCertificateArn()
   console.log(arn)
