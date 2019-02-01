@@ -22,4 +22,24 @@ article {
       }
     }
   }
+
+  blockquote {
+    font-size: 20px;
+    font-style: italic;
+    padding: 8px;
+    background-color: #faebbc;
+    border: 1px solid #e1cc89;
+    margin: 5px;
+    background-image: url(/assets/images/openquote.gif);
+    background-position: top left;
+    background-repeat: no-repeat;
+    text-indent: 23px;
+  }
+  blockquote p {
+    display: block;
+    color: #666;
+    background-image: url(/assets/images/closequote.gif);
+    background-repeat: no-repeat;
+    background-position: bottom right;
+  }
 }
