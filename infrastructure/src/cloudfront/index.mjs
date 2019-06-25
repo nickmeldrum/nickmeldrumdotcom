@@ -34,8 +34,7 @@ export const updateDistributionWithLambda = async lambdaArn => {
     ],
   }
   console.log(
-    distConfig.DistributionConfig.DefaultCacheBehavior
-      .LambdaFunctionAssociations,
+    distConfig.DistributionConfig.DefaultCacheBehavior.LambdaFunctionAssociations,
   )
 
   const updateDist = await cloudfront
@@ -50,9 +49,7 @@ export const updateDistributionWithLambda = async lambdaArn => {
 
 export const invalidate = async () => {
   await init()
-  const DistributionId = await getResourceId(
-    config.distributionName,
-  )
+  const DistributionId = await getResourceId(config.distributionName)
   console.log('invalidating cloudfront...')
   const timestamp = Number(new Date()).toString()
   const invalidation = await cloudfront
