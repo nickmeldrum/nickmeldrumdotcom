@@ -1,5 +1,6 @@
 ## pre-requisites
 
+
  * Ruby (to run jekyll and gem install the dependencies)
  * Git client (to push updates to a github repo)
  * Python 2.6.5 and pip (to install the aws cli)

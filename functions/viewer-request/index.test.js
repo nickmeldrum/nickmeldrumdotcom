@@ -58,11 +58,12 @@ describe('viewer request redirects handler', () => {
       })
   })
 
-  it('host www.nickmeldrum.com and url a/b redirects to https://nickmeldrum.com/a/b', () => {
+  it.only('host www.nickmeldrum.com and url a/b redirects to https://nickmeldrum.com/a/b', () => {
     testHandler(handler)
       .withUri('a/b')
       .andHost('www.nickmeldrum.com')
       .andAssert(request => {
+        console.log('NICK', request)
         expect(request.headers.location[0].value).toEqual(
           'https://nickmeldrum.com/a/b'
         )
