@@ -31,7 +31,7 @@ const create = async () => {
       Code: {
         ZipFile: readBinaryFileSync(config.lambdaZipLocation),
       },
-      Runtime: 'nodejs6.10',
+      Runtime: 'nodejs10.x',
       Role: config.lambdaServiceRole,
       Handler: 'index.handler',
       Publish: true,
