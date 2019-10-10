@@ -51,6 +51,7 @@ const update = async () => {
   const func = await lambda
     .updateFunctionCode({
       FunctionName: config.lambdaName,
+      Runtime: 'nodejs10.x',
       ZipFile: readBinaryFileSync(config.lambdaZipLocation),
       Publish: true,
     })
