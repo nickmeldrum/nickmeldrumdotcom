@@ -8,7 +8,7 @@
     "start": "ln -sf ../src node_modules/src && node --experimental-modules index.mjs"
   },
   "dependencies": {
-    "aws-sdk": "^2.254.1",
+    "aws-sdk": "^2.549.0",
     "branch-name": "^1.0.0",
     "dnsimple": "^2.7.0",
     "mime-types": "^2.1.18"
