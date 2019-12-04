@@ -7,7 +7,6 @@ const executeasync = async () => {
   await setup()
   await createOrUpdateStack()
   await updateContent()
-  await createOrUpdateLambda()
 }
 
 executeasync().catch(e => {
