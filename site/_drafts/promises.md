@@ -6,17 +6,22 @@ ShortDescription: "What is up with this .promise() method in the aws node sdk?"
 
 A colleague came up to me the other day to ask me 2 very good questions:
 
-> "Why does the AWS node sdk have this `.promise()` function that you can chain onto all it's methods?"
+> "Why does the AWS node sdk have this `.promise()` function that you can chain onto all it's methods? Why doesn't it just return a promise by default?"
 
 and
 
-> "How do they do that?"
+> "How do they do that? (support both callbacks by default *and* a `.promise()` method)"
 
-I realised these were 2 excellent questions to trigger an explanation of why we are where we are with promises and node and how that can help us understand node and promises a bit better.
+I realised these were 2 excellent questions to trigger an explanation of why we are where we are with promises and node. Maybe that can help us understand node and promises a bit better along the way.
 
-And, on researching this topic I learnt a lot more about the issues surrounding Promises in nodejs. So this one's for you, Ravish!
+On researching this topic I learnt about a fascinating issue with node and Promises. So this one's for you, Ravish!
 
-## let's remember the node callback conventions
+
+## Let's deal with the 1st question first:
+
+"Why doesn't the AWS node sdk just return a promise by default?" The answer to that is quite simply: Because the node community has a convention of dealing with async code using callbacks. Sticking to this convention helps interoperability. So the next question is obviously "Why does it have this convention and hasn't yet moved to using Promises as it's convention?" That's where things get interesting.
+
+## Let's remember the node callback conventions
 
 By default (as nodejs is of course asynchronous by default) node has a [callback convention](http://fredkschott.com/post/2014/03/understanding-error-first-callbacks-in-node-js/) called the "error-first" callback, cutely named the 'errorback'.
 
@@ -28,7 +33,7 @@ The convention is a form of continuation passing style that states:
 
 For example:
 
-```
+{% highlight javascript %}
 fs.readFile('foo', (err, data) => {
   if (err) {
     // do something in the error scenario
@@ -37,7 +42,7 @@ fs.readFile('foo', (err, data) => {
 
   // err was null so you can now operate on data
 })
-```
+{% endhighlight %}
 
 This is how Node.js accomplishes what Promises promises to do: Help async functions deal with return values and errors. This makes allowing a function higher up the callchain to deal with this error quite problematic. You would have to ensure the error is always passed up the callchain. It's possible, but you must manually implement your own implicit error propagation mechanism to manage it. A major problem is: what if some code in the middle decides to throw? This mechanism essentially means you are dealing with error propagation by passing errors up adn therefore cannot throw ever.
 

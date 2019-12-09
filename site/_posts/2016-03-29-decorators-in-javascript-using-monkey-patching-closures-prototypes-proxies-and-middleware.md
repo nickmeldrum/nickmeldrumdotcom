@@ -42,9 +42,9 @@ component.setSuffix('!')
 component.printValue('My Value')
 {% endhighlight %}
 
-It's a simple component with a {% ihighlight javascript %}printValue(val){% endihighlight %} method which will log the value with a suffix at the end. The suffix can be set using the {% ihighlight javascript %}setSuffix(val){% endihighlight %} method.
+It's a simple component with a `printValue(val)` method which will log the value with a suffix at the end. The suffix can be set using the `setSuffix(val)` method.
 
-We want to decorate the {% ihighlight javascript %}printValue(val){% endihighlight %} method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the {% ihighlight javascript %}setSuffix(val){% endihighlight %} method in order to flush out any complexities when decorating one method in a component that has other members.
+We want to decorate the `printValue(val)` method with a decorator to validate our input and to lower case the value (in order to show chaining of decorators.) We created the `setSuffix(val)` method in order to flush out any complexities when decorating one method in a component that has other members.
 
 It's worth noting that all my examples here except the last one will work for decorating an isolated function instead of a member function and is a much simpler case.
 
@@ -163,7 +163,7 @@ This "validator" function is emulating going off to a database to check the vali
 
 ### How do we make use of closures?
 
-We could have just stored the inner object on the new object in order to call it later. Why didn't we do that? Because it would have made it public and that would have been weird. I would have confused the user of my object. Do I call {% ihighlight javascript %}instance.setSuffix(){% endihighlight %} or {% ihighlight javascript %}instance._original.setSuffix(){% endihighlight %}. Far better to make the object a private member.
+We could have just stored the inner object on the new object in order to call it later. Why didn't we do that? Because it would have made it public and that would have been weird. I would have confused the user of my object. Do I call `instance.setSuffix()` or `instance._original.setSuffix()`. Far better to make the object a private member.
 
 >"But JavaScript doesn't have private members, oh noes!"
 
@@ -184,7 +184,7 @@ function wow() {
 wow()()
 {% endhighlight %}
 
-(Just in case it wasn't obvious what the double brackets in {% ihighlight javascript %}wow()(){% endihighlight %} do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
+(Just in case it wasn't obvious what the double brackets in `wow()()` do: first it executes the "wow" function, which returns an anonymous function which is immediately executed because of the second brackets.)
 
 This is the simplest example I can imagine in JavaScript. The "wow" function returns a function that logs "val". However once "wow" has returned, "val" is no longer in scope.
 
@@ -357,7 +357,7 @@ It's mechanism is quite simple in JavaScript too. All objects have a prototype. 
 
 You can tell 1 object to "base" itself off another object by setting it's prototype. What this really means is: if someone asks to access one of my members, first we will look on my object, but if I don't have it I will delegate the access to my prototype. On this will go, all the way up the prototype chain.
 
-I won't delve into why here, but I don't like the use of the "new" keyword in JavaScript. Go to the end of the article if you care. Therefore, in my opinion the best way to make use of [prototype inheritance is using {% ihighlight javascript %}Object.create(protoype){% endihighlight %}](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create):
+I won't delve into why here, but I don't like the use of the "new" keyword in JavaScript. Go to the end of the article if you care. Therefore, in my opinion the best way to make use of [prototype inheritance is using `Object.create(protoype)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/create):
 
 {% highlight javascript %}
 const myBaseObject = { myProperty: 'oh hai' }
@@ -606,7 +606,7 @@ function toLowerDecorator(inner) {
 
 ### Pros and cons of the "middleware" approach
 
-We get more control over our decorators by setting up the chaining ourselves. We are making use of this here by changing the order in which we wrap the function using {% ihighlight javascript %}reverse(){% endihighlight %} on the decorators array.
+We get more control over our decorators by setting up the chaining ourselves. We are making use of this here by changing the order in which we wrap the function using `reverse()` on the decorators array.
 
 Taking more control of setting up the decorator chain also leads to vastly simpler decorator methods.
 
